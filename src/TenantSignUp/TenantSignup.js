@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Styles = styled.div`
-  .navbar { 
+  .navbar {
     background-color: white;
     position:'absolute';
     width:'1440px';
@@ -54,7 +54,7 @@ const Styles = styled.div`
     left:'0px';
     top:'0px';
   }
-  a, 
+  a,
   .navbar-nav, .navbar-light .nav-link {
     color: black;
     &:hover { color: #FBB03B; }
@@ -62,7 +62,7 @@ const Styles = styled.div`
   .navbar-brand {
     font-size: 1.4em;
     color: black;
-    &:hover { color: #FBB03B; } 
+    &:hover { color: #FBB03B; }
   }
 `;
 
@@ -243,7 +243,7 @@ export default function TenantSignup() {
         errMsg = 'Please upload business license certificate';
       }
     } else if (state.activeStep === 7){
-      
+      // ready untuk submit ke database!
     }
 
 

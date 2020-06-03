@@ -1,0 +1,1 @@
+export const BASE_URL = 'http://157.245.148.221:3001/query';

@@ -11,13 +11,15 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Dropdown from 'react-bootstrap/Dropdown';
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Box from '@material-ui/core/Box';
 import SwipeableViews from 'react-swipeable-views';
 import Table from 'react-bootstrap/Table'
 import styled from 'styled-components';
 import { Divider } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
+import Button from 'react-bootstrap/Button'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -177,23 +179,212 @@ function Report() {
                                         </Form.Group>
                                     </Col>
                                 </Row>
-                            </Container>
-                            <div>
-                                
+                            </Container><br />
+                            <Container>
+                                <h5>Date : </h5>
+                                <Row>
+                                    <Col sm={6} style={{ display: 'inline-flex' }}>
+                                        <Typography style={{ fontSize: 21 }}>From</Typography>&nbsp;&nbsp;&nbsp;
+                                        <Form.Control
+                                            name="fromDate"
+                                            type="date"
+                                            defaultValue=""
+                                            onChange=""
+                                        />
+                                    </Col>
+                                    <Col sm={6} style={{ display: 'inline-flex' }}>
+                                        <Typography style={{ fontSize: 21 }}>To</Typography>&nbsp;&nbsp;&nbsp;
+                                        <Form.Control
+                                            name="toDate"
+                                            type="date"
+                                            defaultValue=""
+                                            onChange=""
+                                        />
+                                    </Col>
+                                </Row>
+                            </Container><br /><br />
+                            <div style={{alignContent: 'center', display: 'flex', justifyContent: 'center'}}>
+                                <Button style={{backgroundColor: '#FBB03B', width: 169, height: 45 }}>View</Button>
+                            </div><br/><br/>
+                            <div style={{alignContent: 'center', display: 'flex', justifyContent: 'center'}}>
+                                <Typography style={{fontSize:21}}>Statistics of Jomedic Sales</Typography>
                             </div>
+                            
                         </div>
                     </TabPanel>
                     <TabPanel value={value} index={1} dir={theme.direction}>
                         <div>
-
-
+                        <Container>
+                                <Row style={{ fontSize: 21 }}>
+                                    <Col sm={6}>Total Tenant : 10</Col>
+                                    <Col sm={6}>Total Customer : 25</Col>
+                                </Row>
+                            </Container>
+                            <br />
+                            <Divider style={{ backgroundColor: 'black' }} /><br />
+                            <Container>
+                                <Row style={{ fontSize: 21 }}>
+                                    <Col sm={6}>
+                                        <Form.Group as={Row}>
+                                            <Form.Label as="legend">
+                                                Type :
+                                        </Form.Label>
+                                            <Col>
+                                                <Form.Check
+                                                    type="radio"
+                                                    label="Customer"
+                                                    name="formHorizontalRadios"
+                                                    id="formHorizontalRadios1"
+                                                />
+                                                <Form.Check
+                                                    type="radio"
+                                                    label="Tenant"
+                                                    name="formHorizontalRadios"
+                                                    id="formHorizontalRadios2"
+                                                />
+                                            </Col>
+                                        </Form.Group>
+                                    </Col>
+                                    <Col sm={6}>
+                                        <Form.Group as={Row}>
+                                            <Form.Label as="legend">
+                                                Sort By :
+                                        </Form.Label>
+                                            <Col>
+                                                <Form.Check
+                                                    type="radio"
+                                                    label="Gender"
+                                                    name="formHorizontalRadios"
+                                                    id="formHorizontalRadios1"
+                                                />
+                                                <Form.Check
+                                                    type="radio"
+                                                    label="Age range"
+                                                    name="formHorizontalRadios"
+                                                    id="formHorizontalRadios2"
+                                                />
+                                            </Col>
+                                        </Form.Group>
+                                    </Col>
+                                </Row>
+                            </Container><br />
+                            <Container>
+                                <h5>Date : </h5>
+                                <Row>
+                                    <Col sm={6} style={{ display: 'inline-flex' }}>
+                                        <Typography style={{ fontSize: 21 }}>From</Typography>&nbsp;&nbsp;&nbsp;
+                                        <Form.Control
+                                            name="fromDate"
+                                            type="date"
+                                            defaultValue=""
+                                            onChange=""
+                                        />
+                                    </Col>
+                                    <Col sm={6} style={{ display: 'inline-flex' }}>
+                                        <Typography style={{ fontSize: 21 }}>To</Typography>&nbsp;&nbsp;&nbsp;
+                                        <Form.Control
+                                            name="toDate"
+                                            type="date"
+                                            defaultValue=""
+                                            onChange=""
+                                        />
+                                    </Col>
+                                </Row>
+                            </Container><br /><br />
+                            <div style={{alignContent: 'center', display: 'flex', justifyContent: 'center'}}>
+                                <Button style={{backgroundColor: '#FBB03B', width: 169, height: 45 }}>View</Button>
+                            </div><br/><br/>
+                            <div style={{alignContent: 'center', display: 'flex', justifyContent: 'center'}}>
+                                <Typography style={{fontSize:21}}>Statistics of Video Consultation Used</Typography>
+                            </div>
                         </div>
                     </TabPanel>
 
                     <TabPanel value={value} index={2} dir={theme.direction}>
                         <div>
-
-
+                        <Container>
+                                <Row style={{ fontSize: 21 }}>
+                                    <Col sm={6}>Total Tenant : 10</Col>
+                                    <Col sm={6}>Total Customer : 25</Col>
+                                </Row>
+                            </Container>
+                            <br />
+                            <Divider style={{ backgroundColor: 'black' }} /><br />
+                            <Container>
+                                <Row style={{ fontSize: 21 }}>
+                                    <Col sm={6}>
+                                        <Form.Group as={Row}>
+                                            <Form.Label as="legend">
+                                                Type :
+                                        </Form.Label>
+                                            <Col>
+                                                <Form.Check
+                                                    type="radio"
+                                                    label="Customer"
+                                                    name="formHorizontalRadios"
+                                                    id="formHorizontalRadios1"
+                                                />
+                                                <Form.Check
+                                                    type="radio"
+                                                    label="Tenant"
+                                                    name="formHorizontalRadios"
+                                                    id="formHorizontalRadios2"
+                                                />
+                                            </Col>
+                                        </Form.Group>
+                                    </Col>
+                                    <Col sm={6}>
+                                        <Form.Group as={Row}>
+                                            <Form.Label as="legend">
+                                                Sort By :
+                                        </Form.Label>
+                                            <Col>
+                                                <Form.Check
+                                                    type="radio"
+                                                    label="Gender"
+                                                    name="formHorizontalRadios"
+                                                    id="formHorizontalRadios1"
+                                                />
+                                                <Form.Check
+                                                    type="radio"
+                                                    label="Age range"
+                                                    name="formHorizontalRadios"
+                                                    id="formHorizontalRadios2"
+                                                />
+                                            </Col>
+                                        </Form.Group>
+                                    </Col>
+                                </Row>
+                            </Container><br />
+                            <Container>
+                                <h5>Date : </h5>
+                                <Row>
+                                    <Col sm={6} style={{ display: 'inline-flex' }}>
+                                        <Typography style={{ fontSize: 21 }}>From</Typography>&nbsp;&nbsp;&nbsp;
+                                        <Form.Control
+                                            name="fromDate"
+                                            type="date"
+                                            defaultValue=""
+                                            onChange=""
+                                        />
+                                    </Col>
+                                    <Col sm={6} style={{ display: 'inline-flex' }}>
+                                        <Typography style={{ fontSize: 21 }}>To</Typography>&nbsp;&nbsp;&nbsp;
+                                        <Form.Control
+                                            name="toDate"
+                                            type="date"
+                                            defaultValue=""
+                                            onChange=""
+                                        />
+                                    </Col>
+                                </Row>
+                            </Container><br /><br />
+                            <div style={{alignContent: 'center', display: 'flex', justifyContent: 'center'}}>
+                                <Button style={{backgroundColor: '#FBB03B', width: 169, height: 45 }}>View</Button>
+                            </div><br/><br/>
+                            <div style={{alignContent: 'center', display: 'flex', justifyContent: 'center'}}>
+                                <Typography style={{fontSize:21}}>Statistics of Live Chat Used</Typography>
+                            </div>
                         </div>
                     </TabPanel>
                 </SwipeableViews>

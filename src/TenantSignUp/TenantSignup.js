@@ -96,7 +96,7 @@ export default function TenantSignup() {
     buildingNo: "",
     streetName: "",
     postcode: "",
-    state: "",
+    stateProvider: "",
     country: "",
     providerPhoneNo: "",
     providerEmail: "",
@@ -126,8 +126,8 @@ export default function TenantSignup() {
     sunEnd: "",
 
     //screen 5 form data
-    uploadAnnualPracticing: "",
-    uploadBusinessLicense: "",
+    apc: "",
+    blc: "",
 
 
   });
@@ -186,7 +186,7 @@ export default function TenantSignup() {
         errMsg = 'Please fill street name';
       } else if (state.postcode === ""){
         errMsg = 'Please fill postcode';
-      } else if (state.state === ""){
+      } else if (state.stateProvider === ""){
         errMsg = 'Please fill state';
       } else if (state.country === ""){
         errMsg = 'Please fill country';
@@ -238,9 +238,9 @@ export default function TenantSignup() {
         errMsg = 'Please fill end time';
       }
     } else if (state.activeStep === 6){
-      if (state.uploadAnnualPracticing === ""){
+      if (state.apc === ""){
         errMsg = 'Please upload annual practicing certificate';
-      } else if (state.uploadBusinessLicense === ""){
+      } else if (state.blc === ""){
         errMsg = 'Please upload business license certificate';
       }
     }

@@ -43,6 +43,44 @@ const Styles = styled.div`
   },
 `;
 
+const STATES = [
+  'Perlis',
+  'Kedah',
+  'Perak',
+  'P. Pinang',
+  'Langkawi',
+  'Kelantan',
+  'Pahang',
+  'Selangor',
+  'W. Persekutuan',
+  'N. Sembilan',
+  'Melaka',
+  'Johor',
+  'Sarawak',
+  'Sabah',
+  'Terengganu',
+  'Labuan'
+];
+
+const COUNTRY = [
+  'Perlis',
+  'Kedah',
+  'Perak',
+  'P. Pinang',
+  'Langkawi',
+  'Kelantan',
+  'Pahang',
+  'Selangor',
+  'W. Persekutuan',
+  'N. Sembilan',
+  'Melaka',
+  'Johor',
+  'Sarawak',
+  'Sabah',
+  'Terengganu',
+  'Labuan'
+];
+
 export default function Screen3(props) {
   const [state, setState] = useState(props);
 
@@ -101,31 +139,37 @@ export default function Screen3(props) {
 
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label>State</Form.Label>
-            <Dropdown>
-              <Dropdown.Toggle variant='light' id="dropdown-basic" style={{ borderColor: '#ced4da', alignItems: 'right', width: '325px' }}>
-                Select State
-                  </Dropdown.Toggle>
-
-              <Dropdown.Menu>
-                <Dropdown.Item href="#/action-1">1</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">2</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
+            <Form.Control
+              as="select"
+              name="stateProvider"
+              defaultValue={state.stateProvider}
+              onChange={props.handleInput}
+            >
+              <option value="">- Select State -</option>
+              {STATES.map((s, si) => {
+                return (
+                  <option key={si} value={s}>{s.toUpperCase()}</option>
+                );
+              })}
+            </Form.Control>
           </Form.Group>
         </Form.Row>
 
         <Form.Group controlId="formBasicCountry">
           <Form.Label>Country</Form.Label>
-          <Dropdown>
-            <Dropdown.Toggle variant='light' id="dropdown-basic" style={{ borderColor: '#ced4da', alignItems: 'right', width: '100%' }}>
-              Select Country
-                  </Dropdown.Toggle>
-
-            <Dropdown.Menu>
-              <Dropdown.Item href="#/action-1">1</Dropdown.Item>
-              <Dropdown.Item href="#/action-2">2</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
+          <Form.Control
+            as="select"
+            name="country"
+            defaultValue={state.country}
+            onChange={props.handleInput}
+          >
+            <option value="">- Select Country -</option>
+            {COUNTRY.map((s, si) => {
+              return (
+                <option key={si} value={s}>{s.toUpperCase()}</option>
+              );
+            })}
+          </Form.Control>
         </Form.Group>
 
         <Form.Group controlId="formBasicPPhoneNum">
@@ -151,5 +195,5 @@ export default function Screen3(props) {
         </Form.Group>
       </Form>
     </Card.Body>
-  </Card>
+  </Card >
 }

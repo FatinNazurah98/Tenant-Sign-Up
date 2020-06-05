@@ -198,7 +198,7 @@ export default function Screen4(props) {
                 <Form.Group as={Col} controlId="formGridStart">
                   <Form.Label>Start</Form.Label>
                   <Form.Control
-                  name="SatStart"
+                  name="satStart"
                   type="time"
                   placeholder="Start time"
                   defaultValue={state.satStart}

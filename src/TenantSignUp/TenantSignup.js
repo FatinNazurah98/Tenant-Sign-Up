@@ -75,7 +75,6 @@ export default function TenantSignup() {
     // screen 1 form data
     activeStep: 0,
     email: "",
-    userID: "",
     password: "",
     passwordConfirm: "",
 
@@ -106,7 +105,7 @@ export default function TenantSignup() {
 
     // screen 3b form data
     placeGraduate:"",
-    yearExperince: "",
+    yearExperience: "",
     preferedLanguage: "",
 
     // screen 4 form data
@@ -146,8 +145,6 @@ export default function TenantSignup() {
     if (state.activeStep === 0) {
       if (state.email === "") {
         errMsg = 'Please fill email address';
-      } else if (state.userID === "") {
-        errMsg = 'Please fill userid';
       } else if (state.password === "") {
         errMsg = 'Please fill password';
       } else if (state.passwordConfirm === "") {
@@ -202,40 +199,40 @@ export default function TenantSignup() {
     } else if (state.activeStep === 4){
       if (state.placeGraduate = ""){
         errMsg = 'Please fill place of graduate';
-      } else if (state.yearExperince){
+      } else if (state.yearExperience= ""){
         errMsg = 'Please fill year of experience';
-      } else if (state.preferedLanguage){
+      } else if (state.preferedLanguage = ""){
         errMsg = 'Please fill prefered language';
       }
     } else if (state.activeStep === 5){
       if (state.monStart === ""){
-        errMsg = 'Please fill start time';
+        errMsg = 'Please fill monday start time';
       } else if (state.monEnd === ""){
-        errMsg = 'Please fill end time';
+        errMsg = 'Please fill monday end time';
       } else if (state.tueStart === ""){
-        errMsg = 'Please fill start time';
+        errMsg = 'Please fill tuesday start time';
       } else if (state.tueEnd === ""){
-        errMsg = 'Please fill end time';
+        errMsg = 'Please fill tuesday end time';
       } else if (state.wedStart === ""){
-        errMsg = 'Please fill start time';
+        errMsg = 'Please fill wednesday start time';
       } else if (state.wedEnd === ""){
-        errMsg = 'Please fill end time';
+        errMsg = 'Please fill wednesday end time';
       } else if (state.thuStart === ""){
-        errMsg = 'Please fill start time';
+        errMsg = 'Please fill thursday start time';
       } else if (state.thuEnd === ""){
-        errMsg = 'Please fill end time';
+        errMsg = 'Please fill thursday end time';
       } else if (state.friStart === ""){
-        errMsg = 'Please fill start time';
+        errMsg = 'Please fill friday start time';
       } else if (state.friEnd === ""){
-        errMsg = 'Please fill end time';
+        errMsg = 'Please fill friday end time';
       } else if (state.satStart === ""){
-        errMsg = 'Please fill start time';
+        errMsg = 'Please fill saturday start time';
       } else if (state.satEnd === ""){
-        errMsg = 'Please fill end time';
+        errMsg = 'Please fill saturday end time';
       } else if (state.sunStart === ""){
-        errMsg = 'Please fill start time';
+        errMsg = 'Please fill sunday start time';
       } else if (state.sunEnd === ""){
-        errMsg = 'Please fill end time';
+        errMsg = 'Please fill sunday end time';
       }
     } else if (state.activeStep === 6){
       if (state.apc === ""){

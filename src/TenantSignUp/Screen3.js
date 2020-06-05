@@ -63,22 +63,12 @@ const STATES = [
 ];
 
 const COUNTRY = [
-  'Perlis',
-  'Kedah',
-  'Perak',
-  'P. Pinang',
-  'Langkawi',
-  'Kelantan',
-  'Pahang',
-  'Selangor',
-  'W. Persekutuan',
-  'N. Sembilan',
-  'Melaka',
-  'Johor',
-  'Sarawak',
-  'Sabah',
-  'Terengganu',
-  'Labuan'
+  'Brunei',
+  'Indonesia',
+  'Malaysia',
+  'Thailand',
+  'Singapore',
+  'Vietnam'
 ];
 
 export default function Screen3(props) {

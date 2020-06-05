@@ -25,54 +25,62 @@ import Table from 'react-bootstrap/Table'
 import $ from 'jquery';
 $.DataTable = require('datatables.net')
 
+const STATES = [
+  'Bahasa Malaysia',
+  'English'
+];
+
 export default function Screen3b(props) {
   const [state, setState] = useState(props);
 
-    return <Card style={{ width: 900, height: 900, borderColor: '#E5E5E5', margin: 'auto' }}>
-      <Card.Body>
-        <h1 style={{ textAlign: 'center', fontWeight: '600' }}>Qualification & Language</h1>
-        <br />
+  return <Card style={{ width: 900, height: 900, borderColor: '#E5E5E5', margin: 'auto' }}>
+    <Card.Body>
+      <h1 style={{ textAlign: 'center', fontWeight: '600' }}>Qualification & Language</h1>
+      <br />
 
-        <Form>
-          <Form.Group controlId="formBasicProviderName">
-            <Form.Label>Place Of Graduate</Form.Label>
-            <Form.Control
+      <Form>
+        <Form.Group controlId="formBasicProviderName">
+          <Form.Label>Place Of Graduate</Form.Label>
+          <Form.Control
             name="placeGraduate"
             type="text"
             placeholder="Place Of Graduate"
             defaultValue={state.placeGraduate}
             onChange={props.handleInput}
-            />
-          </Form.Group>
+          />
+        </Form.Group>
 
-          <Form.Row>
-            <Form.Group as={Col} controlId="formGridBldNum">
-              <Form.Label>Year Of Experience</Form.Label>
-              <Form.Control 
+        <Form.Row>
+          <Form.Group as={Col} controlId="formGridBldNum">
+            <Form.Label>Year Of Experience</Form.Label>
+            <Form.Control
               name="yearExperience"
               type="text"
               placeholder="Year Of Experience"
               defaultValue={state.yearExperience}
               onChange={props.handleInput}
-              />
-            </Form.Group>
+            />
+          </Form.Group>
 
-            <Form.Group as={Col} controlId="formGridStreetName">
-              <Form.Label>Prefered Language</Form.Label>
-              <Dropdown>
-                <Dropdown.Toggle variant='light' id="dropdown-basic" style={{ borderColor: '#ced4da', alignItems: 'right', width: '100%' }}>
-                  Select Language
-                </Dropdown.Toggle>
+          <Form.Group as={Col} controlId="formGridStreetName">
+            <Form.Label>Prefered Language</Form.Label>
+            <Form.Control
+              as="select"
+              name="preferedLanguage"
+              defaultValue={state.preferedLanguage}
+              onChange={props.handleInput}
+            >
+              <option value="">- Select Prefered Language -</option>
+              {STATES.map((s, si) => {
+                return (
+                  <option key={si} value={s}>{s.toUpperCase()}</option>
+                );
+              })}
+            </Form.Control>
+          </Form.Group>
+        </Form.Row>
 
-                <Dropdown.Menu>
-                  <Dropdown.Item href="#/action-1">1</Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">2</Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-            </Form.Group>
-          </Form.Row>
-
-        </Form>
-      </Card.Body>
-    </Card>
+      </Form>
+    </Card.Body>
+  </Card>
 }

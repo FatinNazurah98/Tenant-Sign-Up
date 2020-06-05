@@ -27,18 +27,6 @@ export default function Screen1(props) {
           />
         </Form.Group>
 
-
-        <Form.Group controlId="formBasicUserID">
-          <Form.Label>User ID</Form.Label>
-          <Form.Control
-            name="userID"
-            type="text"
-            placeholder="User ID"
-            defaultValue={state.userID}
-            onChange={props.handleInput}
-          />
-        </Form.Group>
-
         <Form.Group controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control

@@ -27,6 +27,7 @@ import Screen3b from './Screen3b';
 import Screen4 from './Screen4';
 import Screen5 from './Screen5';
 import Screen6 from './Screen6';
+import { postAPI } from './ConnAPI';
 
 import Table from 'react-bootstrap/Table'
 import $ from 'jquery';
@@ -242,11 +243,29 @@ export default function TenantSignup() {
       } else if (state.uploadBusinessLicense === ""){
         errMsg = 'Please upload business license certificate';
       }
-    } else if (state.activeStep === 7){
-      // ready untuk submit ke database!
     }
 
+    // connect ke database
+    if (state.activeStep === 0){
 
+      let datas = {
+        txn_cd: 'MEDPRO02',
+        tstamp: getTodayDate(),
+        data: {
+          userID: state.userID,
+          userName: state.userID,
+          password: state.password,
+          // sambung ni untuk hantar ke table `jlk_users`
+
+        },
+      };
+
+      postAPI(datas, (success) => {
+        console.log(success);
+      }, (error) => {
+        errMsg = error.message;
+      });
+    }
 
     if (errMsg !== '') {
       alert(errMsg);
@@ -281,28 +300,20 @@ export default function TenantSignup() {
   function getStepContent(stepIndex) {
     switch (stepIndex) {
       case 0:
-        return <Screen1 />
         return <Screen1 handleInput={handleInput} {...state} />
       case 1:
-        return <Screen2 />
         return <Screen2 handleInput={handleInput} {...state} />
       case 2:
-        return <Screen3 />
         return <Screen3 handleInput={handleInput} {...state} />
       case 3:
-        return <Screen3a />
         return <Screen3a handleInput={handleInput} {...state} />
       case 4:
-        return <Screen3b />
         return <Screen3b handleInput={handleInput} {...state} />
       case 5:
-        return <Screen4 />
         return <Screen4 handleInput={handleInput} {...state} />
       case 6:
-        return <Screen5 />
         return <Screen5 handleInput={handleInput} {...state} />
       case 7:
-        return <Screen6 />
         return <Screen6 handleInput={handleInput} {...state} />
       default:
         return 'Unknown stepIndex';
@@ -328,7 +339,7 @@ export default function TenantSignup() {
           ) : (
               <div>
                 <div>
-                  <Typography className={classes.instructions}>{getStepContent(state.activeStep)}</Typography>
+                  {getStepContent(state.activeStep)}
                 </div>
                 <div style={{ textAlign: 'center' }}>
                   <Button style={{

@@ -14,7 +14,7 @@ import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import Dropdown from 'react-bootstrap/Dropdown';
 
 const Styles = styled.div`
-  .navbar { 
+  .navbar {
     background-color: #C4C4C4;
     position:'absolute';
     width:'1440px';
@@ -22,7 +22,7 @@ const Styles = styled.div`
     left:'0px';
     top:'0px';
   }
-  a, 
+  a,
   .navbar-nav, .navbar-light .nav-link {
     color: #FFFFFF;
     &:hover { color: black; }
@@ -30,7 +30,7 @@ const Styles = styled.div`
   .navbar-brand {
     font-size: 1.4em;
     color: black;
-    &:hover { color: white; } 
+    &:hover { color: white; }
   }
 
   root: {
@@ -55,6 +55,25 @@ const useStyles = makeStyles(theme => ({
     marginBottom: theme.spacing(1),
   },
 }));
+
+const STATES = [
+  'Perlis',
+  'Kedah',
+  'Perak',
+  'P. Pinang',
+  'Langkawi',
+  'Kelantan',
+  'Pahang',
+  'Selangor',
+  'W. Persekutuan',
+  'N. Sembilan',
+  'Melaka',
+  'Johor',
+  'Sarawak',
+  'Sabah',
+  'Terengganu',
+  'Labuan'
+];
 
 
 export default function Screen2(props) {
@@ -119,16 +138,16 @@ export default function Screen2(props) {
         <Form.Row>
           <Form.Group controlId="formBasicUpload">
             <Form.Label>Gender</Form.Label>
-            <Dropdown>
-              <Dropdown.Toggle variant='light' id="dropdown-basic" style={{ borderColor: '#ced4da', alignItems: 'right', width: '325px' }}>
-                Select Gender
-                  </Dropdown.Toggle>
-
-              <Dropdown.Menu>
-                <Dropdown.Item href="#/action-1">Male</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Female</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
+            <Form.Control
+              as="select"
+              name="gender"
+              defaultValue={state.gender}
+              onChange={props.handleInput}
+            >
+              <option value="">- Select Gender -</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </Form.Control>
           </Form.Group>
         </Form.Row>
 
@@ -146,16 +165,19 @@ export default function Screen2(props) {
         <Form.Row>
           <Form.Group as={Col} controlId="formGridFName">
             <Form.Label>State</Form.Label>
-            <Dropdown>
-              <Dropdown.Toggle variant='light' id="dropdown-basic" style={{ borderColor: '#ced4da', alignItems: 'right', width: '325px' }}>
-                Select State
-                  </Dropdown.Toggle>
-
-              <Dropdown.Menu>
-                <Dropdown.Item href="#/action-1">1</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">2</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
+              <Form.Control
+                as="select"
+                name="state"
+                defaultValue={state.state}
+                onChange={props.handleInput}
+              >
+                <option value="">- Select State -</option>
+                {STATES.map((s, si) => {
+                  return (
+                    <option key={si} value={s}>{s.toUpperCase()}</option>
+                  );
+                })}
+              </Form.Control>
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridLName">
@@ -173,7 +195,7 @@ export default function Screen2(props) {
         <Form.Row>
           <Form.Group as={Col} controlId="formGridFName">
             <Form.Label>IC/ Passport Number</Form.Label>
-            <Form.Control 
+            <Form.Control
             name="icNo"
             type="text"
             placeholder="IC / Passport number"
@@ -186,10 +208,11 @@ export default function Screen2(props) {
             <Form.Label>Upload NRIC/ID</Form.Label>
             <div className={classes.root}>
               <input
+                name="icUpload"
                 className={classes.input}
                 id="contained-button-file"
-                multiple
                 type="file"
+                onChange={props.handleInput}
               />
             </div>
           </Form.Group>

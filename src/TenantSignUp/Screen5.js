@@ -41,7 +41,7 @@ const useStyles = makeStyles(theme => ({
 export default function Screen5(props) {
     const classes = useStyles();
     const [state, setState] = useState(props);
-    
+
     return <Card style={{ width: 900, height: 900, borderColor: '#E5E5E5', margin: 'auto' }}>
       <Card.Body>
         <h1 style={{ textAlign: 'center', fontWeight: '600' }}>Upload Certificate</h1>
@@ -64,10 +64,11 @@ export default function Screen5(props) {
                 left: '190px',
                 top: '110px'
               }}
+                name="apc"
                 className={classes.input}
                 id="contained-button-file"
-                multiple
                 type="file"
+                onChange={props.handleInput}
               />
             </div>
           </div>
@@ -92,10 +93,11 @@ export default function Screen5(props) {
                 left: '190px',
                 top: '110px'
               }}
+                name="blc"
                 className={classes.input}
                 id="contained-button-file"
-                multiple
                 type="file"
+                onChange={props.handleInput}
               />
             </div>
           </div>

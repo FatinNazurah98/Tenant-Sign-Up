@@ -189,7 +189,7 @@ export default function TenantSignup() {
         errMsg = 'Please fill country';
       } else if (state.providerPhoneNo === ""){
         errMsg = 'Please fill provider phone number';
-      } else if (state.providerEmail){
+      } else if (state.providerEmail === ""){
         errMsg = 'Please fill provider email';
       }
     } else if (state.activeStep === 3){

@@ -14,7 +14,7 @@ import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import Dropdown from 'react-bootstrap/Dropdown';
 
 const Styles = styled.div`
-  .navbar { 
+  .navbar {
     background-color: #C4C4C4;
     position:'absolute';
     width:'1440px';
@@ -22,7 +22,7 @@ const Styles = styled.div`
     left:'0px';
     top:'0px';
   }
-  a, 
+  a,
   .navbar-nav, .navbar-light .nav-link {
     color: #FFFFFF;
     &:hover { color: black; }
@@ -30,7 +30,7 @@ const Styles = styled.div`
   .navbar-brand {
     font-size: 1.4em;
     color: black;
-    &:hover { color: white; } 
+    &:hover { color: white; }
   }
 
   root: {
@@ -177,7 +177,7 @@ export default function Screen3(props) {
           <Form.Label>Provider Email</Form.Label>
           <Form.Control
             name="providerEmail"
-            type="email"
+            type="text"
             placeholder="Provider Email"
             defaultValue={state.providerEmail}
             onChange={props.handleInput}

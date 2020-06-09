@@ -44,7 +44,7 @@ export default function Screen4(props) {
                   <Form.Label>Start</Form.Label>
                   <Form.Control 
                   name="monStart"
-                  type="time"
+                  type="datetime-local"
                   placeholder="Start time"
                   defaultValue={state.monStart}
                   onChange={props.handleInput}
@@ -55,7 +55,7 @@ export default function Screen4(props) {
                   <Form.Label>End</Form.Label>
                   <Form.Control
                   name="monEnd"
-                  type="time"
+                  type="datetime-local"
                   placeholder="End time"
                   defaultValue={state.monEnd}
                   onChange={props.handleInput}
@@ -75,7 +75,7 @@ export default function Screen4(props) {
                   <Form.Label>Start</Form.Label>
                   <Form.Control
                   name="tueStart"
-                  type="time"
+                  type="datetime-local"
                   placeholder="Start time"
                   defaultValue={state.tueStart}
                   onChange={props.handleInput}
@@ -86,7 +86,7 @@ export default function Screen4(props) {
                   <Form.Label>End</Form.Label>
                   <Form.Control
                   name="tueEnd"
-                  type="time"
+                  type="datetime-local"
                   placeholder="End time"
                   defaultValue={state.tueEnd}
                   onChange={props.handleInput}
@@ -106,7 +106,7 @@ export default function Screen4(props) {
                   <Form.Label>Start</Form.Label>
                   <Form.Control
                   name="wedStart"
-                  type="time"
+                  type="datetime-local"
                   placeholder="Start time"
                   defaultValue={state.wedStart}
                   onChange={props.handleInput}
@@ -117,7 +117,7 @@ export default function Screen4(props) {
                   <Form.Label>End</Form.Label>
                   <Form.Control
                   name="wedEnd"
-                  type="time"
+                  type="datetime-local"
                   placeholder="End time"
                   defaultValue={state.wedEnd}
                   onChange={props.handleInput}
@@ -137,7 +137,7 @@ export default function Screen4(props) {
                   <Form.Label>Start</Form.Label>
                   <Form.Control
                   name="thuStart"
-                  type="time"
+                  type="datetime-local"
                   placeholder="Start time"
                   defaultValue={state.thuStart}
                   onChange={props.handleInput}
@@ -148,7 +148,7 @@ export default function Screen4(props) {
                   <Form.Label>End</Form.Label>
                   <Form.Control
                   name="thuEnd"
-                  type="time"
+                  type="datetime-local"
                   placeholder="End time"
                   defaultValue={state.thuEnd}
                   onChange={props.handleInput}
@@ -168,7 +168,7 @@ export default function Screen4(props) {
                   <Form.Label>Start</Form.Label>
                   <Form.Control
                   name="friStart"
-                  type="time"
+                  type="datetime-local"
                   placeholder="Start time"
                   defaultValue={state.friStart}
                   onChange={props.handleInput}
@@ -179,7 +179,7 @@ export default function Screen4(props) {
                   <Form.Label>End</Form.Label>
                   <Form.Control
                   name="friEnd"
-                  type="time"
+                  type="datetime-local"
                   placeholder="End time"
                   defaultValue={state.friEnd}
                   onChange={props.handleInput}
@@ -199,7 +199,7 @@ export default function Screen4(props) {
                   <Form.Label>Start</Form.Label>
                   <Form.Control
                   name="satStart"
-                  type="time"
+                  type="datetime-local"
                   placeholder="Start time"
                   defaultValue={state.satStart}
                   onChange={props.handleInput}
@@ -210,7 +210,7 @@ export default function Screen4(props) {
                   <Form.Label>End</Form.Label>
                   <Form.Control
                   name="satEnd"
-                  type="time"
+                  type="datetime-local"
                   placeholder="End time"
                   defaultValue={state.satEnd}
                   onChange={props.handleInput}
@@ -230,7 +230,7 @@ export default function Screen4(props) {
                   <Form.Label>Start</Form.Label>
                   <Form.Control
                   name="sunStart"
-                  type="time"
+                  type="datetime-local"
                   placeholder="Start time"
                   defaultValue={state.sunStart}
                   onChange={props.handleInput}
@@ -241,7 +241,7 @@ export default function Screen4(props) {
                   <Form.Label>End</Form.Label>
                   <Form.Control
                   name="sunEnd"
-                  type="time"
+                  type="datetime-local"
                   placeholder="End time"
                   defaultValue={state.sunEnd}
                   onChange={props.handleInput}

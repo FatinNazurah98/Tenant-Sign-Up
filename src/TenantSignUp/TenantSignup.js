@@ -383,9 +383,9 @@ export default function TenantSignup() {
         data: {
           tenantId: state.email,
           qualificationCd: state.preferedLanguage,
-          fieldStudy: state.email,
+          fieldStudy: state.yearExperience,
           universityName: state.placeGraduate,
-          graduationYear: state.yearExperience,
+          graduationYear: "2019-04-20",
           createdBy: '',
         },
       };
@@ -427,12 +427,12 @@ export default function TenantSignup() {
         tstamp: getTodayDate(),
         data: {
           tenantId: state.email,
-          tenantType: state.email,
-          hfc: '',
-          serviceFee: '',
-          deposit: '',
-          discount: '',
-          tax: '',
+          tenantType: "0001",
+          hfc: "",
+          serviceFee: '1999.0',
+          deposit: '15.0',
+          discount: '00',
+          tax: '0.9',
           BLC: state.blc,
           APC: state.apc,
           createdBy: ''

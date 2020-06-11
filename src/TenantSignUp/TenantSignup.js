@@ -94,7 +94,7 @@ export default function TenantSignup() {
     healthcareFacility: "",
     buildingNo: "",
     streetName: "",
-    postcode: "",
+    postcodeProvider: "",
     stateProvider: "",
     country: "",
     providerPhoneNo: "",
@@ -109,18 +109,31 @@ export default function TenantSignup() {
     preferedLanguage: "",
 
     // screen 4 form data
+    monDay: "",
     monStart: "",
     monEnd: "",
+
+    tueDay: "",
     tueStart: "",
     tueEnd: "",
+
+    wedDay: "",
     wedStart: "",
     wedEnd: "",
+
+    thuDay: "",
     thuStart: "",
     thuEnd: "",
+
+    friDay: "",
     friStart: "",
     friEnd: "",
+
+    satDay: "",
     satStart: "",
     satEnd: "",
+
+    sunDay: "",
     sunStart: "",
     sunEnd: "",
 
@@ -142,7 +155,7 @@ export default function TenantSignup() {
   const handleNext = () => {
     setActiveStep(prevActiveStep => prevActiveStep + 1);
     let errMsg = '';
-    if (state.activeStep === 0) {
+    if (state.activeStep === 0) { //screen1 create jomedic id
       if (state.email === "") {
         errMsg = 'Please fill email address';
       } else if (state.password === "") {
@@ -152,7 +165,7 @@ export default function TenantSignup() {
       } else if (state.password !== state.passwordConfirm) {
         errMsg = 'Password does not match';
       }
-    } else if (state.activeStep === 1) {
+    } else if (state.activeStep === 1) { //screen2 personal info
       if (state.firstName === "") {
         errMsg = 'Please fill first name';
       } else if (state.lastName === "") {
@@ -174,14 +187,14 @@ export default function TenantSignup() {
       } else if (state.icUpload === "") {
         errMsg = 'Please upload ic';
       }
-    } else if (state.activeStep === 2) {
+    } else if (state.activeStep === 2) { //screen3 provider info
       if (state.healthcareFacility === "") {
         errMsg = 'Please fill healthcare facility';
       } else if (state.buildingNo === "") {
         errMsg = 'Please fill building number';
       } else if (state.streetName === "") {
         errMsg = 'Please fill street name';
-      } else if (state.postcode === "") {
+      } else if (state.postcodeProvider === "") {
         errMsg = 'Please fill postcode';
       } else if (state.stateProvider === "") {
         errMsg = 'Please fill state';
@@ -192,11 +205,11 @@ export default function TenantSignup() {
       } else if (state.providerEmail === "") {
         errMsg = 'Please fill provider email';
       }
-    } else if (state.activeStep === 3) {
+    } else if (state.activeStep === 3) { //screen3a specialties
       if (state.medicalSpecialties === "") {
         errMsg = 'Please fill medical specialties';
       }
-    } else if (state.activeStep === 4) {
+    } else if (state.activeStep === 4) { //screen3b qualification&language
       if (state.placeGraduate === "") {
         errMsg = 'Please fill place of graduate';
       } else if (state.yearExperience === "") {
@@ -204,37 +217,51 @@ export default function TenantSignup() {
       } else if (state.preferedLanguage === "") {
         errMsg = 'Please fill prefered language';
       }
-    } else if (state.activeStep === 5) {
-      if (state.monStart === "") {
+    } else if (state.activeStep === 5) { //screen4 operation hour
+      if (state.monDay === "") {
+        errMsg = 'Please select day (monday)';
+      } else if (state.monStart === "") {
         errMsg = 'Please fill monday start time';
       } else if (state.monEnd === "") {
         errMsg = 'Please fill monday end time';
+      } else if (state.tueDay === "") {
+        errMsg = 'Please select day (tuesday)';
       } else if (state.tueStart === "") {
         errMsg = 'Please fill tuesday start time';
       } else if (state.tueEnd === "") {
         errMsg = 'Please fill tuesday end time';
+      } else if (state.wedDay === "") {
+        errMsg = 'Please select day (wednesday)';
       } else if (state.wedStart === "") {
         errMsg = 'Please fill wednesday start time';
       } else if (state.wedEnd === "") {
         errMsg = 'Please fill wednesday end time';
+      } else if (state.thuDay === "") {
+        errMsg = 'Please select day (thursday)';
       } else if (state.thuStart === "") {
         errMsg = 'Please fill thursday start time';
       } else if (state.thuEnd === "") {
         errMsg = 'Please fill thursday end time';
+      } else if (state.friDay === "") {
+        errMsg = 'Please select day (friday)';
       } else if (state.friStart === "") {
         errMsg = 'Please fill friday start time';
       } else if (state.friEnd === "") {
         errMsg = 'Please fill friday end time';
+      } else if (state.satDay === "") {
+        errMsg = 'Please select day (saturday)';
       } else if (state.satStart === "") {
         errMsg = 'Please fill saturday start time';
       } else if (state.satEnd === "") {
         errMsg = 'Please fill saturday end time';
+      } else if (state.sunDay === "") {
+        errMsg = 'Please select day (sunday)';
       } else if (state.sunStart === "") {
         errMsg = 'Please fill sunday start time';
       } else if (state.sunEnd === "") {
         errMsg = 'Please fill sunday end time';
       }
-    } else if (state.activeStep === 6) {
+    } else if (state.activeStep === 6) { //screen5 apc&blc
       if (state.apc === "") {
         errMsg = 'Please upload annual practicing certificate';
       } else if (state.blc === "") {
@@ -334,7 +361,7 @@ export default function TenantSignup() {
           districtCd: '',
           stateCd: state.stateProvider,
           countryCd: state.country,
-          postcode: state.postcode,
+          postcode: state.postcodeProvider,
           phone: state.providerPhoneNo,
           email: state.providerEmail,
           packageType: '',
@@ -367,11 +394,13 @@ export default function TenantSignup() {
         },
       };
 
-      postAPI(datas4, (success) => {
-        console.log(success);
-      }, (error) => {
-        errMsg = error.message;
-      });
+      console.log(datas4)
+
+      // postAPI(datas4, (success) => {
+      //   console.log(success);
+      // }, (error) => {
+      //   errMsg = error.message;
+      // });
     }
 
     else if (state.activeStep === 4) {
@@ -401,217 +430,271 @@ export default function TenantSignup() {
       //screen4 table jlk_working_day
 
       let datas6 = {
-        txn_cd: 'MEDPRO19',
+        txn_cd: 'MEDPRO21',
         tstamp: getTodayDate(),
-        data: {
-          tenantId: state.email,
-          workingDay: 'Monday',
-          startTime: state.monStart,
-          endTime: state.monEnd,
-          createdBy: ''
-        },
-      };
+        data:{
+          workingDays : [
+          {
+            tenantId: state.email,
+            workingDay: state.monDay,
+            startTime: state.monStart,
+            endTime: state.monEnd,
+            createdBy: ""
+          }, {
+            tenantId: state.email,
+            workingDay: state.tueDay,
+            startTime: state.tueStart,
+            endTime: state.thuEnd,
+            createdBy: ""
+          }, {
+            tenantId: state.email,
+            workingDay: state.wedDay,
+            startTime: state.wedStart,
+            endTime: state.wedEnd,
+            createdBy: ""
+          }, {
+            tenantId: state.email,
+            workingDay: state.thuDay,
+            startTime: state.thuStart,
+            endTime: state.thuEnd,
+            createdBy: ""
+          }, {
+            tenantId: state.email,
+            workingDay: state.friDay,
+            startTime: state.friStart,
+            endTime: state.friEnd,
+            createdBy: ""
+          }, {
+            tenantId: state.email,
+            workingDay: state.satDay,
+            startTime: state.satStart,
+            endTime: state.satEnd,
+            createdBy: ""
+          }, {
+            tenantId: state.email,
+            workingDay: state.sunDay,
+            startTime: state.sunStart,
+            endTime: state.sunEnd,
+            createdBy: ""
+          },
+        ]
+         
+      },
+    };
 
-      postAPI(datas6, (success) => {
-        console.log(success);
-      }, (error) => {
-        errMsg = error.message;
-      });
-    }
+    postAPI(datas6, (success) => {
+      console.log(success);
+    }, (error) => {
+      errMsg = error.message;
+    });
+  }
 
     else if (state.activeStep === 6) {
-      //screen5 table jlk_jomedic_master
+    //screen5 table jlk_jomedic_master
 
-      let datas7 = {
-        txn_cd: 'MEDPRO09',
-        tstamp: getTodayDate(),
-        data: {
-          tenantId: state.email,
-          tenantType: "0001",
-          hfc: "",
-          serviceFee: '1999.0',
-          deposit: '15.0',
-          discount: '00',
-          tax: '0.9',
-          BLC: state.blc,
-          APC: state.apc,
-          createdBy: ''
-        },
-      };
-
-      postAPI(datas7, (success) => {
-        console.log(success);
-      }, (error) => {
-        errMsg = error.message;
-      });
-    }
-
-      if (errMsg !== '') {
-        alert(errMsg);
-        return;
-      }
-      setState({
-        ...state,
-        activeStep: state.activeStep + 1
-      });
+    let datas7 = {
+      txn_cd: 'MEDPRO09',
+      tstamp: getTodayDate(),
+      data: {
+        tenantId: state.email,
+        tenantType: "0001",
+        hfc: "",
+        serviceFee: '1999.0',
+        deposit: '15.0',
+        discount: '00',
+        tax: '0.9',
+        BLC: state.blc,
+        APC: state.apc,
+        createdBy: ''
+      },
     };
 
-    const handleBack = () => {
-      setState({
-        ...state,
-        activeStep: state.activeStep - 1
-      });
-    };
-
-    const handleReset = () => {
-      setState({
-        ...state,
-
-        //screen1
-        activeStep: 0,
-        email: "",
-        password: "",
-        passwordConfirm: "",
-
-        // screen2
-        firstName: "",
-        lastName: "",
-        phoneNo: "",
-        dateOfBirth: "",
-        gender: "",
-        billingAddress: "",
-        state: "",
-        postcode: "",
-        icNo: "",
-        icUpload: "",
-
-        //screen3
-        healthcareFacility: "",
-        buildingNo: "",
-        streetName: "",
-        postcode: "",
-        stateProvider: "",
-        country: "",
-        providerPhoneNo: "",
-        providerEmail: "",
-
-        //screen3a
-        medicalSpecialties: "",
-
-        //screen3b
-        placeGraduate: "",
-        yearExperience: "",
-        preferedLanguage: "",
-
-        //screen4
-        monStart: "",
-        monEnd: "",
-        tueStart: "",
-        tueEnd: "",
-        wedStart: "",
-        wedEnd: "",
-        thuStart: "",
-        thuEnd: "",
-        friStart: "",
-        friEnd: "",
-        satStart: "",
-        satEnd: "",
-        sunStart: "",
-        sunEnd: "",
-
-        //screen5
-        apc: "",
-        blc: "",
-
-      });
-    };
-
-
-
-    function getSteps() {
-      return ['Login Details', 'Personal Information', 'Provider Info', 'Specialties', 'Qualification & Language', 'Operation Hour', 'License Upload', 'E-Wallet'];
-    }
-
-    function getStepContent(stepIndex) {
-      switch (stepIndex) {
-        case 0:
-          return <Screen1 handleInput={handleInput} {...state} />
-        case 1:
-          return <Screen2 handleInput={handleInput} {...state} />
-        case 2:
-          return <Screen3 handleInput={handleInput} {...state} />
-        case 3:
-          return <Screen3a handleInput={handleInput} {...state} />
-        case 4:
-          return <Screen3b handleInput={handleInput} {...state} />
-        case 5:
-          return <Screen4 handleInput={handleInput} {...state} />
-        case 6:
-          return <Screen5 handleInput={handleInput} {...state} />
-        case 7:
-          return <Screen6 handleInput={handleInput} {...state} />
-        default:
-          return 'Unknown stepIndex';
-      }
-    }
-
-    return (
-      <div>
-        <div className={classes.root}>
-          <Stepper activeStep={state.activeStep} alternativeLabel>
-            {steps.map(label => (
-              <Step key={label}>
-                <StepLabel>{label}</StepLabel>
-              </Step>
-            ))}
-          </Stepper>
-          <div>
-            {state.activeStep === steps.length ? (
-              <div>
-                <Typography className={classes.instructions}>All steps completed</Typography>
-                <Button style={{ color: 'white', backgroundColor: '#FBB03B' }} onClick={handleReset}>Reset</Button>
-              </div>
-            ) : (
-                <div>
-                  <div>
-                    {getStepContent(state.activeStep)}
-                  </div>
-                  <div style={{ textAlign: 'center' }}>
-                    <Button style={{
-                      color: 'white',
-                      backgroundColor: '#FBB03B',
-                      borderColor: '#FBB03B',
-                      position: 'absolute',
-                      width: '248px',
-                      height: '63.03px',
-                      borderRadius: '50px',
-                      left: 330,
-                      top: 1050,
-                    }}
-                      disabled={state.activeStep === 0}
-                      onClick={handleBack}
-                      className={classes.backButton}
-                    >
-                      Back
-              </Button>
-                    <Button style={{
-                      color: 'white',
-                      backgroundColor: '#FBB03B',
-                      position: 'absolute',
-                      width: '248px',
-                      height: '63.03px',
-                      borderRadius: '50px',
-                      top: 1050,
-                      left: 950,
-                    }} variant="contained" onClick={handleNext}>
-                      {state.activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                    </Button>
-                  </div>
-                </div>
-              )}
-          </div>
-        </div>
-      </div>
-
-    );
+    postAPI(datas7, (success) => {
+      console.log(success);
+    }, (error) => {
+      errMsg = error.message;
+    });
   }
+
+  if (errMsg !== '') {
+    alert(errMsg);
+    return;
+  }
+  setState({
+    ...state,
+    activeStep: state.activeStep + 1
+  });
+};
+
+const handleBack = () => {
+  setState({
+    ...state,
+    activeStep: state.activeStep - 1
+  });
+};
+
+const handleReset = () => {
+  setState({
+    ...state,
+
+    //screen1
+    activeStep: 0,
+    email: "",
+    password: "",
+    passwordConfirm: "",
+
+    // screen2
+    firstName: "",
+    lastName: "",
+    phoneNo: "",
+    dateOfBirth: "",
+    gender: "",
+    billingAddress: "",
+    state: "",
+    postcode: "",
+    icNo: "",
+    icUpload: "",
+
+    //screen3
+    healthcareFacility: "",
+    buildingNo: "",
+    streetName: "",
+    postcodeProvider: "",
+    stateProvider: "",
+    country: "",
+    providerPhoneNo: "",
+    providerEmail: "",
+
+    //screen3a
+    medicalSpecialties: "",
+
+    //screen3b
+    placeGraduate: "",
+    yearExperience: "",
+    preferedLanguage: "",
+
+    //screen4
+    monDay:"",
+    monStart: "",
+    monEnd: "",
+
+    tueDay:"",
+    tueStart: "",
+    tueEnd: "",
+
+    wedDay:"",
+    wedStart: "",
+    wedEnd: "",
+
+    thuDay:"",
+    thuStart: "",
+    thuEnd: "",
+
+    friDay:"",
+    friStart: "",
+    friEnd: "",
+
+    satDay:"",
+    satStart: "",
+    satEnd: "",
+
+    sunDay:"",
+    sunStart: "",
+    sunEnd: "",
+
+    //screen5
+    apc: "",
+    blc: "",
+
+  });
+};
+
+
+
+function getSteps() {
+  return ['Login Details', 'Personal Information', 'Provider Info', 'Specialties', 'Qualification & Language', 'Operation Hour', 'License Upload', 'E-Wallet'];
+}
+
+function getStepContent(stepIndex) {
+  switch (stepIndex) {
+    case 0:
+      return <Screen1 handleInput={handleInput} {...state} />
+    case 1:
+      return <Screen2 handleInput={handleInput} {...state} />
+    case 2:
+      return <Screen3 handleInput={handleInput} {...state} />
+    case 3:
+      return <Screen3a handleInput={handleInput} {...state} />
+    case 4:
+      return <Screen3b handleInput={handleInput} {...state} />
+    case 5:
+      return <Screen4 handleInput={handleInput} {...state} />
+    case 6:
+      return <Screen5 handleInput={handleInput} {...state} />
+    case 7:
+      return <Screen6 handleInput={handleInput} {...state} />
+    default:
+      return 'Unknown stepIndex';
+  }
+}
+
+return (
+  <div>
+    <div className={classes.root}>
+      <Stepper activeStep={state.activeStep} alternativeLabel>
+        {steps.map(label => (
+          <Step key={label}>
+            <StepLabel>{label}</StepLabel>
+          </Step>
+        ))}
+      </Stepper>
+      <div>
+        {state.activeStep === steps.length ? (
+          <div>
+            <Typography className={classes.instructions}>All steps completed</Typography>
+            <Button style={{ color: 'white', backgroundColor: '#FBB03B' }} onClick={handleReset}>Reset</Button>
+          </div>
+        ) : (
+            <div>
+              <div>
+                {getStepContent(state.activeStep)}
+              </div>
+              <div style={{ textAlign: 'center' }}>
+                <Button style={{
+                  color: 'white',
+                  backgroundColor: '#FBB03B',
+                  borderColor: '#FBB03B',
+                  position: 'absolute',
+                  width: '248px',
+                  height: '63.03px',
+                  borderRadius: '50px',
+                  left: 330,
+                  top: 1050,
+                }}
+                  disabled={state.activeStep === 0}
+                  onClick={handleBack}
+                  className={classes.backButton}
+                >
+                  Back
+              </Button>
+                <Button style={{
+                  color: 'white',
+                  backgroundColor: '#FBB03B',
+                  position: 'absolute',
+                  width: '248px',
+                  height: '63.03px',
+                  borderRadius: '50px',
+                  top: 1050,
+                  left: 950,
+                }} variant="contained" onClick={handleNext}>
+                  {state.activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                </Button>
+              </div>
+            </div>
+          )}
+      </div>
+    </div>
+  </div>
+
+);
+}

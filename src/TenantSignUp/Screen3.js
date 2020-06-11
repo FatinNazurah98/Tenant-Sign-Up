@@ -119,10 +119,10 @@ export default function Screen3(props) {
           <Form.Group as={Col} controlId="formGridPostcode">
             <Form.Label>Postcode</Form.Label>
             <Form.Control
-              name="postcode"
+              name="postcodeProvider"
               type="text"
               placeholder="Postcode"
-              defaultValue={state.postcode}
+              defaultValue={state.postcodeProvider}
               onChange={props.handleInput}
             />
           </Form.Group>

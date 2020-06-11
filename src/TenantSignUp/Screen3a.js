@@ -25,7 +25,7 @@ import Table from 'react-bootstrap/Table'
 import $ from 'jquery';
 $.DataTable = require('datatables.net')
 
-const STATES = [
+const SPECIALTIES = [
   'General Medicine',
   'Cardiologist',
   'Nefrology'
@@ -70,6 +70,10 @@ export default function Screen3a(props) {
     $("#myTable").DataTable();
   });
 
+  function addSpecialtiesBtn(){
+    alert(state.medicalSpecialties)
+  }
+
   return <Card style={{ width: 900, height: 900, borderColor: '#E5E5E5', margin: 'auto' }}>
     <Card.Body>
       <h1 style={{ textAlign: 'center', fontWeight: '600' }}>Specialties</h1>
@@ -86,7 +90,7 @@ export default function Screen3a(props) {
                 onChange={props.handleInput}
               >
                 <option value="">- Select Medical Specialties -</option>
-                {STATES.map((s, si) => {
+                {SPECIALTIES.map((s, si) => {
                   return (
                     <option key={si} value={s}>{s.toUpperCase()}</option>
                   );
@@ -96,11 +100,14 @@ export default function Screen3a(props) {
 
           <Form.Group as={Col} controlId="formGridStreetName">
             <Form.Label></Form.Label><br />
-            <Button style={{
+            <Button 
+            onClick={() => addSpecialtiesBtn()}
+            style={{
               position: 'absolute',
               left: '5%',
               top: '45%',
               backgroundColor: '#025586'
+              
             }}>+ Add Specialties</Button>
 
           </Form.Group>

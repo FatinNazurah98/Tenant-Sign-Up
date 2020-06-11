@@ -28,230 +28,288 @@ $.DataTable = require('datatables.net')
 export default function Screen4(props) {
   const [state, setState] = useState(props);
 
-    return <Card style={{ width: 900, height: 900, borderColor: '#E5E5E5', margin: 'auto' }}>
-      <Card.Body>
-        <h1 style={{ textAlign: 'center', fontWeight: '600' }}>Operation Hour</h1>
-        <br />
+  return <Card style={{ width: 900, height: 900, borderColor: '#E5E5E5', margin: 'auto' }}>
+    <Card.Body>
+      <h1 style={{ textAlign: 'center', fontWeight: '600' }}>Operation Hour</h1>
+      <br />
 
-        <Form>
-          <Form.Group as={Row} controlId="formHorizontalEmail">
-            <Form.Label column sm={3}>
-              Monday
-                          </Form.Label>
-            <Col sm={9}>
-              <Form.Row>
-                <Form.Group as={Col} controlId="formGridStart">
-                  <Form.Label>Start</Form.Label>
-                  <Form.Control 
+      <Form>
+        <Form.Group as={Row} controlId="formHorizontalEmail">
+          <Form.Label column sm={3}>Monday
+              <Form.Control
+              as="select"
+              name="monDay"
+              defaultValue={state.monDay}
+              onChange={props.handleInput}
+            >
+              <option value="">- Select Day -</option>
+              <option value="monday">Monday</option>
+            </Form.Control>
+          </Form.Label>
+
+
+          <Col sm={9}>
+            <Form.Row>
+              <Form.Group as={Col} controlId="formGridStart">
+                <Form.Label>Start</Form.Label>
+                <Form.Control
                   name="monStart"
-                  type="datetime-local"
+                  type="time"
                   placeholder="Start time"
                   defaultValue={state.monStart}
                   onChange={props.handleInput}
-                  />
-                </Form.Group>
+                />
+              </Form.Group>
 
-                <Form.Group as={Col} controlId="formGridEnd">
-                  <Form.Label>End</Form.Label>
-                  <Form.Control
+              <Form.Group as={Col} controlId="formGridEnd">
+                <Form.Label>End</Form.Label>
+                <Form.Control
                   name="monEnd"
-                  type="datetime-local"
+                  type="time"
                   placeholder="End time"
                   defaultValue={state.monEnd}
                   onChange={props.handleInput}
-                  />
-                </Form.Group>
-              </Form.Row>
-            </Col>
-          </Form.Group>
+                />
+              </Form.Group>
+            </Form.Row>
+          </Col>
+        </Form.Group>
 
-          <Form.Group as={Row} controlId="formHorizontalEmail">
-            <Form.Label column sm={3}>
-              Tuesday
-                          </Form.Label>
-            <Col sm={9}>
-              <Form.Row>
-                <Form.Group as={Col} controlId="formGridStart">
-                  <Form.Label>Start</Form.Label>
-                  <Form.Control
+        <Form.Group as={Row} controlId="formHorizontalEmail">
+          <Form.Label column sm={3}>Tuesday
+            <Form.Control
+              as="select"
+              name="tueDay"
+              defaultValue={state.tueDay}
+              onChange={props.handleInput}
+            >
+              <option value="">- Select Day -</option>
+              <option value="tuesday">Tuesday</option>
+            </Form.Control>
+          </Form.Label>
+          <Col sm={9}>
+            <Form.Row>
+              <Form.Group as={Col} controlId="formGridStart">
+                <Form.Label>Start</Form.Label>
+                <Form.Control
                   name="tueStart"
-                  type="datetime-local"
+                  type="time"
                   placeholder="Start time"
                   defaultValue={state.tueStart}
                   onChange={props.handleInput}
-                  />
-                </Form.Group>
+                />
+              </Form.Group>
 
-                <Form.Group as={Col} controlId="formGridEnd">
-                  <Form.Label>End</Form.Label>
-                  <Form.Control
+              <Form.Group as={Col} controlId="formGridEnd">
+                <Form.Label>End</Form.Label>
+                <Form.Control
                   name="tueEnd"
-                  type="datetime-local"
+                  type="time"
                   placeholder="End time"
                   defaultValue={state.tueEnd}
                   onChange={props.handleInput}
-                  />
-                </Form.Group>
-              </Form.Row>
-            </Col>
-          </Form.Group>
+                />
+              </Form.Group>
+            </Form.Row>
+          </Col>
+        </Form.Group>
 
-          <Form.Group as={Row} controlId="formHorizontalEmail">
-            <Form.Label column sm={3}>
-              Wednesday
-                          </Form.Label>
-            <Col sm={9}>
-              <Form.Row>
-                <Form.Group as={Col} controlId="formGridStart">
-                  <Form.Label>Start</Form.Label>
-                  <Form.Control
+        <Form.Group as={Row} controlId="formHorizontalEmail">
+          <Form.Label column sm={3}>Wednesday
+          <Form.Control
+              as="select"
+              name="wedDay"
+              defaultValue={state.wedDay}
+              onChange={props.handleInput}
+            >
+              <option value="">- Select Day -</option>
+              <option value="wednesday">Wednesday</option>
+            </Form.Control>
+          </Form.Label>
+          <Col sm={9}>
+            <Form.Row>
+              <Form.Group as={Col} controlId="formGridStart">
+                <Form.Label>Start</Form.Label>
+                <Form.Control
                   name="wedStart"
-                  type="datetime-local"
+                  type="time"
                   placeholder="Start time"
                   defaultValue={state.wedStart}
                   onChange={props.handleInput}
-                  />
-                </Form.Group>
+                />
+              </Form.Group>
 
-                <Form.Group as={Col} controlId="formGridEnd">
-                  <Form.Label>End</Form.Label>
-                  <Form.Control
+              <Form.Group as={Col} controlId="formGridEnd">
+                <Form.Label>End</Form.Label>
+                <Form.Control
                   name="wedEnd"
-                  type="datetime-local"
+                  type="time"
                   placeholder="End time"
                   defaultValue={state.wedEnd}
                   onChange={props.handleInput}
-                  />
-                </Form.Group>
-              </Form.Row>
-            </Col>
-          </Form.Group>
+                />
+              </Form.Group>
+            </Form.Row>
+          </Col>
+        </Form.Group>
 
-          <Form.Group as={Row} controlId="formHorizontalEmail">
-            <Form.Label column sm={3}>
-              Thursday
-                          </Form.Label>
-            <Col sm={9}>
-              <Form.Row>
-                <Form.Group as={Col} controlId="formGridStart">
-                  <Form.Label>Start</Form.Label>
-                  <Form.Control
+        <Form.Group as={Row} controlId="formHorizontalEmail">
+          <Form.Label column sm={3}>Thursday
+          <Form.Control
+              as="select"
+              name="thuDay"
+              defaultValue={state.thuDay}
+              onChange={props.handleInput}
+            >
+              <option value="">- Select Day -</option>
+              <option value="thursday">Thursday</option>
+            </Form.Control>
+          </Form.Label>
+          <Col sm={9}>
+            <Form.Row>
+              <Form.Group as={Col} controlId="formGridStart">
+                <Form.Label>Start</Form.Label>
+                <Form.Control
                   name="thuStart"
-                  type="datetime-local"
+                  type="time"
                   placeholder="Start time"
                   defaultValue={state.thuStart}
                   onChange={props.handleInput}
-                  />
-                </Form.Group>
+                />
+              </Form.Group>
 
-                <Form.Group as={Col} controlId="formGridEnd">
-                  <Form.Label>End</Form.Label>
-                  <Form.Control
+              <Form.Group as={Col} controlId="formGridEnd">
+                <Form.Label>End</Form.Label>
+                <Form.Control
                   name="thuEnd"
-                  type="datetime-local"
+                  type="time"
                   placeholder="End time"
                   defaultValue={state.thuEnd}
                   onChange={props.handleInput}
-                  />
-                </Form.Group>
-              </Form.Row>
-            </Col>
-          </Form.Group>
+                />
+              </Form.Group>
+            </Form.Row>
+          </Col>
+        </Form.Group>
 
-          <Form.Group as={Row} controlId="formHorizontalEmail">
-            <Form.Label column sm={3}>
-              Friday
-                          </Form.Label>
-            <Col sm={9}>
-              <Form.Row>
-                <Form.Group as={Col} controlId="formGridStart">
-                  <Form.Label>Start</Form.Label>
-                  <Form.Control
+        <Form.Group as={Row} controlId="formHorizontalEmail">
+          <Form.Label column sm={3}>Friday
+          <Form.Control
+              as="select"
+              name="friDay"
+              defaultValue={state.friDay}
+              onChange={props.handleInput}
+            >
+              <option value="">- Select Day -</option>
+              <option value="friday">Friday</option>
+            </Form.Control>
+          </Form.Label>
+          <Col sm={9}>
+            <Form.Row>
+              <Form.Group as={Col} controlId="formGridStart">
+                <Form.Label>Start</Form.Label>
+                <Form.Control
                   name="friStart"
-                  type="datetime-local"
+                  type="time"
                   placeholder="Start time"
                   defaultValue={state.friStart}
                   onChange={props.handleInput}
-                  />
-                </Form.Group>
+                />
+              </Form.Group>
 
-                <Form.Group as={Col} controlId="formGridEnd">
-                  <Form.Label>End</Form.Label>
-                  <Form.Control
+              <Form.Group as={Col} controlId="formGridEnd">
+                <Form.Label>End</Form.Label>
+                <Form.Control
                   name="friEnd"
-                  type="datetime-local"
+                  type="time"
                   placeholder="End time"
                   defaultValue={state.friEnd}
                   onChange={props.handleInput}
-                  />
-                </Form.Group>
-              </Form.Row>
-            </Col>
-          </Form.Group>
+                />
+              </Form.Group>
+            </Form.Row>
+          </Col>
+        </Form.Group>
 
-          <Form.Group as={Row} controlId="formHorizontalEmail">
-            <Form.Label column sm={3}>
-              Saturday
-                          </Form.Label>
-            <Col sm={9}>
-              <Form.Row>
-                <Form.Group as={Col} controlId="formGridStart">
-                  <Form.Label>Start</Form.Label>
-                  <Form.Control
+        <Form.Group as={Row} controlId="formHorizontalEmail">
+          <Form.Label column sm={3}>Saturday
+          <Form.Control
+              as="select"
+              name="satDay"
+              defaultValue={state.satDay}
+              onChange={props.handleInput}
+            >
+              <option value="">- Select Day -</option>
+              <option value="saturday">Saturday</option>
+            </Form.Control>
+          </Form.Label>
+          <Col sm={9}>
+            <Form.Row>
+              <Form.Group as={Col} controlId="formGridStart">
+                <Form.Label>Start</Form.Label>
+                <Form.Control
                   name="satStart"
-                  type="datetime-local"
+                  type="time"
                   placeholder="Start time"
                   defaultValue={state.satStart}
                   onChange={props.handleInput}
-                  />
-                </Form.Group>
+                />
+              </Form.Group>
 
-                <Form.Group as={Col} controlId="formGridEnd">
-                  <Form.Label>End</Form.Label>
-                  <Form.Control
+              <Form.Group as={Col} controlId="formGridEnd">
+                <Form.Label>End</Form.Label>
+                <Form.Control
                   name="satEnd"
-                  type="datetime-local"
+                  type="time"
                   placeholder="End time"
                   defaultValue={state.satEnd}
                   onChange={props.handleInput}
-                  />
-                </Form.Group>
-              </Form.Row>
-            </Col>
-          </Form.Group>
+                />
+              </Form.Group>
+            </Form.Row>
+          </Col>
+        </Form.Group>
 
-          <Form.Group as={Row} controlId="formHorizontalEmail">
-            <Form.Label column sm={3}>
-              Sunday
-                          </Form.Label>
-            <Col sm={9}>
-              <Form.Row>
-                <Form.Group as={Col} controlId="formGridStart">
-                  <Form.Label>Start</Form.Label>
-                  <Form.Control
+        <Form.Group as={Row} controlId="formHorizontalEmail">
+          <Form.Label column sm={3}>Sunday
+          <Form.Control
+              as="select"
+              name="sunDay"
+              defaultValue={state.sunDay}
+              onChange={props.handleInput}
+            >
+              <option value="">- Select Day -</option>
+              <option value="sunday">Sunday</option>
+            </Form.Control>
+          </Form.Label>
+          <Col sm={9}>
+            <Form.Row>
+              <Form.Group as={Col} controlId="formGridStart">
+                <Form.Label>Start</Form.Label>
+                <Form.Control
                   name="sunStart"
-                  type="datetime-local"
+                  type="time"
                   placeholder="Start time"
                   defaultValue={state.sunStart}
                   onChange={props.handleInput}
-                  />
-                </Form.Group>
+                />
+              </Form.Group>
 
-                <Form.Group as={Col} controlId="formGridEnd">
-                  <Form.Label>End</Form.Label>
-                  <Form.Control
+              <Form.Group as={Col} controlId="formGridEnd">
+                <Form.Label>End</Form.Label>
+                <Form.Control
                   name="sunEnd"
-                  type="datetime-local"
+                  type="time"
                   placeholder="End time"
                   defaultValue={state.sunEnd}
                   onChange={props.handleInput}
-                  />
-                </Form.Group>
-              </Form.Row>
-            </Col>
-          </Form.Group>
+                />
+              </Form.Group>
+            </Form.Row>
+          </Col>
+        </Form.Group>
 
-        </Form>
-      </Card.Body>
-    </Card>
-  }
+      </Form>
+    </Card.Body>
+  </Card>
+}

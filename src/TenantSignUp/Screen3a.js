@@ -32,9 +32,10 @@ const SPECIALTIES = [
 ];
 
 export default function Screen3a(props) {
-  const [state, setState] = useState(props);
+  const [state, setState] = useState([props]);
+  const [dataSet, setDataSet] = React.useState([]);
 
-  const sampleData = [
+  const sampleData2 = [
     {
       "id": 1,
       "medicalSpecialties": "General Medicine",
@@ -64,14 +65,31 @@ export default function Screen3a(props) {
       "website": "anastasia.net",
     },
   ]
-  const [dataSet] = React.useState(sampleData);
 
-  useEffect(() => {
-    $("#myTable").DataTable();
-  });
+  // useEffect(() => {
+  //   $("#myTable").DataTable();
+  // });
 
-  function addSpecialtiesBtn(){
-    alert(state.medicalSpecialties)
+  function addSpecialtiesBtn() {
+
+    var data = dataSet.filter(items =>
+      items.medicalSpecialties === props.medicalSpecialties
+    );
+
+    if (data.length !== 0) {
+      alert(`${props.medicalSpecialties} already added.`);
+      return;
+    }
+    setDataSet(oldArray => [...oldArray, { medicalSpecialties: props.medicalSpecialties }]);
+    console.log(props.medicalSpecialties);
+    setState(state => [...state, props.medicalSpecialties])
+  }
+
+  function removeSpecialtiesBtn(index, item) {
+    // setDataSet(dataSet.filter(items => items.medicalSpecialties !== item))
+    const temp = [...dataSet];
+    temp.splice(index, 1);
+    setDataSet(temp);
   }
 
   return <Card style={{ width: 900, height: 900, borderColor: '#E5E5E5', margin: 'auto' }}>
@@ -83,32 +101,31 @@ export default function Screen3a(props) {
         <Form.Row>
           <Form.Group as={Col} controlId="formGridBldNum">
             <Form.Label>Medical Specialties</Form.Label>
-              <Form.Control
-                as="select"
-                name="medicalSpecialties"
-                defaultValue={state.medicalSpecialties}
-                onChange={props.handleInput}
-              >
-                <option value="">- Select Medical Specialties -</option>
-                {SPECIALTIES.map((s, si) => {
-                  return (
-                    <option key={si} value={s}>{s.toUpperCase()}</option>
-                  );
-                })}
-              </Form.Control>
+            <Form.Control
+              as="select"
+              name="medicalSpecialties"
+              onChange={props.handleInput}
+            >
+              <option value="">- Select Medical Specialties -</option>
+              {SPECIALTIES.map((s, si) => {
+                return (
+                  <option key={si} value={s}>{s.toUpperCase()}</option>
+                );
+              })}
+            </Form.Control>
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridStreetName">
             <Form.Label></Form.Label><br />
-            <Button 
-            onClick={() => addSpecialtiesBtn()}
-            style={{
-              position: 'absolute',
-              left: '5%',
-              top: '45%',
-              backgroundColor: '#025586'
-              
-            }}>+ Add Specialties</Button>
+            <Button
+              onClick={() => addSpecialtiesBtn()}
+              style={{
+                position: 'absolute',
+                left: '5%',
+                top: '45%',
+                backgroundColor: '#025586'
+
+              }}>+ Add Specialties</Button>
 
           </Form.Group>
         </Form.Row>
@@ -117,7 +134,6 @@ export default function Screen3a(props) {
             <Table className="display" width="100%" id="myTable">
               <thead>
                 <tr>
-                  <th>ID</th>
                   <th>Medical Specialties</th>
                   <th>Action</th>
                 </tr>
@@ -126,10 +142,9 @@ export default function Screen3a(props) {
                 {dataSet.map((item, key) => {
                   return (
                     <tr key={key}>
-                      <td>{item.id}</td>
                       <td>{item.medicalSpecialties}</td>
                       <td>
-                        <FontAwesomeIcon icon={faTrashAlt} onClick={() => alert(item.medicalSpecialties)} />
+                        <FontAwesomeIcon icon={faTrashAlt} onClick={() => removeSpecialtiesBtn(key, item.medicalSpecialties)} />
                       </td>
                     </tr>
                   )

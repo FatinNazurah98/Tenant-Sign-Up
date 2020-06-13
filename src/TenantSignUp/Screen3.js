@@ -81,12 +81,12 @@ export default function Screen3(props) {
 
       <Form>
         <Form.Group controlId="formBasicProviderName">
-          <Form.Label>Healthcare Facility</Form.Label>
+          <Form.Label>Tenant Name</Form.Label>
           <Form.Control
-            name="healthcareFacility"
+            name="tenantName"
             type="text"
-            placeholder="Healthcare Facility"
-            defaultValue={state.healthcareFacility}
+            placeholder="Tenant Name"
+            defaultValue={state.tenantName}
             onChange={props.handleInput}
           />
         </Form.Group>
@@ -163,26 +163,51 @@ export default function Screen3(props) {
         </Form.Group>
 
         <Form.Group controlId="formBasicPPhoneNum">
-          <Form.Label>Provider Phone Number</Form.Label>
+          <Form.Label>Tenant Phone Number</Form.Label>
           <Form.Control
-            name="providerPhoneNo"
+            name="tenantPhoneNo"
             type="text"
-            placeholder="Provider Phone Number"
-            defaultValue={state.providerPhoneNo}
+            placeholder="Tenant Phone Number"
+            defaultValue={state.tenantPhoneNo}
             onChange={props.handleInput}
           />
         </Form.Group>
 
         <Form.Group controlId="formBasicProviderEmail">
-          <Form.Label>Provider Email</Form.Label>
+          <Form.Label>Tenant Email</Form.Label>
           <Form.Control
-            name="providerEmail"
+            name="tenantEmail"
             type="text"
-            placeholder="Provider Email"
-            defaultValue={state.providerEmail}
+            placeholder="Tenant Email"
+            defaultValue={state.tenantEmail}
             onChange={props.handleInput}
           />
         </Form.Group>
+
+        <Form.Row>
+          <Form.Group as={Col} controlId="formGridPostcode">
+            <Form.Label>Longitude</Form.Label>
+            <Form.Control
+              name="longitude"
+              type="text"
+              placeholder="Longitude"
+              defaultValue={state.longitude}
+              onChange={props.handleInput}
+            />
+          </Form.Group>
+
+          <Form.Group as={Col} controlId="formGridState">
+            <Form.Label>Latitude</Form.Label>
+            <Form.Control
+              name="latitude"
+              type="text"
+              placeholder="Latitude"
+              defaultValue={state.latitude}
+              onChange={props.handleInput}
+            >
+            </Form.Control>
+          </Form.Group>
+        </Form.Row>
       </Form>
     </Card.Body>
   </Card >

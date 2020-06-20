@@ -1,47 +1,8 @@
 import React, { useState } from 'react';
-import { Nav, Navbar } from 'react-bootstrap';
-import styled from 'styled-components';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
-import { makeStyles } from '@material-ui/core';
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
-import IconButton from '@material-ui/core/IconButton';
-import PhotoCamera from '@material-ui/icons/PhotoCamera';
-import Dropdown from 'react-bootstrap/Dropdown';
 
-const Styles = styled.div`
-  .navbar {
-    background-color: #C4C4C4;
-    position:'absolute';
-    width:'1440px';
-    height:'94px';
-    left:'0px';
-    top:'0px';
-  }
-  a,
-  .navbar-nav, .navbar-light .nav-link {
-    color: #FFFFFF;
-    &:hover { color: black; }
-  }
-  .navbar-brand {
-    font-size: 1.4em;
-    color: black;
-    &:hover { color: white; }
-  }
-
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-    },
-  },
-  input: {
-    display: 'none',
-  },
-`;
 
 const STATES = [
   'Perlis',
@@ -72,7 +33,7 @@ const COUNTRY = [
 ];
 
 export default function Screen3(props) {
-  const [state, setState] = useState(props);
+  const [state] = useState(props);
 
   return <Card style={{ width: 900, height: 900, borderColor: '#E5E5E5', margin: 'auto' }}>
     <Card.Body>
@@ -81,12 +42,12 @@ export default function Screen3(props) {
 
       <Form>
         <Form.Group controlId="formBasicProviderName">
-          <Form.Label>Tenant Name</Form.Label>
+          <Form.Label>Healthcare Facility</Form.Label>
           <Form.Control
-            name="tenantName"
+            name="healthFacility"
             type="text"
-            placeholder="Tenant Name"
-            defaultValue={state.tenantName}
+            placeholder="Healthcare Facility"
+            defaultValue={state.healthFacility}
             onChange={props.handleInput}
           />
         </Form.Group>
@@ -163,23 +124,23 @@ export default function Screen3(props) {
         </Form.Group>
 
         <Form.Group controlId="formBasicPPhoneNum">
-          <Form.Label>Tenant Phone Number</Form.Label>
+          <Form.Label>Provider Phone Number</Form.Label>
           <Form.Control
-            name="tenantPhoneNo"
+            name="providerPhoneNo"
             type="text"
-            placeholder="Tenant Phone Number"
-            defaultValue={state.tenantPhoneNo}
+            placeholder="Provider Phone Number"
+            defaultValue={state.providerPhoneNo}
             onChange={props.handleInput}
           />
         </Form.Group>
 
         <Form.Group controlId="formBasicProviderEmail">
-          <Form.Label>Tenant Email</Form.Label>
+          <Form.Label>Provider Email</Form.Label>
           <Form.Control
-            name="tenantEmail"
+            name="providerEmail"
             type="text"
-            placeholder="Tenant Email"
-            defaultValue={state.tenantEmail}
+            placeholder="Provider Email"
+            defaultValue={state.providerEmail}
             onChange={props.handleInput}
           />
         </Form.Group>

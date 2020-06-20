@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import Divider from "@material-ui/core/Divider";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
@@ -64,7 +64,7 @@ const StyledNavItem = styled.div`
     }
 `;
 
-function LCustomer(props) {
+function LCustomer() {
     const sampleData = [
         {
             "id": 1,
@@ -88,7 +88,7 @@ function LCustomer(props) {
     ]
 
     const classes = useStyles();
-    const [mobileOpen, setMobileOpen] = React.useState(false);
+    const [] = React.useState(false);
     const [dataSet] = React.useState(sampleData);
 
 

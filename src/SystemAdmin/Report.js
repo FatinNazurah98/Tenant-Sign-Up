@@ -1,41 +1,19 @@
-import React, { useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import React from 'react';
 import PropTypes from "prop-types";
-import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { useTheme } from "@material-ui/core/styles";
 import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
-import Dropdown from 'react-bootstrap/Dropdown';
-// import Button from '@material-ui/core/Button';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Box from '@material-ui/core/Box';
 import SwipeableViews from 'react-swipeable-views';
-import Table from 'react-bootstrap/Table'
 import styled from 'styled-components';
 import { Divider } from '@material-ui/core';
-import TextField from '@material-ui/core/TextField';
 import Button from 'react-bootstrap/Button'
 
-const useStyles = makeStyles(theme => ({
-    root: {
-        display: "flex"
-    },
-    menuButton: {
-        marginRight: theme.spacing(2),
-        [theme.breakpoints.up("sm")]: {
-            display: "none"
-        }
-    },
-    content: {
-        flexGrow: 1,
-        padding: theme.spacing(3)
-    }
-}));
 
 const Styles = styled.div`
   display: grid;
@@ -45,15 +23,6 @@ const Styles = styled.div`
   margin-right: 6em;
 `;
 
-const StyledNavItem = styled.div`
-    a {
-        color: ${(props) => props.active ? "white" : "black"};
-        :hover {
-            opacity: 0.7;
-            text-decoration: none; /* Gets rid of underlining of icons */
-        }  
-    }
-`;
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -83,8 +52,6 @@ function a11yProps(index) {
 
 
 function Report() {
-    const [] = React.useState(false);
-
     const [value, setValue] = React.useState(0);
 
     const handleChange = (event, newValue) => {
@@ -95,9 +62,7 @@ function Report() {
         setValue(index);
     };
 
-    const classes = useStyles();
     const theme = useTheme();
-    const [mobileOpen, setMobileOpen] = React.useState(false);
 
     return (
         <Styles>

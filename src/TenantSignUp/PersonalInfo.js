@@ -1,22 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import styled from 'styled-components';
-import { Nav, Navbar, Form } from 'react-bootstrap';
-import { Divider } from '@material-ui/core';
-import Dropdown from 'react-bootstrap/Dropdown';
+import { Form } from 'react-bootstrap';
 import Box from '@material-ui/core/Box';
 import SwipeableViews from 'react-swipeable-views';
 import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
-// import Button from '@material-ui/core/Button';
 import Button from 'react-bootstrap/Button';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import Spinner from 'react-bootstrap/Spinner';
+import { postAPI } from './ConnAPI';
+import { getTodayDate } from '../util/getDate';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -31,26 +28,6 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const Styles = styled.div`
-  .navbar { 
-    background-color: white;
-    position:'absolute';
-    width:'1440px';
-    height:'94px';
-    left:'0px';
-    top:'0px';
-  }
-  a, 
-  .navbar-nav, .navbar-light .nav-link {
-    color: black;
-    &:hover { color: #FBB03B; }
-  }
-  .navbar-brand {
-    font-size: 1.4em;
-    color: black;
-    &:hover { color: #FBB03B; } 
-  }
-`;
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -76,9 +53,13 @@ function a11yProps(index) {
     };
 }
 
-export default function PersonalInfo() {
+export default function PersonalInfo(props) {
     const classes = useStyles();
-    const [] = React.useState(0);
+    // const [] = React.useState(0);
+    const [loading, setLoading] = useState(true)
+
+    const [profile, setProfile] = useState([]);
+
 
     const [value, setValue] = React.useState(0);
 
@@ -91,7 +72,52 @@ export default function PersonalInfo() {
     };
 
     const theme = useTheme();
-    const [] = React.useState(false);
+    // const [] = React.useState(false);
+
+    // const [] = useState(props);
+
+    useEffect(() => {
+        const fetchData = async () => {
+
+            const email = localStorage.getItem('myData');
+
+            if (email === null) {
+                window.location = '/SignIn';
+                return;
+            }
+
+            const datas = {
+                txn_cd: "MEDPRO04",
+                tstamp: getTodayDate(),
+                data: {
+                    userID: email
+                }
+            }
+
+            postAPI(datas, (success) => {
+                console.log(success);
+                setProfile(success.status[0])
+                setLoading(false);
+            }, (error) => {
+                alert(error.message)
+
+            });
+        };
+
+        fetchData();
+    }, []);
+
+
+    if (loading) {
+        return (
+            <div style={{ textAlign: 'center' }}>
+                <Spinner animation="border" role="status">
+                    <span className="sr-only">Loading...</span>
+                </Spinner>
+            </div>
+
+        )
+    }
 
     return (
         <div>
@@ -136,10 +162,15 @@ export default function PersonalInfo() {
                                                 <Col sm={6}>
                                                     <Form.Group as={Row} controlId="formPlaintextPassword">
                                                         <Form.Label column sm="3">
-                                                            Name
+                                                            First Name
                 </Form.Label>
                                                         <Col>
-                                                            <Form.Control />
+                                                            <Form.Control
+                                                                name="firstName"
+                                                                type="text"
+                                                                placeholder="First Name"
+                                                                defaultValue={profile.user_name}
+                                                            />
                                                         </Col>
                                                     </Form.Group><br />
 
@@ -148,7 +179,12 @@ export default function PersonalInfo() {
                                                             IC No
                 </Form.Label>
                                                         <Col>
-                                                            <Form.Control />
+                                                            <Form.Control
+                                                                name="icNo"
+                                                                type="text"
+                                                                placeholder="IC No"
+                                                                defaultValue={profile.id_number}
+                                                            />
                                                         </Col>
                                                     </Form.Group><br />
 
@@ -157,25 +193,27 @@ export default function PersonalInfo() {
                                                             Date Of Birth
                 </Form.Label>
                                                         <Col>
-                                                            <Form.Control />
+                                                            <Form.Control
+                                                                name="dateOfBirth"
+                                                                // type="date"
+                                                                placeholder="Date of Birth"
+                                                                defaultValue={profile.DOB}
+                                                            />
                                                         </Col>
                                                     </Form.Group><br />
 
                                                     <Form.Group as={Row} controlId="formPlaintextPassword">
                                                         <Form.Label column sm="3">
-                                                            Nationality
+                                                            Mobile Phone
                 </Form.Label>
                                                         <Col>
-                                                            <Dropdown>
-                                                                <Dropdown.Toggle variant='light' id="dropdown-basic" style={{ borderColor: '#ced4da', alignItems: 'right', width: '100%' }}>
-                                                                </Dropdown.Toggle>
-
-                                                                <Dropdown.Menu>
-                                                                    <Dropdown.Item href="#/action-1">Malaysian</Dropdown.Item>
-                                                                    <Dropdown.Item href="#/action-2">Other</Dropdown.Item>
-                                                                    <Dropdown.Item href="#/action-3">Othersss</Dropdown.Item>
-                                                                </Dropdown.Menu>
-                                                            </Dropdown>
+                                                            <Form.Control
+                                                                name="phoneNo"
+                                                                type="text"
+                                                                placeholder="Phone Number"
+                                                                defaultValue={profile.mobile_no}
+                                                            >
+                                                            </Form.Control>
                                                         </Col>
                                                     </Form.Group><br />
                                                 </Col>
@@ -183,47 +221,34 @@ export default function PersonalInfo() {
                                                 <Col sm={6}>
                                                     <Form.Group as={Row} controlId="formPlaintextPassword">
                                                         <Form.Label column sm="2">
-                                                            Title
+                                                            Last Name
                 </Form.Label>
                                                         <Col sm="10">
-                                                            <Form.Control />
-                                                        </Col>
-                                                    </Form.Group><br />
-
-                                                    <Form.Group as={Row} controlId="formPlaintextPassword">
-                                                        <Form.Label column sm="2">
-                                                            Email
-                </Form.Label>
-                                                        <Col sm="10">
-                                                            <Form.Control />
+                                                            <Form.Control
+                                                                name="lastName"
+                                                                type="text"
+                                                                placeholder="Last Name"
+                                                                defaultValue={profile.title}
+                                                            />
                                                         </Col>
                                                     </Form.Group><br />
 
                                                     <Form.Group as={Row} controlId="formPlaintextPassword">
                                                         <Form.Label column sm="2">
                                                             Gender
-                </Form.Label>
+                                                        </Form.Label>
                                                         <Col>
-                                                            <Dropdown>
-                                                                <Dropdown.Toggle variant='light' id="dropdown-basic" style={{ borderColor: '#ced4da', alignItems: 'right', width: '100%' }}>
-                                                                </Dropdown.Toggle>
-
-                                                                <Dropdown.Menu>
-                                                                    <Dropdown.Item href="#/action-1">Male</Dropdown.Item>
-                                                                    <Dropdown.Item href="#/action-2">Female</Dropdown.Item>
-                                                                </Dropdown.Menu>
-                                                            </Dropdown>
+                                                            <Form.Control
+                                                                as="select"
+                                                                name="gender"
+                                                                defaultValue={profile.gender_cd}
+                                                            >
+                                                                <option value="">- Select Gender -</option>
+                                                                <option value="male">Male</option>
+                                                                <option value="female">Female</option>
+                                                            </Form.Control>
                                                         </Col>
                                                     </Form.Group><br />
-
-                                                    <Form.Group as={Row} controlId="formPlaintextPassword">
-                                                        <Form.Label column sm="2">
-                                                            Mobile Phone
-                </Form.Label>
-                                                        <Col sm="10">
-                                                            <Form.Control />
-                                                        </Col>
-                                                    </Form.Group>
                                                 </Col>
                                             </Row>
                                         </Container>
@@ -233,7 +258,6 @@ export default function PersonalInfo() {
 
                             <TabPanel value={value} index={1} dir={theme.direction}>
                                 <div>
-                                    <h6>User ID Information</h6><br />
                                     <Form>
                                         <Container style={{ marginLeft: 15 }}>
                                             <Row>
@@ -243,7 +267,12 @@ export default function PersonalInfo() {
                                                             Email
                 </Form.Label>
                                                         <Col>
-                                                            <Form.Control />
+                                                            <Form.Control
+                                                                name="email"
+                                                                type="text"
+                                                                placeholder="Email Address"
+                                                                defaultValue={profile.email}
+                                                            />
                                                         </Col>
                                                     </Form.Group><br />
 
@@ -254,10 +283,11 @@ export default function PersonalInfo() {
                                                         <Col>
                                                             <div className={classes.root}>
                                                                 <input
+                                                                    name="apc"
                                                                     className={classes.input}
                                                                     id="contained-button-file"
-                                                                    multiple
                                                                     type="file"
+                                                                    defaultValue={profile.APC}
                                                                 />
                                                             </div>
                                                         </Col>
@@ -289,10 +319,11 @@ export default function PersonalInfo() {
                                                         <Col>
                                                             <div className={classes.root}>
                                                                 <input
+                                                                    name="blc"
                                                                     className={classes.input}
                                                                     id="contained-button-file"
-                                                                    multiple
                                                                     type="file"
+                                                                    defaultValue={profile.BLC}
                                                                 />
                                                             </div>
                                                         </Col>
@@ -314,7 +345,7 @@ export default function PersonalInfo() {
                             top: 400,
                             backgroundColor: '#FBB03B',
                             color: 'white',
-                            borderColor:'#FBB03B',
+                            borderColor: '#FBB03B',
                             borderRadius: '6px'
                         }}>Save</Button>
                     </Card>

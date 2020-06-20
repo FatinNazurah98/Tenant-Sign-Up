@@ -120,7 +120,7 @@ IconContainer.propTypes = {
     value: PropTypes.number.isRequired,
 };
 
-function UpdateCustomer(props) {
+function UpdateCustomer() {
     const sampleData = [
         {
             "id": 1,
@@ -156,7 +156,7 @@ function UpdateCustomer(props) {
 
     const classes = useStyles();
     const theme = useTheme();
-    const [mobileOpen, setMobileOpen] = React.useState(false);
+    // const [] = React.useState(false);
     const [dataSet] = React.useState(sampleData);
 
 

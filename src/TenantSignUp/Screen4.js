@@ -1,32 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { BASE_URL } from '../util/provider';
-import { getTodayDate } from '../util/getDate';
-import { NavLink } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
-// import Button from '@material-ui/core/Button';
-import Button from 'react-bootstrap/Button';
-import Typography from '@material-ui/core/Typography';
+import React, { useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import styled from 'styled-components';
-import { Nav, Navbar, Form } from 'react-bootstrap';
-import { Divider } from '@material-ui/core';
-import Dropdown from 'react-bootstrap/Dropdown';
+import { Form } from 'react-bootstrap';
 import 'datatables.net-dt/css/jquery.dataTables.css';
-import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import Screen1 from './Screen1';
 
-import Table from 'react-bootstrap/Table'
 import $ from 'jquery';
 $.DataTable = require('datatables.net')
 
 export default function Screen4(props) {
-  const [state, setState] = useState(props);
+  const [state] = useState(props);
 
   return <Card style={{ width: 900, height: 900, borderColor: '#E5E5E5', margin: 'auto' }}>
     <Card.Body>
@@ -35,14 +18,13 @@ export default function Screen4(props) {
 
       <Form>
         <Form.Group as={Row} controlId="formHorizontalEmail">
-          <Form.Label column sm={3}>Monday
+          <Form.Label column sm={3}><br/>
               <Form.Control
-              as="select"
+              as="view"
               name="monDay"
               defaultValue={state.monDay}
               onChange={props.handleInput}
             >
-              <option value="">- Select Day -</option>
               <option value="monday">Monday</option>
             </Form.Control>
           </Form.Label>
@@ -76,14 +58,13 @@ export default function Screen4(props) {
         </Form.Group>
 
         <Form.Group as={Row} controlId="formHorizontalEmail">
-          <Form.Label column sm={3}>Tuesday
+          <Form.Label column sm={3}><br/>
             <Form.Control
-              as="select"
+              as="view"
               name="tueDay"
               defaultValue={state.tueDay}
               onChange={props.handleInput}
             >
-              <option value="">- Select Day -</option>
               <option value="tuesday">Tuesday</option>
             </Form.Control>
           </Form.Label>
@@ -115,14 +96,13 @@ export default function Screen4(props) {
         </Form.Group>
 
         <Form.Group as={Row} controlId="formHorizontalEmail">
-          <Form.Label column sm={3}>Wednesday
+          <Form.Label column sm={3}><br/>
           <Form.Control
-              as="select"
+              as="view"
               name="wedDay"
               defaultValue={state.wedDay}
               onChange={props.handleInput}
             >
-              <option value="">- Select Day -</option>
               <option value="wednesday">Wednesday</option>
             </Form.Control>
           </Form.Label>
@@ -154,14 +134,13 @@ export default function Screen4(props) {
         </Form.Group>
 
         <Form.Group as={Row} controlId="formHorizontalEmail">
-          <Form.Label column sm={3}>Thursday
+          <Form.Label column sm={3}><br/>
           <Form.Control
-              as="select"
+              as="view"
               name="thuDay"
               defaultValue={state.thuDay}
               onChange={props.handleInput}
             >
-              <option value="">- Select Day -</option>
               <option value="thursday">Thursday</option>
             </Form.Control>
           </Form.Label>
@@ -193,14 +172,13 @@ export default function Screen4(props) {
         </Form.Group>
 
         <Form.Group as={Row} controlId="formHorizontalEmail">
-          <Form.Label column sm={3}>Friday
+          <Form.Label column sm={3}><br/>
           <Form.Control
-              as="select"
+              as="view"
               name="friDay"
               defaultValue={state.friDay}
               onChange={props.handleInput}
             >
-              <option value="">- Select Day -</option>
               <option value="friday">Friday</option>
             </Form.Control>
           </Form.Label>
@@ -232,14 +210,13 @@ export default function Screen4(props) {
         </Form.Group>
 
         <Form.Group as={Row} controlId="formHorizontalEmail">
-          <Form.Label column sm={3}>Saturday
+          <Form.Label column sm={3}><br/>
           <Form.Control
-              as="select"
+              as="view"
               name="satDay"
               defaultValue={state.satDay}
               onChange={props.handleInput}
             >
-              <option value="">- Select Day -</option>
               <option value="saturday">Saturday</option>
             </Form.Control>
           </Form.Label>
@@ -271,14 +248,13 @@ export default function Screen4(props) {
         </Form.Group>
 
         <Form.Group as={Row} controlId="formHorizontalEmail">
-          <Form.Label column sm={3}>Sunday
+          <Form.Label column sm={3}><br/>
           <Form.Control
-              as="select"
+              as="view"
               name="sunDay"
               defaultValue={state.sunDay}
               onChange={props.handleInput}
             >
-              <option value="">- Select Day -</option>
               <option value="sunday">Sunday</option>
             </Form.Control>
           </Form.Label>

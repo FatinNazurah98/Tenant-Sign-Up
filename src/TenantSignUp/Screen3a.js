@@ -1,25 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { BASE_URL } from '../util/provider';
-import { getTodayDate } from '../util/getDate';
-import { NavLink } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
-// import Button from '@material-ui/core/Button';
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
-import Typography from '@material-ui/core/Typography';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import styled from 'styled-components';
-import { Nav, Navbar, Form } from 'react-bootstrap';
-import { Divider } from '@material-ui/core';
-import Dropdown from 'react-bootstrap/Dropdown';
+import { Form } from 'react-bootstrap';
 import 'datatables.net-dt/css/jquery.dataTables.css';
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import Screen1 from './Screen1';
 
 import Table from 'react-bootstrap/Table'
 import $ from 'jquery';
@@ -32,39 +18,9 @@ const SPECIALTIES = [
 ];
 
 export default function Screen3a(props) {
-  const [state, setState] = useState([props]);
+  const [, setState] = useState([props]);
   const [dataSet, setDataSet] = React.useState([]);
 
-  const sampleData2 = [
-    {
-      "id": 1,
-      "medicalSpecialties": "General Medicine",
-      "username": "Bret",
-      "email": "Sincere@april.biz",
-      "address": "Spain",
-      "phone": "1-770-736-8031",
-      "status": "New",
-      "website": "hildegard.org",
-    },
-    {
-      "id": 2,
-      "medicalSpecialties": "Cardiologist",
-      "username": "Antonette",
-      "email": "Shanna@melissa.tv",
-      "address": "America",
-      "phone": "010-692-6593",
-      "website": "anastasia.net",
-    },
-    {
-      "id": 3,
-      "medicalSpecialties": "Nefrology",
-      "username": "Antonette",
-      "email": "Shanna@melissa.tv",
-      "address": "America",
-      "phone": "010-692-6593",
-      "website": "anastasia.net",
-    },
-  ]
 
   // useEffect(() => {
   //   $("#myTable").DataTable();
@@ -85,7 +41,7 @@ export default function Screen3a(props) {
     setState(state => [...state, props.medicalSpecialties])
   }
 
-  function removeSpecialtiesBtn(index, item) {
+  function removeSpecialtiesBtn(index) {
     // setDataSet(dataSet.filter(items => items.medicalSpecialties !== item))
     const temp = [...dataSet];
     temp.splice(index, 1);
@@ -144,7 +100,7 @@ export default function Screen3a(props) {
                     <tr key={key}>
                       <td>{item.medicalSpecialties}</td>
                       <td>
-                        <FontAwesomeIcon icon={faTrashAlt} onClick={() => removeSpecialtiesBtn(key, item.medicalSpecialties)} />
+                        <FontAwesomeIcon icon={faTrashAlt} onClick={() => removeSpecialtiesBtn(key)} />
                       </td>
                     </tr>
                   )

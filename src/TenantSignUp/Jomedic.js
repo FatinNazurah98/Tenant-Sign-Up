@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import styled from 'styled-components';
 import { Nav, Navbar, Dropdown } from 'react-bootstrap';
@@ -44,6 +44,20 @@ const Styles = styled.div`
 
 export default function Jomedic() {
     const classes = useStyles();
+    const [email, setEmail] = useState('');
+
+    function signOutBtn() {
+        localStorage.removeItem('myData');
+        window.location = '/';
+    }
+
+    useEffect(() => {
+        const fetchData = () => {
+            setEmail(localStorage.getItem('myData'));
+        };
+
+        fetchData();
+    }, []);
 
     return (
         <div>
@@ -59,22 +73,27 @@ export default function Jomedic() {
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ml-auto">
                             {/* <Nav.Item><Nav.Link href="/Dummy" style={{ fontSize: 20, fontWeight: 'bold' }}>Dummy</Nav.Link></Nav.Item> */}
-                            <Nav.Item><Nav.Link href="/SignIn" style={{ fontSize: 20, fontWeight: 'bold' }}>Sign In</Nav.Link></Nav.Item>
-                            <Nav.Item><Nav.Link href="/" style={{ fontSize: 20, fontWeight: 'bold' }}>Sign Up</Nav.Link></Nav.Item>
-                            <Nav.Item>
-                                <Dropdown>
-                                    <Dropdown.Toggle style={{ fontSize: 20, fontWeight: 'bold', backgroundColor: '#ffffff00', color: 'black', borderColor: '#ffffff00' }} id="dropdown-basic">
-                                        Dr Stephen Strange
+                            {email === null ?
+                                <>
+                                    <Nav.Item><Nav.Link href="/" style={{ fontSize: 20, fontWeight: 'bold' }}>Sign In</Nav.Link></Nav.Item>
+                                    <Nav.Item><Nav.Link href="/TenantSignup" style={{ fontSize: 20, fontWeight: 'bold' }}>Sign Up</Nav.Link></Nav.Item>
+                                </>
+
+                                : <Nav.Item>
+                                    <Dropdown>
+                                        <Dropdown.Toggle style={{ fontSize: 20, fontWeight: 'bold', backgroundColor: '#ffffff00', color: 'black', borderColor: '#ffffff00' }} id="dropdown-basic">
+                                            {email}
                                 </Dropdown.Toggle>
 
-                                    <Dropdown.Menu>
-                                        <Dropdown.Item href="PersonalInfo" style={{ fontWeight: 'bold' }}>Manage Personal Info</Dropdown.Item><Divider />
-                                        <Dropdown.Item href="HealthCF" style={{ fontWeight: 'bold' }}>Manage Healthcare Facility</Dropdown.Item><Divider />
-                                        <Dropdown.Item href="ClinicSchedule" style={{ fontWeight: 'bold' }}>Manage Clinic Schedule</Dropdown.Item><Divider /><br />
-                                        <Dropdown.Item href="SignOut" style={{ fontWeight: 'bold' }}>Sign Out <FontAwesomeIcon style={{ position: 'absolute', left: 200 }} icon={faChevronRight} /> </Dropdown.Item>
-                                    </Dropdown.Menu>
-                                </Dropdown>
-                            </Nav.Item>
+                                        <Dropdown.Menu>
+                                            <Dropdown.Item href="PersonalInfo" style={{ fontWeight: 'bold' }}>Manage Personal Info</Dropdown.Item><Divider />
+                                            <Dropdown.Item href="HealthCF" style={{ fontWeight: 'bold' }}>Manage Healthcare Facility</Dropdown.Item><Divider />
+                                            <Dropdown.Item href="ClinicSchedule" style={{ fontWeight: 'bold' }}>Manage Clinic Schedule</Dropdown.Item><Divider /><br />
+                                            <Dropdown.Item onClick={() => signOutBtn()} style={{ fontWeight: 'bold' }}>Sign Out <FontAwesomeIcon style={{ position: 'absolute', left: 200 }} icon={faChevronRight} /> </Dropdown.Item>
+                                        </Dropdown.Menu>
+                                    </Dropdown>
+                                </Nav.Item>
+                            }
 
                         </Nav>
                     </Navbar.Collapse>

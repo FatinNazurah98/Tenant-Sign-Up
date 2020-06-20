@@ -1,20 +1,9 @@
-import React, { Component } from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import styled from 'styled-components';
-import { Nav, Navbar } from 'react-bootstrap';
-import { Divider } from '@material-ui/core';
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import Dropdown from 'react-bootstrap/Dropdown';
-import Box from '@material-ui/core/Box';
 import Card from 'react-bootstrap/Card';
-// import Button from '@material-ui/core/Button';
 import Button from 'react-bootstrap/Button';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import Table from 'react-bootstrap/Table';
-import { withStyles } from '@material-ui/core/styles';
-import { green } from '@material-ui/core/colors';
-import Radio from '@material-ui/core/Radio';
 import Form from 'react-bootstrap/Form';
 import TextField from '@material-ui/core/TextField';
 
@@ -38,37 +27,8 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const Styles = styled.div`
-  .navbar { 
-    background-color: white;
-    position:'absolute';
-    width:'1440px';
-    height:'94px';
-    left:'0px';
-    top:'0px';
-  }
-  a, 
-  .navbar-nav, .navbar-light .nav-link {
-    color: black;
-    &:hover { color: #FBB03B; }
-  }
-  .navbar-brand {
-    font-size: 1.4em;
-    color: black;
-    &:hover { color: #FBB03B; } 
-  }
-`;
 
 export default function ClinicSchedule() {
-    const [] = React.useState(0);
-    const [] = React.useState(false);
-
-    const [selectedValue, setSelectedValue] = React.useState('a');
-
-    const handleChange = (event) => {
-        setSelectedValue(event.target.value);
-    }
-
     const classes = useStyles();
 
     return (
@@ -148,7 +108,7 @@ export default function ClinicSchedule() {
                                             />
                                         </form>
                                     </td>
-                                    <td>
+                                    <td style={{alignItems:'center', justifyContent:'center', display:'flex'}}>
                                         <Form>
                                             {['radio'].map((type) => (
                                                 <div key={`custom-inline-${type}`} className="mb-3">

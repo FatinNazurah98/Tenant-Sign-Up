@@ -30,7 +30,7 @@ const StyledNavItem = styled.div`
 `;
 
 function Dashboard2() {
-    const [] = React.useState(false);
+    // const [] = React.useState(false);
 
 
     return (

@@ -1,62 +1,25 @@
-import React, { useEffect } from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import React, { useState } from 'react';
+import { useTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import styled from 'styled-components';
-import { Nav, Navbar, Form } from 'react-bootstrap';
-import { Divider } from '@material-ui/core';
-import Dropdown from 'react-bootstrap/Dropdown';
+import { Form } from 'react-bootstrap';
 import Box from '@material-ui/core/Box';
 import SwipeableViews from 'react-swipeable-views';
 import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
-// import Button from '@material-ui/core/Button';
 import Button from 'react-bootstrap/Button';
 import 'datatables.net-dt/css/jquery.dataTables.css';
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Table from 'react-bootstrap/Table'
 
 import $ from 'jquery';
 $.DataTable = require('datatables.net')
 
-const useStyles = makeStyles(theme => ({
-    root: {
-        width: '100%',
-    },
-    backButton: {
-        marginRight: theme.spacing(1),
-    },
-    instructions: {
-        marginTop: theme.spacing(1),
-        marginBottom: theme.spacing(1),
-    },
-}));
 
-const Styles = styled.div`
-  .navbar { 
-    background-color: white;
-    position:'absolute';
-    width:'1440px';
-    height:'94px';
-    left:'0px';
-    top:'0px';
-  }
-  a, 
-  .navbar-nav, .navbar-light .nav-link {
-    color: black;
-    &:hover { color: #FBB03B; }
-  }
-  .navbar-brand {
-    font-size: 1.4em;
-    color: black;
-    &:hover { color: #FBB03B; } 
-  }
-`;
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -82,9 +45,48 @@ function a11yProps(index) {
     };
 }
 
-export default function HealthCF() {
-    const classes = useStyles();
-    const [] = React.useState(0);
+const STATES = [
+    'Perlis',
+    'Kedah',
+    'Perak',
+    'P. Pinang',
+    'Langkawi',
+    'Kelantan',
+    'Pahang',
+    'Selangor',
+    'W. Persekutuan',
+    'N. Sembilan',
+    'Melaka',
+    'Johor',
+    'Sarawak',
+    'Sabah',
+    'Terengganu',
+    'Labuan'
+];
+
+const COUNTRY = [
+    'Brunei',
+    'Indonesia',
+    'Malaysia',
+    'Thailand',
+    'Singapore',
+    'Vietnam'
+];
+
+const SPECIALTIES = [
+    'General Medicine',
+    'Cardiologist',
+    'Nefrology'
+];
+
+const LANGUAGE = [
+    'English',
+    'Bahasa Malaysia',
+    'Mandarin'
+];
+
+export default function HealthCF(props) {
+    const [state] = useState(props);
 
     const [value, setValue] = React.useState(0);
 
@@ -97,7 +99,6 @@ export default function HealthCF() {
     };
 
     const theme = useTheme();
-    const [] = React.useState(false);
 
     const sampleData = [
         {
@@ -132,9 +133,9 @@ export default function HealthCF() {
 
     const [dataSet] = React.useState(sampleData);
 
-    useEffect(() => {
-        $("#myTable").DataTable();
-    });
+    // useEffect(() => {
+    //     $("#myTable").DataTable();
+    // });
 
     return (
         <div>
@@ -180,38 +181,70 @@ export default function HealthCF() {
                                             <Row>
                                                 <Col sm={6}>
                                                     <Form.Group as={Row} controlId="formPlaintextPassword">
-                                                        <Form.Label column sm="2">
+                                                        <Form.Label column sm="3">
                                                             Health Facility
                 </Form.Label>
-                                                        <Col>
-                                                            <Form.Control />
+                                                        <Col sm="9">
+                                                            <Form.Control
+                                                                name="healthFacility"
+                                                                type="text"
+                                                                placeholder="Healthcare Facility"
+                                                                defaultValue={state.healthFacility}
+                                                                onChange={props.handleInput}
+                                                            />
                                                         </Col>
                                                     </Form.Group><br />
 
                                                     <Form.Group as={Row} controlId="formPlaintextPassword">
-                                                        <Form.Label column sm="2">
+                                                        <Form.Label column sm="3">
                                                             Street Name
                 </Form.Label>
-                                                        <Col>
-                                                            <Form.Control />
+                                                        <Col sm="9">
+                                                            <Form.Control
+                                                                name="streetName"
+                                                                type="text"
+                                                                placeholder="Street Name"
+                                                                defaultValue={state.streetName}
+                                                                onChange={props.handleInput}
+                                                            />
                                                         </Col>
                                                     </Form.Group><br />
 
                                                     <Form.Group as={Row} controlId="formPlaintextPassword">
-                                                        <Form.Label column sm="2">
+                                                        <Form.Label column sm="3">
                                                             State
                 </Form.Label>
-                                                        <Col>
-                                                            <Form.Control />
+                                                        <Col sm="9">
+                                                            <Form.Control
+                                                                as="select"
+                                                                name="stateProvider"
+                                                                defaultValue={state.stateProvider}
+                                                                onChange={props.handleInput}
+                                                            >
+                                                                <option value="">- Select State -</option>
+                                                                {STATES.map((s, si) => {
+                                                                    return (
+                                                                        <option key={si} value={s}>{s.toUpperCase()}</option>
+                                                                    );
+                                                                })}
+                                                            </Form.Control>
                                                         </Col>
                                                     </Form.Group><br />
 
                                                     <Form.Group as={Row} controlId="formPlaintextPassword">
-                                                        <Form.Label column sm="2">
-                                                            Phone No
+                                                        <Form.Label column sm="3">
+                                                            Phone Number
                 </Form.Label>
-                                                        <Col sm="10">
-                                                            <Form.Control />
+                                                        <Col sm="9">
+                                                            <Form.Control
+                                                                name="providerPhoneNo"
+                                                                type="text"
+                                                                placeholder="Provider Phone Number"
+                                                                defaultValue={state.providerPhoneNo}
+                                                                onChange={props.handleInput}
+                                                            >
+
+                                                            </Form.Control>
                                                         </Col>
                                                     </Form.Group><br />
                                                 </Col>
@@ -219,38 +252,73 @@ export default function HealthCF() {
 
                                                 <Col sm={6}>
                                                     <Form.Group as={Row} controlId="formPlaintextPassword">
-                                                        <Form.Label column sm="2">
+                                                        <Form.Label column sm="4">
                                                             Building Number
                 </Form.Label>
-                                                        <Col sm="10">
-                                                            <Form.Control />
+                                                        <Col sm="8">
+                                                            <Form.Control
+                                                                name="buildingNo"
+                                                                type="text"
+                                                                placeholder="Building Number"
+                                                                defaultValue={state.buildingNo}
+                                                                onChange={props.handleInput}
+                                                            >
+
+                                                            </Form.Control>
                                                         </Col>
                                                     </Form.Group><br />
 
                                                     <Form.Group as={Row} controlId="formPlaintextPassword">
-                                                        <Form.Label column sm="2">
+                                                        <Form.Label column sm="4">
                                                             Postcode
                 </Form.Label>
-                                                        <Col sm="10">
-                                                            <Form.Control />
+                                                        <Col sm="8">
+                                                            <Form.Control
+                                                                name="postcodeProvider"
+                                                                type="text"
+                                                                placeholder="Postcode"
+                                                                defaultValue={state.postcodeProvider}
+                                                                onChange={props.handleInput}
+                                                            >
+                                                            </Form.Control>
                                                         </Col>
                                                     </Form.Group><br />
 
                                                     <Form.Group as={Row} controlId="formPlaintextPassword">
-                                                        <Form.Label column sm="2">
+                                                        <Form.Label column sm="4">
                                                             Country
                 </Form.Label>
-                                                        <Col sm="10">
-                                                            <Form.Control />
+                                                        <Col sm="8">
+                                                            <Form.Control
+                                                                as="select"
+                                                                name="country"
+                                                                defaultValue={state.country}
+                                                                onChange={props.handleInput}
+                                                            >
+                                                                <option value="">- Select Country -</option>
+                                                                {COUNTRY.map((s, si) => {
+                                                                    return (
+                                                                        <option key={si} value={s}>{s.toUpperCase()}</option>
+                                                                    );
+                                                                })}
+                                                            </Form.Control>
                                                         </Col>
                                                     </Form.Group><br />
 
                                                     <Form.Group as={Row} controlId="formPlaintextPassword">
-                                                        <Form.Label column sm="2">
+                                                        <Form.Label column sm="4">
                                                             Email
                 </Form.Label>
-                                                        <Col sm="10">
-                                                            <Form.Control placeholder="PCH@hotmail.com" />
+                                                        <Col sm="8">
+                                                            <Form.Control
+                                                                name="providerEmail"
+                                                                type="text"
+                                                                placeholder="Provider Email"
+                                                                defaultValue={state.providerEmail}
+                                                                onChange={props.handleInput}
+                                                            >
+
+                                                            </Form.Control>
                                                         </Col>
                                                     </Form.Group>
                                                 </Col>
@@ -265,27 +333,31 @@ export default function HealthCF() {
                                     <Form.Row>
                                         <Form.Group as={Col} controlId="formGridBldNum">
                                             <Form.Label>Medical Specialties</Form.Label>
-                                            <Dropdown>
-                                                <Dropdown.Toggle variant='light' id="dropdown-basic" style={{ borderColor: '#ced4da', alignItems: 'right', width: '150%' }}>
-                                                    Select Specialties
-              </Dropdown.Toggle>
-
-                                                <Dropdown.Menu>
-                                                    <Dropdown.Item href="#/action-1">1</Dropdown.Item>
-                                                    <Dropdown.Item href="#/action-2">2</Dropdown.Item>
-                                                </Dropdown.Menu>
-                                            </Dropdown>
+                                            <Form.Control
+                                                as="select"
+                                                name="medicalSpecialties"
+                                                onChange={props.handleInput}
+                                            >
+                                                <option value="">- Select Medical Specialties -</option>
+                                                {SPECIALTIES.map((s, si) => {
+                                                    return (
+                                                        <option key={si} value={s}>{s.toUpperCase()}</option>
+                                                    );
+                                                })}
+                                            </Form.Control>
                                         </Form.Group>
 
                                         <Form.Group as={Col} controlId="formGridStreetName">
                                             <Form.Label></Form.Label><br />
-                                            <Button style={{
-                                                position: 'absolute',
-                                                left: '55%',
-                                                top: '45%',
-                                                backgroundColor: '#025586',
-                                                color: 'white'
-                                            }}>+ Add Specialties</Button>
+                                            <Button
+                                                // onClick={() => addSpecialtiesBtn()}
+                                                style={{
+                                                    position: 'absolute',
+                                                    left: '55%',
+                                                    top: '45%',
+                                                    backgroundColor: '#025586',
+                                                    color: 'white'
+                                                }}>+ Add Specialties</Button>
 
                                         </Form.Group>
                                     </Form.Row>
@@ -306,7 +378,7 @@ export default function HealthCF() {
                                                                 <td>{item.id}</td>
                                                                 <td>{item.medicalSpecialties}</td>
                                                                 <td>
-                                                                    <FontAwesomeIcon icon={faTrashAlt} onClick={() => alert(item.medicalSpecialties)} />
+                                                                    <FontAwesomeIcon icon={faTrashAlt} /* onClick={() => removeSpecialtiesBtn(key, item.medicalSpecialties)} */ />
                                                                 </td>
                                                             </tr>
                                                         )
@@ -329,7 +401,14 @@ export default function HealthCF() {
                                                             Place of Graduate
                 </Form.Label>
                                                         <Col>
-                                                            <Form.Control />
+                                                            <Form.Control
+                                                                name="placeGraduate"
+                                                                type="text"
+                                                                placeholder="Place Of Graduate"
+                                                                defaultValue={state.placeGraduate}
+                                                                onChange={props.handleInput}
+                                                            >
+                                                            </Form.Control>
                                                         </Col>
                                                     </Form.Group><br />
 
@@ -338,7 +417,14 @@ export default function HealthCF() {
                                                             Year of Experience
                 </Form.Label>
                                                         <Col>
-                                                            <Form.Control />
+                                                            <Form.Control
+                                                                name="yearExperience"
+                                                                type="text"
+                                                                placeholder="Year Of Experience"
+                                                                defaultValue={state.yearExperience}
+                                                                onChange={props.handleInput}
+                                                            >
+                                                            </Form.Control>
                                                         </Col>
                                                     </Form.Group><br />
                                                 </Col>
@@ -347,28 +433,22 @@ export default function HealthCF() {
                                                 <Col sm={6}>
                                                     <Form.Group as={Row} controlId="formPlaintextPassword">
                                                         <Form.Label column sm="3">
-                                                            Year Graduate
-                </Form.Label>
-                                                        <Col>
-                                                            <Form.Control />
-                                                        </Col>
-                                                    </Form.Group><br />
-
-                                                    <Form.Group as={Row} controlId="formPlaintextPassword">
-                                                        <Form.Label column sm="3">
                                                             Prefered Language
                 </Form.Label>
                                                         <Col>
-                                                        <Dropdown>
-                                                                <Dropdown.Toggle variant='light' id="dropdown-basic" style={{ borderColor: '#ced4da', alignItems: 'right', width: '100%' }}>
-                                                                </Dropdown.Toggle>
-
-                                                                <Dropdown.Menu>
-                                                                    <Dropdown.Item href="#/action-1">Malaysian</Dropdown.Item>
-                                                                    <Dropdown.Item href="#/action-2">Other</Dropdown.Item>
-                                                                    <Dropdown.Item href="#/action-3">Othersss</Dropdown.Item>
-                                                                </Dropdown.Menu>
-                                                            </Dropdown>
+                                                            <Form.Control
+                                                                as="select"
+                                                                name="preferedLanguage"
+                                                                defaultValue={state.preferedLanguage}
+                                                                onChange={props.handleInput}
+                                                            >
+                                                                <option value="">- Select Prefered Language -</option>
+                                                                {LANGUAGE.map((s, si) => {
+                                                                    return (
+                                                                        <option key={si} value={s}>{s.toUpperCase()}</option>
+                                                                    );
+                                                                })}
+                                                            </Form.Control>
                                                         </Col>
                                                     </Form.Group><br />
                                                 </Col>
@@ -380,137 +460,291 @@ export default function HealthCF() {
 
                             <TabPanel value={value} index={3} dir={theme.direction}>
                                 <div>
-                                    <Card style={{ width: '700px', height: '750px', margin: 'auto' }}>
+                                    <Card style={{ width: '800px', height: '800px', margin: 'auto' }}>
                                         <Card.Body>
                                             <Form>
                                                 <Form.Group as={Row} controlId="formHorizontalEmail">
-                                                    <Form.Label column sm={3}>
-                                                        Monday
-                        </Form.Label>
+                                                    <Form.Label column sm={3}><br />
+                                                        <Form.Control
+                                                            as="select"
+                                                            name="monDay"
+                                                            defaultValue={state.monDay}
+                                                            onChange={props.handleInput}
+                                                        >
+                                                            <option value="">- Select Day -</option>
+                                                            <option value="monday">Monday</option>
+                                                        </Form.Control>
+                                                    </Form.Label>
                                                     <Col sm={9}>
                                                         <Form.Row>
                                                             <Form.Group as={Col} controlId="formGridStart">
                                                                 <Form.Label>Start</Form.Label>
-                                                                <Form.Control />
+                                                                <Form.Control
+                                                                    name="monStart"
+                                                                    type="time"
+                                                                    placeholder="Start time"
+                                                                    defaultValue={state.monStart}
+                                                                    onChange={props.handleInput}
+                                                                >
+                                                                </Form.Control>
                                                             </Form.Group>
 
                                                             <Form.Group as={Col} controlId="formGridEnd">
                                                                 <Form.Label>End</Form.Label>
-                                                                <Form.Control />
+                                                                <Form.Control
+                                                                    name="monEnd"
+                                                                    type="time"
+                                                                    placeholder="End time"
+                                                                    defaultValue={state.monEnd}
+                                                                    onChange={props.handleInput}
+                                                                >
+                                                                </Form.Control>
                                                             </Form.Group>
                                                         </Form.Row>
                                                     </Col>
                                                 </Form.Group>
 
                                                 <Form.Group as={Row} controlId="formHorizontalEmail">
-                                                    <Form.Label column sm={3}>
-                                                        Tuesday
-                        </Form.Label>
+                                                    <Form.Label column sm={3}><br />
+                                                        <Form.Control
+                                                            as="select"
+                                                            name="tueDay"
+                                                            defaultValue={state.tueDay}
+                                                            onChange={props.handleInput}
+                                                        >
+                                                            <option value="">- Select Day -</option>
+                                                            <option value="tuesday">Tuesday</option>
+                                                        </Form.Control>
+                                                    </Form.Label>
                                                     <Col sm={9}>
                                                         <Form.Row>
                                                             <Form.Group as={Col} controlId="formGridStart">
                                                                 <Form.Label>Start</Form.Label>
-                                                                <Form.Control />
+                                                                <Form.Control
+                                                                    name="tueStart"
+                                                                    type="time"
+                                                                    placeholder="Start time"
+                                                                    defaultValue={state.tueStart}
+                                                                    onChange={props.handleInput}
+                                                                >
+                                                                </Form.Control>
                                                             </Form.Group>
 
                                                             <Form.Group as={Col} controlId="formGridEnd">
                                                                 <Form.Label>End</Form.Label>
-                                                                <Form.Control />
+                                                                <Form.Control
+                                                                    name="tueEnd"
+                                                                    type="time"
+                                                                    placeholder="End time"
+                                                                    defaultValue={state.tueEnd}
+                                                                    onChange={props.handleInput}
+                                                                >
+                                                                </Form.Control>
                                                             </Form.Group>
                                                         </Form.Row>
                                                     </Col>
                                                 </Form.Group>
 
                                                 <Form.Group as={Row} controlId="formHorizontalEmail">
-                                                    <Form.Label column sm={3}>
-                                                        Wednesday
-                        </Form.Label>
+                                                    <Form.Label column sm={3}><br />
+                                                        <Form.Control
+                                                            as="select"
+                                                            name="wedDay"
+                                                            defaultValue={state.wedDay}
+                                                            onChange={props.handleInput}
+                                                        >
+                                                            <option value="">- Select Day -</option>
+                                                            <option value="wednesday">Wednesday</option>
+                                                        </Form.Control>
+                                                    </Form.Label>
                                                     <Col sm={9}>
                                                         <Form.Row>
                                                             <Form.Group as={Col} controlId="formGridStart">
                                                                 <Form.Label>Start</Form.Label>
-                                                                <Form.Control />
+                                                                <Form.Control
+                                                                    name="wedStart"
+                                                                    type="time"
+                                                                    placeholder="Start time"
+                                                                    defaultValue={state.wedStart}
+                                                                    onChange={props.handleInput}
+                                                                >
+                                                                </Form.Control>
                                                             </Form.Group>
 
                                                             <Form.Group as={Col} controlId="formGridEnd">
                                                                 <Form.Label>End</Form.Label>
-                                                                <Form.Control />
+                                                                <Form.Control
+                                                                    name="wedEnd"
+                                                                    type="time"
+                                                                    placeholder="End time"
+                                                                    defaultValue={state.wedEnd}
+                                                                    onChange={props.handleInput}
+                                                                >
+                                                                </Form.Control>
                                                             </Form.Group>
                                                         </Form.Row>
                                                     </Col>
                                                 </Form.Group>
 
                                                 <Form.Group as={Row} controlId="formHorizontalEmail">
-                                                    <Form.Label column sm={3}>
-                                                        Thursday
-                        </Form.Label>
+                                                    <Form.Label column sm={3}><br />
+                                                        <Form.Control
+                                                            as="select"
+                                                            name="thuDay"
+                                                            defaultValue={state.thuDay}
+                                                            onChange={props.handleInput}
+                                                        >
+                                                            <option value="">- Select Day -</option>
+                                                            <option value="thursday">Thursday</option>
+                                                        </Form.Control>
+                                                    </Form.Label>
                                                     <Col sm={9}>
                                                         <Form.Row>
                                                             <Form.Group as={Col} controlId="formGridStart">
                                                                 <Form.Label>Start</Form.Label>
-                                                                <Form.Control />
+                                                                <Form.Control
+                                                                    name="thuStart"
+                                                                    type="time"
+                                                                    placeholder="Start time"
+                                                                    defaultValue={state.thuStart}
+                                                                    onChange={props.handleInput}
+                                                                >
+                                                                </Form.Control>
                                                             </Form.Group>
 
                                                             <Form.Group as={Col} controlId="formGridEnd">
                                                                 <Form.Label>End</Form.Label>
-                                                                <Form.Control />
+                                                                <Form.Control
+                                                                    name="thuEnd"
+                                                                    type="time"
+                                                                    placeholder="End time"
+                                                                    defaultValue={state.thuEnd}
+                                                                    onChange={props.handleInput}
+                                                                >
+                                                                </Form.Control>
                                                             </Form.Group>
                                                         </Form.Row>
                                                     </Col>
                                                 </Form.Group>
 
                                                 <Form.Group as={Row} controlId="formHorizontalEmail">
-                                                    <Form.Label column sm={3}>
-                                                        Friday
-                        </Form.Label>
+                                                    <Form.Label column sm={3}><br />
+                                                        <Form.Control
+                                                            as="select"
+                                                            name="friDay"
+                                                            defaultValue={state.friDay}
+                                                            onChange={props.handleInput}
+                                                        >
+                                                            <option value="">- Select Day -</option>
+                                                            <option value="friday">Friday</option>
+                                                        </Form.Control>
+                                                    </Form.Label>
                                                     <Col sm={9}>
                                                         <Form.Row>
                                                             <Form.Group as={Col} controlId="formGridStart">
                                                                 <Form.Label>Start</Form.Label>
-                                                                <Form.Control />
+                                                                <Form.Control
+                                                                    name="friStart"
+                                                                    type="time"
+                                                                    placeholder="Start time"
+                                                                    defaultValue={state.friStart}
+                                                                    onChange={props.handleInput}
+                                                                >
+                                                                </Form.Control>
                                                             </Form.Group>
 
                                                             <Form.Group as={Col} controlId="formGridEnd">
                                                                 <Form.Label>End</Form.Label>
-                                                                <Form.Control />
+                                                                <Form.Control
+                                                                    name="friEnd"
+                                                                    type="time"
+                                                                    placeholder="End time"
+                                                                    defaultValue={state.friEnd}
+                                                                    onChange={props.handleInput}
+                                                                >
+                                                                </Form.Control>
                                                             </Form.Group>
                                                         </Form.Row>
                                                     </Col>
                                                 </Form.Group>
 
                                                 <Form.Group as={Row} controlId="formHorizontalEmail">
-                                                    <Form.Label column sm={3}>
-                                                        Saturday
-                        </Form.Label>
+                                                    <Form.Label column sm={3}><br />
+                                                        <Form.Control
+                                                            as="select"
+                                                            name="satDay"
+                                                            defaultValue={state.satDay}
+                                                            onChange={props.handleInput}
+                                                        >
+                                                            <option value="">- Select Day -</option>
+                                                            <option value="saturday">Saturday</option>
+                                                        </Form.Control>
+                                                    </Form.Label>
                                                     <Col sm={9}>
                                                         <Form.Row>
                                                             <Form.Group as={Col} controlId="formGridStart">
                                                                 <Form.Label>Start</Form.Label>
-                                                                <Form.Control />
+                                                                <Form.Control
+                                                                    name="satStart"
+                                                                    type="time"
+                                                                    placeholder="Start time"
+                                                                    defaultValue={state.satStart}
+                                                                    onChange={props.handleInput}
+                                                                >
+                                                                </Form.Control>
                                                             </Form.Group>
 
                                                             <Form.Group as={Col} controlId="formGridEnd">
                                                                 <Form.Label>End</Form.Label>
-                                                                <Form.Control />
+                                                                <Form.Control
+                                                                    name="satEnd"
+                                                                    type="time"
+                                                                    placeholder="End time"
+                                                                    defaultValue={state.satEnd}
+                                                                    onChange={props.handleInput}
+                                                                >
+                                                                </Form.Control>
                                                             </Form.Group>
                                                         </Form.Row>
                                                     </Col>
                                                 </Form.Group>
 
                                                 <Form.Group as={Row} controlId="formHorizontalEmail">
-                                                    <Form.Label column sm={3}>
-                                                        Sunday
-                        </Form.Label>
+                                                    <Form.Label column sm={3}><br />
+                                                        <Form.Control
+                                                            as="select"
+                                                            name="sunDay"
+                                                            defaultValue={state.sunDay}
+                                                            onChange={props.handleInput}
+                                                        >
+                                                            <option value="">- Select Day -</option>
+                                                            <option value="sunday">Sunday</option>
+                                                        </Form.Control>
+                                                    </Form.Label>
                                                     <Col sm={9}>
                                                         <Form.Row>
                                                             <Form.Group as={Col} controlId="formGridStart">
                                                                 <Form.Label>Start</Form.Label>
-                                                                <Form.Control />
+                                                                <Form.Control
+                                                                    name="sunStart"
+                                                                    type="time"
+                                                                    placeholder="Start time"
+                                                                    defaultValue={state.sunStart}
+                                                                    onChange={props.handleInput}
+                                                                >
+                                                                </Form.Control>
                                                             </Form.Group>
 
                                                             <Form.Group as={Col} controlId="formGridEnd">
                                                                 <Form.Label>End</Form.Label>
-                                                                <Form.Control />
+                                                                <Form.Control
+                                                                    name="sunEnd"
+                                                                    type="time"
+                                                                    placeholder="End time"
+                                                                    defaultValue={state.sunEnd}
+                                                                    onChange={props.handleInput}
+                                                                >
+                                                                </Form.Control>
                                                             </Form.Group>
                                                         </Form.Row>
                                                     </Col>

@@ -1,24 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { BASE_URL } from '../util/provider';
+import React, { useState } from 'react';
 import { getTodayDate } from '../util/getDate';
-import { NavLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
-// import Button from '@material-ui/core/Button';
 import Button from 'react-bootstrap/Button';
 import Typography from '@material-ui/core/Typography';
-import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import styled from 'styled-components';
-import { Nav, Navbar, Form } from 'react-bootstrap';
-import { Divider } from '@material-ui/core';
-import Dropdown from 'react-bootstrap/Dropdown';
-import 'datatables.net-dt/css/jquery.dataTables.css';
-import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Screen1 from './Screen1';
 import Screen2 from './Screen2';
 import Screen3 from './Screen3';
@@ -29,7 +16,6 @@ import Screen5 from './Screen5';
 import Screen6 from './Screen6';
 import { postAPI } from './ConnAPI';
 
-import Table from 'react-bootstrap/Table'
 import $ from 'jquery';
 $.DataTable = require('datatables.net')
 
@@ -46,41 +32,21 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Styles = styled.div`
-  .navbar {
-    background-color: white;
-    position:'absolute';
-    width:'1440px';
-    height:'94px';
-    left:'0px';
-    top:'0px';
-  }
-  a,
-  .navbar-nav, .navbar-light .nav-link {
-    color: black;
-    &:hover { color: #FBB03B; }
-  }
-  .navbar-brand {
-    font-size: 1.4em;
-    color: black;
-    &:hover { color: #FBB03B; }
-  }
-`;
 
 export default function TenantSignup() {
   const classes = useStyles();
-  const [activeStep, setActiveStep] = React.useState(0);
+  const [, setActiveStep] = React.useState(0);
   const [state, setState] = useState({
 
     // screen 1 form data
-    activeStep: 0,
+    activeStep: 5,
+    firstName:"",
+    lastName:"",
     email: "",
     password: "",
     passwordConfirm: "",
 
     // screen 2 form data
-    firstName: "",
-    lastName: "",
     phoneNo: "",
     dateOfBirth: "",
     gender: "",
@@ -91,14 +57,14 @@ export default function TenantSignup() {
     icUpload: "",
 
     // screen 3 form data
-    tenantName: "",
+    healthFacility: "",
     buildingNo: "",
     streetName: "",
     postcodeProvider: "",
     stateProvider: "",
     country: "",
-    tenantPhoneNo: "",
-    tenantEmail: "",
+    providerPhoneNo: "",
+    providerEmail: "",
     longitude: "",
     latitude: "",
 
@@ -158,12 +124,16 @@ export default function TenantSignup() {
     setActiveStep(prevActiveStep => prevActiveStep + 1);
     let errMsg = '';
     if (state.activeStep === 0) { //screen1 create jomedic id
-      if (state.email === "") {
+      if (state.firstName === "") {
+        errMsg = 'Please fill first name';
+      } else if (state.lastName === "") {
+        errMsg = 'Please fill last name';
+      } else if (state.email === "") {
         errMsg = 'Please fill email address';
       } else if (state.password === "") {
         errMsg = 'Please fill password';
       } else if (state.passwordConfirm === "") {
-        errMsg = 'Please fill econfirm pasword';
+        errMsg = 'Please fill confirm pasword';
       } else if (state.password !== state.passwordConfirm) {
         errMsg = 'Password does not match';
       }
@@ -190,8 +160,8 @@ export default function TenantSignup() {
         errMsg = 'Please upload ic';
       }
     } else if (state.activeStep === 2) { //screen3 provider info
-      if (state.tenantName === "") {
-        errMsg = 'Please fill tenant name';
+      if (state.healthFacility === "") {
+        errMsg = 'Please fill health facility';
       } else if (state.buildingNo === "") {
         errMsg = 'Please fill building number';
       } else if (state.streetName === "") {
@@ -284,24 +254,24 @@ export default function TenantSignup() {
         tstamp: getTodayDate(),
         data: {
           userID: state.email,
-          userName: 'nazurah',
-          title: '',
+          userName: state.firstName,
+          title: state.lastName,
           password: state.password,
-          question: '',
-          answer: '',
-          motherName: '',
-          userStatus: '001',
-          loginStatus: '001',
-          idCategory: '001',
-          remoteCount: '0',
-          userType: '001',
-          userCategory: '001',
-          userClasificationCd: '001',
-          status: '1',
-          roomNo: '01',
-          startDate: '',
-          endDate: '',
-          remoteLogoutDate: '',
+          question: "",
+          answer: "",
+          motherName: "",
+          userStatus: "001",
+          loginStatus: "001",
+          idCategory: "001",
+          remoteCount: "0",
+          userType: "001",
+          userCategory: "001",
+          userClasificationCd: "001",
+          status: "1",
+          roomNo: "01",
+          startDate: "",
+          endDate: "",
+          remoteLogoutDate: "",
         },
       };
 
@@ -320,8 +290,8 @@ export default function TenantSignup() {
         tstamp: getTodayDate(),
         data: {
           userID: state.email,
-          userName: state.lastName,
-          title: state.firstName,
+          userName: state.firstName,
+          title: state.lastName,
           gender: state.gender,
           DOB: state.dateOfBirth,
           occupation: "",
@@ -356,29 +326,31 @@ export default function TenantSignup() {
         tstamp: getTodayDate(),
         data: {
           tenantId: state.email,
-          tenantName: state.tenantName,
-          tenantType: '0001',
+          tenantName: state.firstName,
+          tenantType: "0001",
           userID: state.email,
-          directorName: '',
+          directorName: "",
           address1: state.buildingNo,
           address2: state.streetName,
-          address3: '',
-          townCd: '',
-          districtCd: '',
+          address3: "",
+          townCd: "",
+          districtCd: "",
           stateCd: state.stateProvider,
           countryCd: state.country,
           postcode: state.postcodeProvider,
-          phone: state.tenantPhoneNo,
-          email: state.tenantEmail,
-          packageType: '',
-          startDate: '',
-          endDate: '',
-          status: '1',
-          organisationName: '',
+          phone: state.providerPhoneNo,
+          email: state.providerEmail,
+          packageType: "",
+          startDate: "",
+          endDate: "",
+          status: "1",
+          organisationName: state.healthFacility,
           longitude: state.longitude,
           latitude: state.latitude
         },
       };
+
+      // console.log(datas3)
 
       postAPI(datas3, (success) => {
         console.log(success);
@@ -396,18 +368,18 @@ export default function TenantSignup() {
         data: {
           tenantId: state.email,
           specialtyCd: [state.medicalSpecialties],
-          status: '1',
-          createdBy: '',
+          status: "1",
+          createdBy: "",
         },
       };
 
-      console.log(datas4)
+      // console.log(datas4)
 
-      // postAPI(datas4, (success) => {
-      //   console.log(success);
-      // }, (error) => {
-      //   errMsg = error.message;
-      // });
+      postAPI(datas4, (success) => {
+        console.log(success);
+      }, (error) => {
+        errMsg = error.message;
+      });
     }
 
     else if (state.activeStep === 4) {
@@ -422,7 +394,7 @@ export default function TenantSignup() {
           fieldStudy: state.yearExperience,
           universityName: state.placeGraduate,
           graduationYear: "2019-04-20",
-          createdBy: '',
+          createdBy: "",
         },
       };
 
@@ -443,43 +415,43 @@ export default function TenantSignup() {
           workingDays: [
             {
               tenantId: state.email,
-              workingDay: state.monDay,
+              workingDay: "Monday",
               startTime: state.monStart,
               endTime: state.monEnd,
               createdBy: ""
             }, {
               tenantId: state.email,
-              workingDay: state.tueDay,
+              workingDay: "Tuesday",
               startTime: state.tueStart,
               endTime: state.thuEnd,
               createdBy: ""
             }, {
               tenantId: state.email,
-              workingDay: state.wedDay,
+              workingDay: "Wednesday",
               startTime: state.wedStart,
               endTime: state.wedEnd,
               createdBy: ""
             }, {
               tenantId: state.email,
-              workingDay: state.thuDay,
+              workingDay: "Thursday",
               startTime: state.thuStart,
               endTime: state.thuEnd,
               createdBy: ""
             }, {
               tenantId: state.email,
-              workingDay: state.friDay,
+              workingDay: "Friday",
               startTime: state.friStart,
               endTime: state.friEnd,
               createdBy: ""
             }, {
               tenantId: state.email,
-              workingDay: state.satDay,
+              workingDay: "Saturday",
               startTime: state.satStart,
               endTime: state.satEnd,
               createdBy: ""
             }, {
               tenantId: state.email,
-              workingDay: state.sunDay,
+              workingDay: "Sunday",
               startTime: state.sunStart,
               endTime: state.sunEnd,
               createdBy: ""
@@ -489,11 +461,13 @@ export default function TenantSignup() {
         },
       };
 
-      postAPI(datas6, (success) => {
-        console.log(success);
-      }, (error) => {
-        errMsg = error.message;
-      });
+      console.log(datas6)
+
+      // postAPI(datas6, (success) => {
+      //   console.log(success);
+      // }, (error) => {
+      //   errMsg = error.message;
+      // });
     }
 
     else if (state.activeStep === 6) {
@@ -506,13 +480,13 @@ export default function TenantSignup() {
           tenantId: state.email,
           tenantType: "0001",
           hfc: "",
-          serviceFee: '1999.0',
-          deposit: '15.0',
-          discount: '00',
-          tax: '0.9',
+          serviceFee: "0.0",
+          deposit: "0.0",
+          discount: "0.0",
+          tax: "0.0",
           BLC: state.blc,
           APC: state.apc,
-          createdBy: ''
+          createdBy: ""
         },
       };
 
@@ -546,13 +520,13 @@ export default function TenantSignup() {
 
       //screen1
       activeStep: 0,
+      firstName:"",
+      lastName:"",
       email: "",
       password: "",
       passwordConfirm: "",
 
       // screen2
-      firstName: "",
-      lastName: "",
       phoneNo: "",
       dateOfBirth: "",
       gender: "",
@@ -564,6 +538,7 @@ export default function TenantSignup() {
 
       //screen3
       tenantName: "",
+      healthFacility: "",
       buildingNo: "",
       streetName: "",
       postcodeProvider: "",
@@ -619,7 +594,7 @@ export default function TenantSignup() {
 
 
   function getSteps() {
-    return ['Login Details', 'Personal Information', 'Provider Info', 'Specialties', 'Qualification & Language', 'Operation Hour', 'License Upload', 'E-Wallet'];
+    return ['Login Details', 'Personal Information', 'Provider Information', 'Specialties', 'Qualification & Language', 'Operation Hour', 'License Upload', 'E-Wallet'];
   }
 
   function getStepContent(stepIndex) {

@@ -1,107 +1,152 @@
-import React from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import styled from 'styled-components';
-import { Nav, Navbar, Form } from 'react-bootstrap';
-import { Divider } from '@material-ui/core';
-import Dropdown from 'react-bootstrap/Dropdown';
-import Box from '@material-ui/core/Box';
-import SwipeableViews from 'react-swipeable-views';
-import Tab from "@material-ui/core/Tab";
-import Tabs from "@material-ui/core/Tabs";
-import Container from 'react-bootstrap/Container';
+import React, { useState, useEffect } from 'react';
+import { Nav, Form } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
-// import Button from '@material-ui/core/Button';
 import Button from 'react-bootstrap/Button';
-import PersonalInfo from './PersonalInfo';
+import { getTodayDate } from '../util/getDate';
+import Spinner from 'react-bootstrap/Spinner';
 
-const useStyles = makeStyles(theme => ({
-    root: {
-        width: '100%',
-    },
-    backButton: {
-        marginRight: theme.spacing(1),
-    },
-    instructions: {
-        marginTop: theme.spacing(1),
-        marginBottom: theme.spacing(1),
-    },
-}));
 
-const Styles = styled.div`
-  .navbar { 
-    background-color: white;
-    position:'absolute';
-    width:'1440px';
-    height:'94px';
-    left:'0px';
-    top:'0px';
+const SignIn = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  function signInBtn() {
+
+    if (email === "") {
+      alert("Please insert email")
+    } else if (password === "") {
+      alert("Please insert password")
+    } else {
+      setLoading(true);
+      const datas = {
+        txn_cd: 'MEDAUTH01',
+        tstamp: getTodayDate(),
+        data: {
+          userID: email,
+          password: password
+        }
+      }
+
+      fetch('http://157.245.148.221:3001/SIGNIN',
+        {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(datas),
+        })
+        .then(res => res.json())
+        .then(
+          (result) => {
+            if (result.status === 'IDXDE') {
+              alert('User ID does not exist')
+              setLoading(false);
+              resetForm();
+            } else if (result.status === 'PASSWORDWRONG') {
+              alert('Wrong password.')
+              setLoading(false);
+              resetForm();
+            } else {
+              // window.location = '/PersonalInfo';
+              saveToStorage();
+            }
+
+          },
+          () => {
+            alert('Something is went wrong')
+          }
+        )
+    }
   }
-  a, 
-  .navbar-nav, .navbar-light .nav-link {
-    color: black;
-    &:hover { color: #FBB03B; }
+
+  function resetForm() {
+    setEmail('');
+    setPassword('');
   }
-  .navbar-brand {
-    font-size: 1.4em;
-    color: black;
-    &:hover { color: #FBB03B; } 
+
+  function saveToStorage() {
+    localStorage.setItem('myData', email)
+    window.location = '/PersonalInfo';
   }
-`;
 
-export default function SignIn() {
-    const classes = useStyles();
-    const [] = React.useState(0);
-
-    const [value, setValue] = React.useState(0);
-
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
+  useEffect(() => {
+    const fetchData = () => {
+      const email = localStorage.getItem('myData');
+      if (email !== null) {
+        window.location = '/PersonalInfo';
+        return;
+      }
     };
 
-    const handleChangeIndex = index => {
-        setValue(index);
-    };
+    fetchData();
+  }, []);
 
-    const theme = useTheme();
-    const [] = React.useState(false);
 
+  if (loading) {
     return (
+      <div style={{ textAlign: 'center' }}>
+        <Spinner animation="border" role="status">
+          <span className="sr-only">Loading...</span>
+        </Spinner>
+      </div>
+
+    )
+  }
+
+  return (
     <Card style={{ width: '500px', height: '500px', borderColor: '#E5E5E5', margin: 'auto' }}>
       <Card.Body>
         <h1 style={{ textAlign: 'center', fontWeight: '600' }}>Sign In</h1><br />
-        <h4 style={{ textAlign: 'center', fontWeight: 'normal', fontSize:20}}>Enter your email address and password</h4><br/>
+        <h4 style={{ textAlign: 'center', fontWeight: 'normal', fontSize: 20 }}>Enter your email address and password</h4><br />
         <Form>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Email Address</Form.Label>
-            <Form.Control type="email" placeholder="Email Address" />
+            <Form.Control
+              name="email"
+              type="text"
+              placeholder="Email Address"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+            >
+            </Form.Control>
           </Form.Group>
 
           <Form.Group controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
+            <Form.Control
+              name="password"
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+            >
+            </Form.Control>
           </Form.Group>
 
-          <Nav.Link href="/forgotPassword">
-          <h6 style={{ fontSize:16, color:'#FCA20A'}}>Forgot Password?</h6><br/>
+          <Nav.Link href="/TenantSignup">
+            <h6 style={{ fontSize: 16, color: '#FCA20A' }}>Doesn't have an account? <br/>Please sign up </h6><br />
           </Nav.Link>
-          <Nav.Link href="/PersonalInfo">
-          <Button style={{
-                    color: 'white',
-                    backgroundColor: '#FBB03B',
-                    borderColor:'#FBB03B',
-                    borderRadius:30,
-                    width: 179.54,
-                    height: 47,
-                    float: 'right'
-                  }}>Sign In
+          <Nav.Link >
+            <Button
+              onClick={() => signInBtn()}
+              style={{
+                color: 'white',
+                backgroundColor: '#FBB03B',
+                borderColor: '#FBB03B',
+                borderRadius: 30,
+                width: 179.54,
+                height: 47,
+                float: 'right'
+              }}>Sign In
                   </Button>
-                  </Nav.Link>
+          </Nav.Link>
         </Form>
       </Card.Body>
     </Card>
 
-    );
-}
+  );
+};
+
+export default SignIn;

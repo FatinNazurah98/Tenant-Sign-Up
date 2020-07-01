@@ -65,14 +65,13 @@ export default function Jomedic() {
                 <Navbar expand="lg">
                     <Navbar.Brand style={{ fontSize: 30, fontWeight: 'bold' }}>
                         <div style={{ display: 'inline-flex' }}>
-                            <img src={mainLogo} alt="mainLogo" />&nbsp; Jomedic
+                            <img src={mainLogo} alt="mainLogo" />&nbsp; JOMEDIC
                         </div>
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ml-auto">
-                            {/* <Nav.Item><Nav.Link href="/Dummy" style={{ fontSize: 20, fontWeight: 'bold' }}>Dummy</Nav.Link></Nav.Item> */}
                             {email === null ?
                                 <>
                                     <Nav.Item><Nav.Link href="/" style={{ fontSize: 20, fontWeight: 'bold' }}>Sign In</Nav.Link></Nav.Item>
@@ -88,7 +87,7 @@ export default function Jomedic() {
                                         <Dropdown.Menu>
                                             <Dropdown.Item href="PersonalInfo" style={{ fontWeight: 'bold' }}>Manage Personal Info</Dropdown.Item><Divider />
                                             <Dropdown.Item href="HealthCF" style={{ fontWeight: 'bold' }}>Manage Healthcare Facility</Dropdown.Item><Divider />
-                                            <Dropdown.Item href="ClinicSchedule" style={{ fontWeight: 'bold' }}>Manage Clinic Schedule</Dropdown.Item><Divider /><br />
+                                            {/* <Dropdown.Item href="ClinicSchedule" style={{ fontWeight: 'bold' }}>Manage Clinic Schedule</Dropdown.Item><Divider /> */}<br />
                                             <Dropdown.Item onClick={() => signOutBtn()} style={{ fontWeight: 'bold' }}>Sign Out <FontAwesomeIcon style={{ position: 'absolute', left: 200 }} icon={faChevronRight} /> </Dropdown.Item>
                                         </Dropdown.Menu>
                                     </Dropdown>

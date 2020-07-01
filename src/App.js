@@ -14,10 +14,8 @@ import Report from './SystemAdmin/Report';
 import HealthCF from './TenantSignUp/HealthCF';
 import PersonalInfo from './TenantSignUp/PersonalInfo';
 import ClinicSchedule from './TenantSignUp/ClinicShedule';
-import Dummy from './TenantSignUp/Dummy';
 import Jomedic from './TenantSignUp/Jomedic';
 import SignIn from './TenantSignUp/SignIn';
-import LocalStorage from './component/LocalStorage';
 
 function App() {
   return (
@@ -26,8 +24,6 @@ function App() {
         {/* <SideBar /> */}
 
         <Jomedic />
-
-        {/* <LocalStorage/> */}
 
         <Switch>
 

@@ -55,11 +55,28 @@ function a11yProps(index) {
 
 export default function PersonalInfo(props) {
     const classes = useStyles();
-    // const [] = React.useState(0);
     const [loading, setLoading] = useState(true)
 
     const [profile, setProfile] = useState([]);
+    const [state, setState] = useState({
+        firstName:"",
+        lastName:"",
+        icNo:"",
+        gender:"",
+        dateOfBirth:"",
+        phoneNo:"",
+        apc:"",
+        blc:"",
+        country:"",
+        bilingAdress:"",
+    });
 
+    const handleInput = (obj) => {
+        setState({
+            ...state,
+            [obj.target.name]: obj.target.value
+        })
+    };
 
     const [value, setValue] = React.useState(0);
 
@@ -72,9 +89,6 @@ export default function PersonalInfo(props) {
     };
 
     const theme = useTheme();
-    // const [] = React.useState(false);
-
-    // const [] = useState(props);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -117,6 +131,74 @@ export default function PersonalInfo(props) {
             </div>
 
         )
+    }
+
+    function saveBtn() {
+        let errMsg = '';
+
+        if (value === 0) {
+            //jlk_user_profile
+            let datas2 = {
+                txn_cd: "MEDPRO06",
+                tstamp: getTodayDate(),
+                data: {
+                    userID: state.email,
+                    userName: state.firstName,
+                    title: state.lastName,
+                    gender: state.gender,
+                    DOB: state.dateOfBirth,
+                    occupation: "",
+                    homeAddress1: state.bilingAdress,
+                    homeAddress2: "",
+                    homeAddress3: "",
+                    district: "",
+                    state: state.state,
+                    country: state.country,
+                    email: state.email,
+                    postcode: state.postcode,
+                    mobileNo: state.phoneNo,
+                    picture: state.icUpload,
+                    idNumber: state.icNo,
+                    idImg: "",
+                    nationality: ""
+                },
+            }
+
+            postAPI(datas2, (success) => {
+                console.log(success);
+            }, (error) => {
+                errMsg = error.message;
+            });
+
+            alert('Data has been updated');
+
+        } else {
+            //jlk_jomedic_master
+            let datas3 = {
+                txn_cd: 'MEDPRO09',
+                tstamp: getTodayDate(),
+                data: {
+                    tenantId: "fatinnazurah@gmail.com",
+                    tenantType: "0001",
+                    hfc: "",
+                    serviceFee: "0.0",
+                    deposit: "0.0",
+                    discount: "0.0",
+                    tax: "0.0",
+                    BLC: state.blc,
+                    APC: state.apc,
+                    createdBy: ""
+                },
+            }
+
+            postAPI(datas3, (success) => {
+                console.log(success);
+            }, (error) => {
+                errMsg = error.message;
+            });
+
+            alert('Data has been updated');
+        }
     }
 
     return (
@@ -170,6 +252,8 @@ export default function PersonalInfo(props) {
                                                                 type="text"
                                                                 placeholder="First Name"
                                                                 defaultValue={profile.user_name}
+                                                                handleChange={state.firstName}
+                                                                onChange={props.handleInput}
                                                             />
                                                         </Col>
                                                     </Form.Group><br />
@@ -271,14 +355,14 @@ export default function PersonalInfo(props) {
                                                                 name="email"
                                                                 type="text"
                                                                 placeholder="Email Address"
-                                                                defaultValue={profile.email}
+                                                                defaultValue="fatinnazurah@gmail.com"
                                                             />
                                                         </Col>
                                                     </Form.Group><br />
 
                                                     <Form.Group as={Row} controlId="formPlaintextPassword">
-                                                        <Form.Label column sm="2">
-                                                            Apc
+                                                        <Form.Label column sm="3">
+                                                            Annual Practising Certicate
                 </Form.Label>
                                                         <Col>
                                                             <div className={classes.root}>
@@ -300,21 +384,19 @@ export default function PersonalInfo(props) {
                                                             Password
                 </Form.Label>
                                                         <Col>
-                                                            <Button style={{
-                                                                // position: 'absolute',
-                                                                // width: '195px',
-                                                                // height: '41px',
-                                                                backgroundColor: '#DADADA',
-                                                                borderColor: '#DADADA',
-                                                                borderRadius: '6px',
-                                                                color: 'black'
-                                                            }}>Change Password</Button>
+                                                            <Form.Control
+                                                                name="password"
+                                                                type="password"
+                                                                placeholder="Password"
+                                                                defaultValue={profile.password}
+                                                                onChange={props.handleInput}
+                                                            />
                                                         </Col>
                                                     </Form.Group><br />
 
                                                     <Form.Group as={Row} controlId="formPlaintextPassword">
                                                         <Form.Label column sm="2">
-                                                            Blc
+                                                            Business Licence Certificate
                 </Form.Label>
                                                         <Col>
                                                             <div className={classes.root}>
@@ -337,7 +419,9 @@ export default function PersonalInfo(props) {
                             </TabPanel>
 
                         </SwipeableViews>
-                        <Button style={{
+                        <Button 
+                        onClick={() => saveBtn()}
+                        style={{
                             position: 'absolute',
                             width: '169px',
                             height: '45px',

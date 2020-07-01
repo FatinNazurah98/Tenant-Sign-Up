@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Card from 'react-bootstrap/Card';
@@ -28,8 +28,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-export default function ClinicSchedule() {
+export default function ClinicSchedule(props) {
     const classes = useStyles();
+    const [state] = useState(props);
 
     return (
         <div>
@@ -81,6 +82,7 @@ export default function ClinicSchedule() {
                                                 id="time"
                                                 type="time"
                                                 defaultValue="08:00"
+                                                value={state.monStart}
                                                 className={classes.textField}
                                                 InputLabelProps={{
                                                     shrink: true,
@@ -95,7 +97,6 @@ export default function ClinicSchedule() {
                                         <form className={classes.container} noValidate>
                                             <TextField
                                                 id="time"
-
                                                 type="time"
                                                 defaultValue="15:00"
                                                 className={classes.textField}

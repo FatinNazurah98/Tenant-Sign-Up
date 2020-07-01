@@ -8,7 +8,7 @@ export default function Screen1(props) {
   const [state] = useState(props);
   return <Card style={{ width: 900, height: 900, borderColor: '#E5E5E5', margin: 'auto' }}>
     <Card.Body>
-      <h1 style={{ textAlign: 'center', fontWeight: '600' }}>Create Jomedic ID</h1>
+      <h1 style={{ textAlign: 'center', fontWeight: '600' }}>Create JOMEDIC ID</h1>
       <br />
       <Form>
         <Form.Row>

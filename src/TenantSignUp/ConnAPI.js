@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react';
 import { BASE_URL } from '../util/provider';
 
 export function postAPI(datas, success, error) {

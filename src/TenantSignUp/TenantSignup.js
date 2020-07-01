@@ -39,7 +39,7 @@ export default function TenantSignup() {
   const [state, setState] = useState({
 
     // screen 1 form data
-    activeStep: 5,
+    activeStep: 0,
     firstName:"",
     lastName:"",
     email: "",
@@ -186,57 +186,57 @@ export default function TenantSignup() {
         errMsg = 'Please fill medical specialties';
       }
     } else if (state.activeStep === 4) { //screen3b qualification&language
-      if (state.placeGraduate === "") {
-        errMsg = 'Please fill place of graduate';
-      } else if (state.yearExperience === "") {
-        errMsg = 'Please fill year of experience';
-      } else if (state.preferedLanguage === "") {
-        errMsg = 'Please fill prefered language';
-      }
+      // if (state.placeGraduate === "") {
+      //   errMsg = 'Please fill place of graduate';
+      // } else if (state.yearExperience === "") {
+      //   errMsg = 'Please fill year of experience';
+      // } else if (state.preferedLanguage === "") {
+      //   errMsg = 'Please fill prefered language';
+      // }
     } else if (state.activeStep === 5) { //screen4 operation hour
-      if (state.monDay === "") {
-        errMsg = 'Please select day (monday)';
-      } else if (state.monStart === "") {
-        errMsg = 'Please fill monday start time';
-      } else if (state.monEnd === "") {
-        errMsg = 'Please fill monday end time';
-      } else if (state.tueDay === "") {
-        errMsg = 'Please select day (tuesday)';
-      } else if (state.tueStart === "") {
-        errMsg = 'Please fill tuesday start time';
-      } else if (state.tueEnd === "") {
-        errMsg = 'Please fill tuesday end time';
-      } else if (state.wedDay === "") {
-        errMsg = 'Please select day (wednesday)';
-      } else if (state.wedStart === "") {
-        errMsg = 'Please fill wednesday start time';
-      } else if (state.wedEnd === "") {
-        errMsg = 'Please fill wednesday end time';
-      } else if (state.thuDay === "") {
-        errMsg = 'Please select day (thursday)';
-      } else if (state.thuStart === "") {
-        errMsg = 'Please fill thursday start time';
-      } else if (state.thuEnd === "") {
-        errMsg = 'Please fill thursday end time';
-      } else if (state.friDay === "") {
-        errMsg = 'Please select day (friday)';
-      } else if (state.friStart === "") {
-        errMsg = 'Please fill friday start time';
-      } else if (state.friEnd === "") {
-        errMsg = 'Please fill friday end time';
-      } else if (state.satDay === "") {
-        errMsg = 'Please select day (saturday)';
-      } else if (state.satStart === "") {
-        errMsg = 'Please fill saturday start time';
-      } else if (state.satEnd === "") {
-        errMsg = 'Please fill saturday end time';
-      } else if (state.sunDay === "") {
-        errMsg = 'Please select day (sunday)';
-      } else if (state.sunStart === "") {
-        errMsg = 'Please fill sunday start time';
-      } else if (state.sunEnd === "") {
-        errMsg = 'Please fill sunday end time';
-      }
+      // if (state.monDay === "") {
+      //   errMsg = 'Please select day (monday)';
+      // } else if (state.monStart === "") {
+      //   errMsg = 'Please fill monday start time';
+      // } else if (state.monEnd === "") {
+      //   errMsg = 'Please fill monday end time';
+      // } else if (state.tueDay === "") {
+      //   errMsg = 'Please select day (tuesday)';
+      // } else if (state.tueStart === "") {
+      //   errMsg = 'Please fill tuesday start time';
+      // } else if (state.tueEnd === "") {
+      //   errMsg = 'Please fill tuesday end time';
+      // } else if (state.wedDay === "") {
+      //   errMsg = 'Please select day (wednesday)';
+      // } else if (state.wedStart === "") {
+      //   errMsg = 'Please fill wednesday start time';
+      // } else if (state.wedEnd === "") {
+      //   errMsg = 'Please fill wednesday end time';
+      // } else if (state.thuDay === "") {
+      //   errMsg = 'Please select day (thursday)';
+      // } else if (state.thuStart === "") {
+      //   errMsg = 'Please fill thursday start time';
+      // } else if (state.thuEnd === "") {
+      //   errMsg = 'Please fill thursday end time';
+      // } else if (state.friDay === "") {
+      //   errMsg = 'Please select day (friday)';
+      // } else if (state.friStart === "") {
+      //   errMsg = 'Please fill friday start time';
+      // } else if (state.friEnd === "") {
+      //   errMsg = 'Please fill friday end time';
+      // } else if (state.satDay === "") {
+      //   errMsg = 'Please select day (saturday)';
+      // } else if (state.satStart === "") {
+      //   errMsg = 'Please fill saturday start time';
+      // } else if (state.satEnd === "") {
+      //   errMsg = 'Please fill saturday end time';
+      // } else if (state.sunDay === "") {
+      //   errMsg = 'Please select day (sunday)';
+      // } else if (state.sunStart === "") {
+      //   errMsg = 'Please fill sunday start time';
+      // } else if (state.sunEnd === "") {
+      //   errMsg = 'Please fill sunday end time';
+      // }
     } else if (state.activeStep === 6) { //screen5 apc&blc
       if (state.apc === "") {
         errMsg = 'Please upload annual practicing certificate';
@@ -350,8 +350,6 @@ export default function TenantSignup() {
         },
       };
 
-      // console.log(datas3)
-
       postAPI(datas3, (success) => {
         console.log(success);
       }, (error) => {
@@ -372,8 +370,6 @@ export default function TenantSignup() {
           createdBy: "",
         },
       };
-
-      // console.log(datas4)
 
       postAPI(datas4, (success) => {
         console.log(success);
@@ -461,13 +457,11 @@ export default function TenantSignup() {
         },
       };
 
-      console.log(datas6)
-
-      // postAPI(datas6, (success) => {
-      //   console.log(success);
-      // }, (error) => {
-      //   errMsg = error.message;
-      // });
+      postAPI(datas6, (success) => {
+        console.log(success);
+      }, (error) => {
+        errMsg = error.message;
+      });
     }
 
     else if (state.activeStep === 6) {
@@ -594,7 +588,7 @@ export default function TenantSignup() {
 
 
   function getSteps() {
-    return ['Login Details', 'Personal Information', 'Provider Information', 'Specialties', 'Qualification & Language', 'Operation Hour', 'License Upload', 'E-Wallet'];
+    return ['Login Details', 'Personal Information', 'Provider Information', 'Specialties', 'Qualification & Language\n(Optional)', 'Operation Hour\n(Optional)', 'License Upload'];
   }
 
   function getStepContent(stepIndex) {
@@ -613,8 +607,6 @@ export default function TenantSignup() {
         return <Screen4 handleInput={handleInput} {...state} />
       case 6:
         return <Screen5 handleInput={handleInput} {...state} />
-      case 7:
-        return <Screen6 handleInput={handleInput} {...state} />
       default:
         return 'Unknown stepIndex';
     }
@@ -633,7 +625,7 @@ export default function TenantSignup() {
         <div>
           {state.activeStep === steps.length ? (
             <div>
-              <Typography className={classes.instructions}>All steps completed</Typography>
+              <Typography className={classes.instructions}>All steps completed. Sign up successful!</Typography>
               <Button style={{ color: 'white', backgroundColor: '#FBB03B' }} onClick={handleReset}>Reset</Button>
             </div>
           ) : (

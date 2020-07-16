@@ -355,7 +355,7 @@ export default function PersonalInfo(props) {
                                                                 name="email"
                                                                 type="text"
                                                                 placeholder="Email Address"
-                                                                defaultValue="fatinnazurah@gmail.com"
+                                                                defaultValue={profile.email}
                                                             />
                                                         </Col>
                                                     </Form.Group><br />

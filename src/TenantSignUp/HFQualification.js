@@ -35,8 +35,8 @@ export default function HFQualification(props) {
                 tstamp: getTodayDate(),
                 data: {
                     tenantId: email,
-                    qualificationCd: "BAHASA MALAYSIA",
-                    fieldStudy: "3"
+                    qualificationCd: "",
+                    fieldStudy: ""
                 }
             }
 

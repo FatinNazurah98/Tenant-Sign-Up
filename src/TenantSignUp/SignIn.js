@@ -95,8 +95,21 @@ const SignIn = () => {
     )
   }
 
+  let styles = {
+      height: '500px',
+      borderColor: '#E5E5E5',
+      margin: 'auto'
+  };
+  const max_width = 500;
+  if (window.innerWidth >= max_width) {
+      styles = {
+          ...styles,
+          width: max_width
+      }
+  }
+
   return (
-    <Card style={{ width: '500px', height: '500px', borderColor: '#E5E5E5', margin: 'auto' }}>
+    <Card style={styles}>
       <Card.Body>
         <h1 style={{ textAlign: 'center', fontWeight: '600' }}>Sign In</h1><br />
         <h4 style={{ textAlign: 'center', fontWeight: 'normal', fontSize: 20 }}>Enter your email address and password</h4><br />

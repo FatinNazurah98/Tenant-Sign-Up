@@ -616,11 +616,17 @@ export default function TenantSignup() {
     }
   }
 
+  const max_width = 550; // mobile view
+  let stepperAttr = {orientation:'vertical'};
+  if (window.innerWidth >= max_width) {
+      stepperAttr = {alternativeLabel:'alternativeLabel'};
+  }
+
   return (
     <div>
       <div className={classes.root}>
-        <Stepper activeStep={state.activeStep} alternativeLabel>
-          {steps.map(label => (
+        <Stepper activeStep={state.activeStep} {...stepperAttr}>
+          {steps.map((label, i) => (
             <Step key={label}>
               <StepLabel>{label}</StepLabel>
             </Step>
@@ -642,12 +648,10 @@ export default function TenantSignup() {
                     color: 'white',
                     backgroundColor: '#FBB03B',
                     borderColor: '#FBB03B',
-                    position: 'absolute',
                     width: '248px',
                     height: '63.03px',
                     borderRadius: '50px',
-                    left: 330,
-                    top: 1050,
+                    margin: 10
                   }}
                     disabled={state.activeStep === 0}
                     onClick={handleBack}
@@ -658,12 +662,9 @@ export default function TenantSignup() {
                   <Button style={{
                     color: 'white',
                     backgroundColor: '#FBB03B',
-                    position: 'absolute',
                     width: '248px',
                     height: '63.03px',
                     borderRadius: '50px',
-                    top: 1050,
-                    left: 950,
                   }} variant="contained" onClick={handleNext}>
                     {state.activeStep === steps.length - 1 ? 'Finish' : 'Next'}
                   </Button>

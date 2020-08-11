@@ -39,9 +39,9 @@ export default function TenantSignup() {
   const [state, setState] = useState({
 
     // screen 1 form data
-    activeStep: 0,
-    firstName:"",
-    lastName:"",
+    activeStep: 4,
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
     passwordConfirm: "",
@@ -61,6 +61,7 @@ export default function TenantSignup() {
     buildingNo: "",
     streetName: "",
     postcodeProvider: "",
+    cityProvider: "",
     stateProvider: "",
     country: "",
     providerPhoneNo: "",
@@ -168,6 +169,8 @@ export default function TenantSignup() {
         errMsg = 'Please fill street name';
       } else if (state.postcodeProvider === "") {
         errMsg = 'Please fill postcode';
+      } else if (state.cityProvider === "") {
+        errMsg = 'Please fill city';
       } else if (state.stateProvider === "") {
         errMsg = 'Please fill state';
       } else if (state.country === "") {
@@ -333,7 +336,7 @@ export default function TenantSignup() {
           address1: state.buildingNo,
           address2: state.streetName,
           address3: "",
-          townCd: "",
+          townCd: state.cityProvider,
           districtCd: "",
           stateCd: state.stateProvider,
           countryCd: state.country,
@@ -514,8 +517,8 @@ export default function TenantSignup() {
 
       //screen1
       activeStep: 0,
-      firstName:"",
-      lastName:"",
+      firstName: "",
+      lastName: "",
       email: "",
       password: "",
       passwordConfirm: "",
@@ -536,6 +539,7 @@ export default function TenantSignup() {
       buildingNo: "",
       streetName: "",
       postcodeProvider: "",
+      cityProvider: "",
       stateProvider: "",
       country: "",
       tenantPhoneNo: "",

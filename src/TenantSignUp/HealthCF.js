@@ -13,6 +13,7 @@ import { getTodayDate } from '../util/getDate';
 import HFInfo from './HFInfo';
 import HFOperation from './HFOperation';
 import HFQualification from './HFQualification';
+import HFLanguage from './HFLanguage';
 import HFSpecialties from './HFSpecialties';
 
 
@@ -48,6 +49,7 @@ export default function HealthCF(props) {
         //HFInfo
         healthFacility: "",
         streetName: "",
+        cityProvider: "",
         stateProvider: "",
         providerPhoneNo: "",
         buildingNo: "",
@@ -104,7 +106,7 @@ export default function HealthCF(props) {
                     address1: state.buildingNo,
                     address2: state.streetName,
                     address3: "",
-                    townCd: "",
+                    townCd: state.cityProvider,
                     districtCd: "",
                     stateCd: state.stateProvider,
                     countryCd: state.country,
@@ -236,8 +238,9 @@ export default function HealthCF(props) {
                         >
                             <Tab textColor="inherit" label="Information" {...a11yProps(0)} />
                             <Tab textColor="inherit" label="Specialties" {...a11yProps(1)} />
-                            <Tab textColor="inherit" label="Qualification & Language" {...a11yProps(2)} />
-                            <Tab textColor="inherit" label="Operation Hour" {...a11yProps(3)} />
+                            <Tab textColor="inherit" label="Qualification" {...a11yProps(2)} />
+                            <Tab textColor="inherit" label="Language" {...a11yProps(3)} />
+                            <Tab textColor="inherit" label="Operation Hour" {...a11yProps(4)} />
                         </Tabs>
                         <SwipeableViews
                             axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
@@ -257,6 +260,10 @@ export default function HealthCF(props) {
                             </TabPanel>
 
                             <TabPanel value={value} index={3} dir={theme.direction}>
+                                <HFLanguage handleInput={handleInput}{...state} />
+                            </TabPanel>
+
+                            <TabPanel value={value} index={4} dir={theme.direction}>
                                 <HFOperation handleInput={handleInput}{...state} />
                             </TabPanel>
 

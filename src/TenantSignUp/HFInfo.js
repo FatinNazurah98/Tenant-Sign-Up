@@ -131,6 +131,21 @@ export default function HFInfo(props) {
 
                     <Form.Group as={Row} controlId="formPlaintextPassword">
                         <Form.Label column sm="3">
+                            City
+</Form.Label>
+                        <Col sm="9">
+                            <Form.Control
+                                name="cityProvider"
+                                type="text"
+                                placeholder="City"
+                                defaultValue={profile.tenant_town_cd}
+                                onChange={props.handleInput}
+                            />
+                        </Col>
+                    </Form.Group><br />
+
+                    <Form.Group as={Row} controlId="formPlaintextPassword">
+                        <Form.Label column sm="3">
                             State
 </Form.Label>
                         <Col sm="9">

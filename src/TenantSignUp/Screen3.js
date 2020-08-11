@@ -89,6 +89,19 @@ export default function Screen3(props) {
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridState">
+            <Form.Label>City</Form.Label>
+            <Form.Control
+              name="cityProvider"
+              type="text"
+              placeholder="City"
+              defaultValue={state.cityProvider}
+              onChange={props.handleInput}
+            />
+          </Form.Group>
+        </Form.Row>
+
+        <Form.Row>
+          <Form.Group as={Col} controlId="formGridPostcode">
             <Form.Label>State</Form.Label>
             <Form.Control
               as="select"
@@ -104,24 +117,24 @@ export default function Screen3(props) {
               })}
             </Form.Control>
           </Form.Group>
-        </Form.Row>
 
-        <Form.Group controlId="formBasicCountry">
-          <Form.Label>Country</Form.Label>
-          <Form.Control
-            as="select"
-            name="country"
-            defaultValue={state.country}
-            onChange={props.handleInput}
-          >
-            <option value="">- Select Country -</option>
-            {COUNTRY.map((s, si) => {
-              return (
-                <option key={si} value={s}>{s.toUpperCase()}</option>
-              );
-            })}
-          </Form.Control>
-        </Form.Group>
+          <Form.Group as={Col} controlId="formGridState">
+            <Form.Label>Country</Form.Label>
+            <Form.Control
+              as="select"
+              name="country"
+              defaultValue={state.country}
+              onChange={props.handleInput}
+            >
+              <option value="">- Select Country -</option>
+              {COUNTRY.map((s, si) => {
+                return (
+                  <option key={si} value={s}>{s.toUpperCase()}</option>
+                );
+              })}
+            </Form.Control>
+          </Form.Group>
+        </Form.Row>
 
         <Form.Group controlId="formBasicPPhoneNum">
           <Form.Label>Provider Phone Number</Form.Label>

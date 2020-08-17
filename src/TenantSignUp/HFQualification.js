@@ -81,17 +81,21 @@ export default function HFQualification(props) {
             alert(`${props.qualification} already added.`);
             return;
         }
-        setDataSet(oldArray => [...oldArray, { qualification: props.qualification }]);
-        console.log(props.qualification);
-        setState(state => [...state, props.qualification])
 
         var data = dataSet.filter(items =>
             items.major === props.major
         );
 
-        setDataSet(oldArray => [...oldArray, { major: props.major }]);
-        console.log(props.major);
-        setState(state => [...state, props.major])
+        console.log(props);
+        let newData = {
+            qualification: props.qualification,
+            major: props.major,
+            graduatedYear: props.yearGraduated,
+            institution: props.placeGraduated
+        };
+
+        setDataSet(oldArray => [...oldArray, newData]);
+        setState(state => [...state, newData])
     }
 
     function removeQualificationBtn(index) {
@@ -194,7 +198,7 @@ export default function HFQualification(props) {
                     </Table>
                 </div>
             </div>
-            
+
             {/* <Row>
                 <Col sm={6}>
                     <Form.Group as={Row} controlId="formPlaintextPassword">

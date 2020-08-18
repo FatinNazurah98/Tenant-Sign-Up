@@ -131,21 +131,6 @@ export default function HFInfo(props) {
 
                     <Form.Group as={Row} controlId="formPlaintextPassword">
                         <Form.Label column sm="3">
-                            City
-</Form.Label>
-                        <Col sm="9">
-                            <Form.Control
-                                name="cityProvider"
-                                type="text"
-                                placeholder="City"
-                                defaultValue={profile.tenant_town_cd}
-                                onChange={props.handleInput}
-                            />
-                        </Col>
-                    </Form.Group><br />
-
-                    <Form.Group as={Row} controlId="formPlaintextPassword">
-                        <Form.Label column sm="3">
                             State
 </Form.Label>
                         <Col sm="9">
@@ -167,6 +152,22 @@ export default function HFInfo(props) {
 
                     <Form.Group as={Row} controlId="formPlaintextPassword">
                         <Form.Label column sm="3">
+                            Postcode
+</Form.Label>
+                        <Col sm="9">
+                            <Form.Control
+                                name="postcodeProvider"
+                                type="text"
+                                placeholder="Postcode"
+                                defaultValue={profile.tenant_postcode}
+                                onChange={props.handleInput}
+                            >
+                            </Form.Control>
+                        </Col>
+                    </Form.Group><br />
+
+                    <Form.Group as={Row} controlId="formPlaintextPassword">
+                        <Form.Label column sm="3">
                             Phone Number
 </Form.Label>
                         <Col sm="9">
@@ -174,7 +175,7 @@ export default function HFInfo(props) {
                                 name="providerPhoneNo"
                                 type="text"
                                 placeholder="Provider Phone Number"
-                                defaultValue={profile.tenant_phone_no}
+                                defaultValue={state.providerPhoneNo}
                                 onChange={props.handleInput}
                             >
 
@@ -204,22 +205,6 @@ export default function HFInfo(props) {
 
                     <Form.Group as={Row} controlId="formPlaintextPassword">
                         <Form.Label column sm="4">
-                            Postcode
-</Form.Label>
-                        <Col sm="8">
-                            <Form.Control
-                                name="postcodeProvider"
-                                type="text"
-                                placeholder="Postcode"
-                                defaultValue={profile.tenant_postcode}
-                                onChange={props.handleInput}
-                            >
-                            </Form.Control>
-                        </Col>
-                    </Form.Group><br />
-
-                    <Form.Group as={Row} controlId="formPlaintextPassword">
-                        <Form.Label column sm="4">
                             Country
 </Form.Label>
                         <Col sm="8">
@@ -236,6 +221,21 @@ export default function HFInfo(props) {
                                     );
                                 })}
                             </Form.Control>
+                        </Col>
+                    </Form.Group><br />
+
+                    <Form.Group as={Row} controlId="formPlaintextPassword">
+                        <Form.Label column sm="4">
+                            City
+</Form.Label>
+                        <Col sm="8">
+                            <Form.Control
+                                name="cityProvider"
+                                type="text"
+                                placeholder="City"
+                                defaultValue={profile.tenant_town_cd}
+                                onChange={props.handleInput}
+                            />
                         </Col>
                     </Form.Group><br />
 

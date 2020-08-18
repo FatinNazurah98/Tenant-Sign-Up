@@ -81,7 +81,7 @@ export default function HFOperation(props) {
                                     name="monStart"
                                     type="time"
                                     placeholder="Start time"
-                                    value={startTime}
+                                    // value={startTime}
                                     defaultValue={profile.start_time}
                                     onChange={props.handleInput}
                                 >
@@ -94,7 +94,7 @@ export default function HFOperation(props) {
                                     name="monEnd"
                                     type="time"
                                     placeholder="End time"
-                                    value={endTime}
+                                    // value={endTime}
                                     defaultValue={profile.end_time}
                                     onChange={props.handleInput}
                                 >
@@ -123,7 +123,7 @@ export default function HFOperation(props) {
                                     name="tueStart"
                                     type="time"
                                     placeholder="Start time"
-                                    value={startTime}
+                                    // value={startTime}
                                     defaultValue={state.tueStart}
                                     onChange={props.handleInput}
                                 >
@@ -136,7 +136,7 @@ export default function HFOperation(props) {
                                     name="tueEnd"
                                     type="time"
                                     placeholder="End time"
-                                    value={endTime}
+                                    // value={endTime}
                                     defaultValue={state.tueEnd}
                                     onChange={props.handleInput}
                                 >
@@ -165,7 +165,7 @@ export default function HFOperation(props) {
                                     name="wedStart"
                                     type="time"
                                     placeholder="Start time"
-                                    value={startTime}
+                                    // value={startTime}
                                     defaultValue={state.wedStart}
                                     onChange={props.handleInput}
                                 >
@@ -178,7 +178,7 @@ export default function HFOperation(props) {
                                     name="wedEnd"
                                     type="time"
                                     placeholder="End time"
-                                    value={endTime}
+                                    // value={endTime}
                                     defaultValue={state.wedEnd}
                                     onChange={props.handleInput}
                                 >
@@ -207,7 +207,7 @@ export default function HFOperation(props) {
                                     name="thuStart"
                                     type="time"
                                     placeholder="Start time"
-                                    value={startTime}
+                                    // value={startTime}
                                     defaultValue={state.thuStart}
                                     onChange={props.handleInput}
                                 >
@@ -220,7 +220,7 @@ export default function HFOperation(props) {
                                     name="thuEnd"
                                     type="time"
                                     placeholder="End time"
-                                    value={endTime}
+                                    // value={endTime}
                                     defaultValue={state.thuEnd}
                                     onChange={props.handleInput}
                                 >
@@ -249,7 +249,7 @@ export default function HFOperation(props) {
                                     name="friStart"
                                     type="time"
                                     placeholder="Start time"
-                                    value={startTime}
+                                    // value={startTime}
                                     defaultValue={state.friStart}
                                     onChange={props.handleInput}
                                 >
@@ -262,7 +262,7 @@ export default function HFOperation(props) {
                                     name="friEnd"
                                     type="time"
                                     placeholder="End time"
-                                    value={endTime}
+                                    // value={endTime}
                                     defaultValue={state.friEnd}
                                     onChange={props.handleInput}
                                 >
@@ -291,7 +291,7 @@ export default function HFOperation(props) {
                                     name="satStart"
                                     type="time"
                                     placeholder="Start time"
-                                    value={startTime}
+                                    // value={startTime}
                                     defaultValue={state.satStart}
                                     onChange={props.handleInput}
                                 >
@@ -304,7 +304,7 @@ export default function HFOperation(props) {
                                     name="satEnd"
                                     type="time"
                                     placeholder="End time"
-                                    value={endTime}
+                                    // value={endTime}
                                     defaultValue={state.satEnd}
                                     onChange={props.handleInput}
                                 >
@@ -333,7 +333,7 @@ export default function HFOperation(props) {
                                     name="sunStart"
                                     type="time"
                                     placeholder="Start time"
-                                    value={startTime}
+                                    // value={startTime}
                                     defaultValue={state.sunStart}
                                     onChange={props.handleInput}
                                 >
@@ -346,7 +346,7 @@ export default function HFOperation(props) {
                                     name="sunEnd"
                                     type="time"
                                     placeholder="End time"
-                                    value={endTime}
+                                    // value={endTime}
                                     defaultValue={state.sunEnd}
                                     onChange={props.handleInput}
                                 >

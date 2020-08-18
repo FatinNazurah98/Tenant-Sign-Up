@@ -72,16 +72,16 @@ export default function HFQualification(props) {
         fetchData();
     }, []);
 
-    // if (loading) {
-    //     return (
-    //         <div style={{ textAlign: 'center' }}>
-    //             <Spinner animation="border" role="status">
-    //                 <span className="sr-only">Loading...</span>
-    //             </Spinner>
-    //         </div>
+    if (loading) {
+        return (
+            <div style={{ textAlign: 'center' }}>
+                <Spinner animation="border" role="status">
+                    <span className="sr-only">Loading...</span>
+                </Spinner>
+            </div>
 
-    //     )
-    // }
+        )
+    }
 
     
     function addLanguageBtn() {

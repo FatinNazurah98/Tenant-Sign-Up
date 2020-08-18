@@ -60,16 +60,16 @@ export default function HFQualification(props) {
         fetchData();
     }, []);
 
-    // if (loading) {
-    //     return (
-    //         <div style={{ textAlign: 'center' }}>
-    //             <Spinner animation="border" role="status">
-    //                 <span className="sr-only">Loading...</span>
-    //             </Spinner>
-    //         </div>
+    if (loading) {
+        return (
+            <div style={{ textAlign: 'center' }}>
+                <Spinner animation="border" role="status">
+                    <span className="sr-only">Loading...</span>
+                </Spinner>
+            </div>
 
-    //     )
-    // }
+        )
+    }
 
     function addQualificationBtn() {
 
@@ -77,10 +77,10 @@ export default function HFQualification(props) {
             items.qualification === props.qualification
         );
 
-        if (data.length !== 0) {
-            alert(`${props.qualification} already added.`);
-            return;
-        }
+        // if (data.length !== 0) {
+        //     alert(`${props.qualification} already added.`);
+        //     return;
+        // }
 
         var data = dataSet.filter(items =>
             items.major === props.major
@@ -198,71 +198,6 @@ export default function HFQualification(props) {
                     </Table>
                 </div>
             </div>
-
-            {/* <Row>
-                <Col sm={6}>
-                    <Form.Group as={Row} controlId="formPlaintextPassword">
-                        <Form.Label column sm="3">
-                            Area of Expertise
-</Form.Label>
-                        <Col>
-                        <Form.Control
-                                as="select"
-                                name="areaExpertise"
-                                defaultValue={profile.areaExpertise}
-                                onChange={props.handleInput}
-                            >
-                                <option value="">- Select Area of Expertise -</option>
-                                {AREA.map((s, si) => {
-                                    return (
-                                        <option key={si} value={s}>{s.toUpperCase()}</option>
-                                    );
-                                })}
-                            </Form.Control>
-                        </Col>
-                    </Form.Group><br />
-
-                    <Form.Group as={Row} controlId="formPlaintextPassword">
-                        <Form.Label column sm="3">
-                            Experience (Year)
-</Form.Label>
-                        <Col>
-                            <Form.Control
-                                name="yearExperience"
-                                type="text"
-                                placeholder="Year Of Experience"
-                                defaultValue={profile.field_study}
-                                onChange={props.handleInput}
-                            >
-                            </Form.Control>
-                        </Col>
-                    </Form.Group><br />
-                </Col>
-
-
-                <Col sm={6}>
-                    <Form.Group as={Row} controlId="formPlaintextPassword">
-                        <Form.Label column sm="3">
-                            User Sub Area of Expertise
-</Form.Label>
-                        <Col>
-                            <Form.Control
-                                as="select"
-                                name="preferedLanguage"
-                                defaultValue={profile.qualification_cd}
-                                onChange={props.handleInput}
-                            >
-                                <option value="">- Select Prefered Language -</option>
-                                {LANGUAGE.map((s, si) => {
-                                    return (
-                                        <option key={si} value={s}>{s.toUpperCase()}</option>
-                                    );
-                                })}
-                            </Form.Control>
-                        </Col>
-                    </Form.Group><br />
-                </Col>
-            </Row> */}
         </Container>
     </Form>
 }

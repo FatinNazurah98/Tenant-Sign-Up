@@ -24,6 +24,7 @@ export default function HFSpecialties(props) {
     const [dataSet, setDataSet] = React.useState([]);
     const [loading, setLoading] = useState(true)
     const [profile, setProfile] = useState([]);
+    const [specialty_cd] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -40,7 +41,7 @@ export default function HFSpecialties(props) {
                 tstamp: getTodayDate(),
                 data: {
                     tenantId: email,
-                    specialtyCd: "General Medicine"
+                    specialtyCd: ""
                 }
             }
 

@@ -16,11 +16,13 @@ import PersonalInfo from './TenantSignUp/PersonalInfo';
 import ClinicSchedule from './TenantSignUp/ClinicShedule';
 import Jomedic from './TenantSignUp/Jomedic';
 import SignIn from './TenantSignUp/SignIn';
+import HorizontalLinearStepper from './component/HorizontalLinearStepper';
 
 function App() {
   return (
     <React.Fragment>
       <Router>
+        {/* <HorizontalLinearStepper/> */}
         {/* <SideBar /> */}
 
         <Jomedic />

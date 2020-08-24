@@ -35,11 +35,12 @@ const useStyles = makeStyles(theme => ({
 
 export default function TenantSignup() {
   const classes = useStyles();
-  const [, setActiveStep] = React.useState(0);
+  const [activeStep, setActiveStep] = React.useState(0);
+  const [skipped, setSkipped] = React.useState(new Set());
   const [state, setState] = useState({
 
     // screen 1 form data
-    activeStep: 4,
+    activeStep: 5,
     firstName: "",
     lastName: "",
     email: "",
@@ -114,6 +115,15 @@ export default function TenantSignup() {
   });
   const steps = getSteps();
 
+  const isStepOptional = (step) => {
+    if (step === 4) {
+      return step === 4;
+    }
+    else if (step === 5) {
+      return step === 5;
+    }
+  };
+
   const handleInput = (obj) => {
     setState({
       ...state,
@@ -121,8 +131,20 @@ export default function TenantSignup() {
     })
   };
 
+  const isStepSkipped = (step) => {
+    return skipped.has(step);
+  };
+
   const handleNext = () => {
+    let newSkipped = skipped;
+    if (isStepSkipped(state.activeStep)) {
+      newSkipped = new Set(newSkipped.values());
+      newSkipped.delete(state.activeStep);
+    }
+
     setActiveStep(prevActiveStep => prevActiveStep + 1);
+    setSkipped(newSkipped);
+
     let errMsg = '';
     if (state.activeStep === 0) { //screen1 create jomedic id
       if (state.firstName === "") {
@@ -511,6 +533,19 @@ export default function TenantSignup() {
     });
   };
 
+  const handleSkip = () => {
+    if (!isStepOptional(state.activeStep)) {
+      throw new Error("You can not skip a step that isn't optional.");
+    }
+
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setSkipped((prevSkipped) => {
+      const newSkipped = new Set(prevSkipped.values());
+      newSkipped.add(state.activeStep);
+      return newSkipped;
+    });
+  };
+
   const handleReset = () => {
     setState({
       ...state,
@@ -592,7 +627,7 @@ export default function TenantSignup() {
 
 
   function getSteps() {
-    return ['Login Details', 'Personal Information', 'Provider Information', 'Specialties', 'Qualification & Language\n(Optional)', 'Operation Hour\n(Optional)', 'License Upload'];
+    return ['Login Details', 'Personal Information', 'Provider Information', 'Specialties', 'Qualification & Language', 'Operation Hour', 'License Upload'];
   }
 
   function getStepContent(stepIndex) {
@@ -617,20 +652,30 @@ export default function TenantSignup() {
   }
 
   const max_width = 550; // mobile view
-  let stepperAttr = {orientation:'vertical'};
+  let stepperAttr = { orientation: 'vertical' };
   if (window.innerWidth >= max_width) {
-      stepperAttr = {alternativeLabel:'alternativeLabel'};
+    stepperAttr = { alternativeLabel: 'alternativeLabel' };
   }
 
   return (
     <div>
       <div className={classes.root}>
         <Stepper activeStep={state.activeStep} {...stepperAttr}>
-          {steps.map((label, i) => (
-            <Step key={label}>
-              <StepLabel>{label}</StepLabel>
-            </Step>
-          ))}
+          {steps.map((label, index) => {
+            const stepProps = {};
+            const labelProps = {};
+            if (isStepOptional(index)) {
+              labelProps.optional = <Typography variant="caption">Optional</Typography>;
+            }
+            if (isStepSkipped(index)) {
+              stepProps.completed = false;
+            }
+            return (
+              <Step key={label} {...stepProps}>
+                <StepLabel {...labelProps}>{label}</StepLabel>
+              </Step>
+            );
+          })}
         </Stepper>
         <div>
           {state.activeStep === steps.length ? (
@@ -659,12 +704,30 @@ export default function TenantSignup() {
                   >
                     Back
               </Button>
+                  {isStepOptional(state.activeStep) && (
+                    <Button style={{
+                      color: 'white',
+                      backgroundColor: '#FBB03B',
+                      width: '248px',
+                      height: '63.03px',
+                      borderRadius: '50px',
+                    }}
+                      variant="contained"
+                      color="primary"
+                      onClick={handleSkip}
+                      className={classes.button}
+                    >
+                      Skip
+                    </Button>
+                  )}
                   <Button style={{
                     color: 'white',
                     backgroundColor: '#FBB03B',
                     width: '248px',
                     height: '63.03px',
                     borderRadius: '50px',
+                    margin: 10
+
                   }} variant="contained" onClick={handleNext}>
                     {state.activeStep === steps.length - 1 ? 'Finish' : 'Next'}
                   </Button>

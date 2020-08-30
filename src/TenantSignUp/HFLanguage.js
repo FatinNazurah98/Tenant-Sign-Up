@@ -138,9 +138,7 @@ export default function HFQualification(props) {
                             }}
                         > Add</Button>
                 </Form.Group>
-            </Form.Row>
-            <div>
-                <div style={{ paddingTop: 20 }}>
+        
                     <Table className="display" width="100%" id="myTable">
                         <thead>
                             <tr>
@@ -161,8 +159,7 @@ export default function HFQualification(props) {
                             })}
                         </tbody>
                     </Table>
-                </div>
-            </div>
+            </Form.Row>
         </Container>
     </Form>
 }

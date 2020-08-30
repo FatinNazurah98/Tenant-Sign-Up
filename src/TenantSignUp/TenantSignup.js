@@ -40,7 +40,7 @@ export default function TenantSignup() {
   const [state, setState] = useState({
 
     // screen 1 form data
-    activeStep: 5,
+    activeStep: 4,
     firstName: "",
     lastName: "",
     email: "",
@@ -630,8 +630,8 @@ export default function TenantSignup() {
     return ['Login Details', 'Personal Information', 'Provider Information', 'Specialties', 'Qualification & Language', 'Operation Hour', 'License Upload'];
   }
 
-  function getStepContent(stepIndex) {
-    switch (stepIndex) {
+  function getStepContent(step) {
+    switch (step) {
       case 0:
         return <Screen1 handleInput={handleInput} {...state} />
       case 1:

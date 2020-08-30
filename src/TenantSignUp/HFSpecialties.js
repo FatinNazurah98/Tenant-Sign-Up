@@ -123,9 +123,7 @@ export default function HFSpecialties(props) {
                     }}>+ Add Specialties</Button>
 
             </Form.Group>
-        </Form.Row>
-        <div>
-            <div style={{ paddingTop: 20 }}>
+
                 <Table className="display" width="100%" id="myTable">
                     <thead>
                         <tr>
@@ -146,7 +144,6 @@ export default function HFSpecialties(props) {
                         })}
                     </tbody>
                 </Table>
-            </div>
-        </div>
+                </Form.Row>
     </Form>
 }

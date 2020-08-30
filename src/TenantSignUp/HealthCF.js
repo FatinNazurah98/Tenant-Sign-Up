@@ -219,14 +219,17 @@ export default function HealthCF(props) {
                     left: 158,
                 }}>Healthcare Facility</h1>
 
-                <div>
+                <div> 
                     <Card style={{
                         position: 'absolute',
                         left: 100,
                         top: 200,
                         width: '90%',
                         height: '120%',
-                        borderColor: '#E5E5E5'
+                        borderColor: '#E5E5E5',
+                        // justifyContent:'center',
+                        // display:'flex',
+                        alignItems:'center'
                     }}>
                         <Tabs
                             value={value}
@@ -271,11 +274,12 @@ export default function HealthCF(props) {
                         <Button
                             onClick={() => saveBtn()}
                             style={{
-                                position: 'absolute',
+                                // position: 'absolute',
                                 width: '169px',
                                 height: '45px',
-                                left: '1100px',
-                                top: '850px',
+                                // left: 600,
+                                // top: 810,
+                                // margin: 0,
                                 backgroundColor: '#FBB03B',
                                 borderColor: '#FBB03B',
                                 color: 'white',

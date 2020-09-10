@@ -21,6 +21,14 @@ export default function Screen3a(props) {
   const [, setState] = useState([props]);
   const [dataSet, setDataSet] = React.useState([]);
 
+  let styles = { borderColor: '#E5E5E5', margin: 'auto' }
+  const max_width = 900;
+  if (window.innerWidth >= max_width) {
+      styles = {
+          ...styles,
+          width: max_width
+      }
+  }
 
   // useEffect(() => {
   //   $("#myTable").DataTable();
@@ -48,7 +56,7 @@ export default function Screen3a(props) {
     setDataSet(temp);
   }
 
-  return <Card style={{ width: 900, height: 900, borderColor: '#E5E5E5', margin: 'auto' }}>
+  return <Card style={styles}>
     <Card.Body>
       <h1 style={{ textAlign: 'center', fontWeight: '600' }}>Specialties</h1>
       <br />

@@ -26,12 +26,12 @@ export default function HFOperation(props) {
             }
 
             const datas = {
-                txn_cd: "MEDPRO25",
+                txn_cd: "MEDPRO25", //get jlk_working_day
                 tstamp: getTodayDate(),
                 data: {
                     tenantId: email,
                     workingDay: "Monday",
-                    startTime: "",
+                    startTime: "08:00",
                 }
             }
 

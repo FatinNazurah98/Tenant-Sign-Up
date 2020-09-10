@@ -61,8 +61,12 @@ export default function HealthCF(props) {
         medicalSpecialties: "",
 
         //HFQualification
-        placeGraduate: "",
-        yearExperience: "",
+        qualification: "",
+        major: "",
+        placeGraduated: "",
+        yearGraduated: "",
+
+        //HFLanguage
         preferedLanguage: "",
 
         //OperationHour
@@ -123,11 +127,13 @@ export default function HealthCF(props) {
                 },
             }
 
-            postAPI(datas, (success) => {
-                console.log(success);
-            }, (error) => {
-                errMsg = error.message;
-            });
+            // postAPI(datas, (success) => {
+            //     console.log(success);
+            // }, (error) => {
+            //     errMsg = error.message;
+            // });
+
+            console.log(datas);
 
             alert('Data has been updated');
 

@@ -35,7 +35,16 @@ const COUNTRY = [
 export default function Screen3(props) {
   const [state] = useState(props);
 
-  return <Card style={{ width: 900, height: 900, borderColor: '#E5E5E5', margin: 'auto' }}>
+  let styles = { borderColor: '#E5E5E5', margin: 'auto' }
+  const max_width = 900;
+  if (window.innerWidth >= max_width) {
+      styles = {
+          ...styles,
+          width: max_width
+      }
+  }
+
+  return <Card style={styles}>
     <Card.Body>
       <h1 style={{ textAlign: 'center', fontWeight: '600' }}>Provider Information</h1>
       <br />

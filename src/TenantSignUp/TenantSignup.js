@@ -11,6 +11,7 @@ import Screen2 from './Screen2';
 import Screen3 from './Screen3';
 import Screen3a from './Screen3a';
 import Screen3b from './Screen3b';
+import Screen3c from './Screen3c';
 import Screen4 from './Screen4';
 import Screen5 from './Screen5';
 import Screen6 from './Screen6';
@@ -74,8 +75,12 @@ export default function TenantSignup() {
     medicalSpecialties: "",
 
     // screen 3b form data
-    placeGraduate: "",
-    yearExperience: "",
+    qualification: "",
+    placeGraduated: "",
+    major: "",
+    yearGraduated: "",
+
+    //screen3c form data
     preferedLanguage: "",
 
     // screen 4 form data
@@ -122,6 +127,9 @@ export default function TenantSignup() {
     else if (step === 5) {
       return step === 5;
     }
+    else if (step === 6) {
+      return step === 6;
+    }
   };
 
   const handleInput = (obj) => {
@@ -161,18 +169,14 @@ export default function TenantSignup() {
         errMsg = 'Password does not match';
       }
     } else if (state.activeStep === 1) { //screen2 personal info
-      if (state.firstName === "") {
-        errMsg = 'Please fill first name';
-      } else if (state.lastName === "") {
-        errMsg = 'Please fill last name';
-      } else if (state.phoneNo === "") {
+      if (state.phoneNo === "") {
         errMsg = 'Please fill phone number';
       } else if (state.dateOfBirth === "") {
         errMsg = 'Please choose date of birth';
       } else if (state.gender === "") {
         errMsg = 'Please choose gender';
       } else if (state.billingAddress === "") {
-        errMsg = 'Please fill last name';
+        errMsg = 'Please fill billing address';
       } else if (state.state === "") {
         errMsg = 'Please choose state';
       } else if (state.postcode === "") {
@@ -194,13 +198,13 @@ export default function TenantSignup() {
       } else if (state.cityProvider === "") {
         errMsg = 'Please fill city';
       } else if (state.stateProvider === "") {
-        errMsg = 'Please fill state';
+        errMsg = 'Please choose state';
       } else if (state.country === "") {
-        errMsg = 'Please fill country';
+        errMsg = 'Please choose country';
       } else if (state.tenantPhoneNo === "") {
-        errMsg = 'Please fill tenant phone number';
+        errMsg = 'Please fill provider phone number';
       } else if (state.tenantEmail === "") {
-        errMsg = 'Please fill tenant email';
+        errMsg = 'Please fill provider email';
       } else if (state.longitude === "") {
         errMsg = 'Please fill longitude';
       } else if (state.latitude === "") {
@@ -208,17 +212,23 @@ export default function TenantSignup() {
       }
     } else if (state.activeStep === 3) { //screen3a specialties
       if (state.medicalSpecialties === "") {
-        errMsg = 'Please fill medical specialties';
+        errMsg = 'Please choose medical specialties';
       }
-    } else if (state.activeStep === 4) { //screen3b qualification&language
-      // if (state.placeGraduate === "") {
-      //   errMsg = 'Please fill place of graduate';
-      // } else if (state.yearExperience === "") {
-      //   errMsg = 'Please fill year of experience';
-      // } else if (state.preferedLanguage === "") {
+    } else if (state.activeStep === 4) { //screen3b qualification
+      // if (state.qualification === "") {
+      //   errMsg = 'Please fill qualification';
+      // } else if (state.major === "") {
+      //   errMsg = 'Please fill major';
+      // } else if (state.placeGraduated === "") {
+      //   errMsg = 'Please fill place of graduated';
+      // } else if (state.yearGraduated === "") {
+      //   errMsg = 'Please fill year of graduated';
+      // }
+    } else if (state.activeStep === 5) { //screen3c language
+      // if (state.preferedLanguage === "") {
       //   errMsg = 'Please fill prefered language';
       // }
-    } else if (state.activeStep === 5) { //screen4 operation hour
+    } else if (state.activeStep === 6) { //screen4 operation hour
       // if (state.monDay === "") {
       //   errMsg = 'Please select day (monday)';
       // } else if (state.monStart === "") {
@@ -262,7 +272,7 @@ export default function TenantSignup() {
       // } else if (state.sunEnd === "") {
       //   errMsg = 'Please fill sunday end time';
       // }
-    } else if (state.activeStep === 6) { //screen5 apc&blc
+    } else if (state.activeStep === 7) { //screen5 apc&blc
       if (state.apc === "") {
         errMsg = 'Please upload annual practicing certificate';
       } else if (state.blc === "") {
@@ -411,10 +421,10 @@ export default function TenantSignup() {
         tstamp: getTodayDate(),
         data: {
           tenantId: state.email,
-          qualificationCd: state.preferedLanguage,
-          fieldStudy: state.yearExperience,
-          universityName: state.placeGraduate,
-          graduationYear: "2019-04-20",
+          qualificationCd: state.qualification,
+          fieldStudy: state.major,
+          universityName: state.placeGraduated,
+          graduationYear: state.yearGraduated,
           createdBy: "",
         },
       };
@@ -427,6 +437,28 @@ export default function TenantSignup() {
     }
 
     else if (state.activeStep === 5) {
+      //screen3c table jlk_language
+
+      let datas5a = {
+        txn_cd: 'MEDPRO15',
+        tstamp: getTodayDate(),
+        data: {
+          tenantId: state.email,
+          languageCd:state.preferedLanguage,
+          createdBy: state.email,
+        },
+      };
+
+      // console.log(datas5a);
+
+      postAPI(datas5a, (success) => {
+        console.log(success);
+      }, (error) => {
+        errMsg = error.message;
+      });
+    }
+
+    else if (state.activeStep === 6) {
       //screen4 table jlk_working_day
 
       let datas6 = {
@@ -437,50 +469,52 @@ export default function TenantSignup() {
             {
               tenantId: state.email,
               workingDay: "Monday",
-              startTime: state.monStart,
-              endTime: state.monEnd,
+              startTime: "08:00",
+              endTime: "22:00",
               createdBy: ""
             }, {
               tenantId: state.email,
               workingDay: "Tuesday",
-              startTime: state.tueStart,
-              endTime: state.thuEnd,
+              startTime: "08:00",
+              endTime: "22:00",
               createdBy: ""
             }, {
               tenantId: state.email,
               workingDay: "Wednesday",
-              startTime: state.wedStart,
-              endTime: state.wedEnd,
+              startTime: "08:00",
+              endTime: "22:00",
               createdBy: ""
             }, {
               tenantId: state.email,
               workingDay: "Thursday",
-              startTime: state.thuStart,
-              endTime: state.thuEnd,
+              startTime: "08:00",
+              endTime: "22:00",
               createdBy: ""
             }, {
               tenantId: state.email,
               workingDay: "Friday",
-              startTime: state.friStart,
-              endTime: state.friEnd,
+              startTime: "08:00",
+              endTime: "22:00",
               createdBy: ""
             }, {
               tenantId: state.email,
               workingDay: "Saturday",
-              startTime: state.satStart,
-              endTime: state.satEnd,
+              startTime: "08:00",
+              endTime: "22:00",
               createdBy: ""
             }, {
               tenantId: state.email,
               workingDay: "Sunday",
-              startTime: state.sunStart,
-              endTime: state.sunEnd,
+              startTime: "08:00",
+              endTime: "22:00",
               createdBy: ""
             },
           ]
 
         },
       };
+
+      // console.log(datas6);
 
       postAPI(datas6, (success) => {
         console.log(success);
@@ -489,7 +523,7 @@ export default function TenantSignup() {
       });
     }
 
-    else if (state.activeStep === 6) {
+    else if (state.activeStep === 7) {
       //screen5 table jlk_jomedic_master
 
       let datas7 = {
@@ -584,8 +618,12 @@ export default function TenantSignup() {
       medicalSpecialties: "",
 
       //screen3b
-      placeGraduate: "",
-      yearExperience: "",
+      qualification: "",
+      placeGraduated: "",
+      major: "",
+      yearGraduated: "",
+
+      //Screen3c
       preferedLanguage: "",
 
       //screen4
@@ -627,7 +665,7 @@ export default function TenantSignup() {
 
 
   function getSteps() {
-    return ['Login Details', 'Personal Information', 'Provider Information', 'Specialties', 'Qualification & Language', 'Operation Hour', 'License Upload'];
+    return ['Login Details', 'Personal Information', 'Provider Information', 'Specialties', 'Qualification', 'Language', 'Operation Hour', 'License Upload'];
   }
 
   function getStepContent(step) {
@@ -643,8 +681,10 @@ export default function TenantSignup() {
       case 4:
         return <Screen3b handleInput={handleInput} {...state} />
       case 5:
-        return <Screen4 handleInput={handleInput} {...state} />
+        return <Screen3c handleInput={handleInput} {...state} />
       case 6:
+        return <Screen4 handleInput={handleInput} {...state} />
+      case 7:
         return <Screen5 handleInput={handleInput} {...state} />
       default:
         return 'Unknown stepIndex';

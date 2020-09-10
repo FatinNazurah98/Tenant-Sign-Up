@@ -218,7 +218,8 @@ export default function PersonalInfo(props) {
                         top: 200,
                         width: '90%',
                         height: '80%',
-                        borderColor: '#E5E5E5'
+                        borderColor: '#E5E5E5',
+                        alignItems:'center'
                     }}>
                         <Tabs
                             value={value}
@@ -422,11 +423,11 @@ export default function PersonalInfo(props) {
                         <Button 
                         onClick={() => saveBtn()}
                         style={{
-                            position: 'absolute',
+                            // position: 'absolute',
                             width: '169px',
                             height: '45px',
-                            left: '1100px',
-                            top: 400,
+                            // left: '1100px',
+                            // top: 400,
                             backgroundColor: '#FBB03B',
                             color: 'white',
                             borderColor: '#FBB03B',

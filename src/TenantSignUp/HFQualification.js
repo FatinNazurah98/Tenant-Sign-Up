@@ -38,12 +38,12 @@ export default function HFQualification(props) {
             }
 
             const datas = {
-                txn_cd: "MEDPRO24",
+                txn_cd: "MEDPRO24", //get jlk_qualification
                 tstamp: getTodayDate(),
                 data: {
                     tenantId: email,
-                    qualificationCd: "",
-                    fieldStudy: ""
+                    qualificationCd: "Bachelor Degree",
+                    fieldStudy: "SE"
                 }
             }
 
@@ -113,7 +113,7 @@ export default function HFQualification(props) {
                     <Form.Control
                         as="select"
                         name="qualification"
-                        defaultValue={profile.qualification}
+                        defaultValue={profile.qualification_cd}
                         onChange={props.handleInput}
                     >
                         <option value="">- Select Qualification Level -</option>
@@ -139,7 +139,7 @@ export default function HFQualification(props) {
                         name="major"
                         type="text"
                         placeholder="eg : Diploma in.."
-                        defaultValue={profile.major}
+                        defaultValue={profile.field_study}
                         onChange={props.handleInput}
                     >
                     </Form.Control><br />
@@ -149,7 +149,7 @@ export default function HFQualification(props) {
                             name="yearGraduated"
                             type="text"
                             placeholder="Year graduated"
-                            defaultValue={profile.yearGraduated}
+                            defaultValue={profile.graduation_year}
                             onChange={props.handleInput}
                         >
                         </Form.Control>&nbsp;&nbsp;&nbsp;

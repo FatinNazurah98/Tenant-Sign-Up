@@ -49,7 +49,7 @@ export default function Screen4(props) {
                   name="monStart"
                   type="time"
                   placeholder="Start time"
-                  // value={startTime}
+                  value={startTime}
                   defaultValue={state.monStart}
                   onChange={props.handleInput}
                 />
@@ -61,7 +61,7 @@ export default function Screen4(props) {
                   name="monEnd"
                   type="time"
                   placeholder="End time"
-                  // value={endTime}
+                  value={endTime}
                   defaultValue={state.monEnd}
                   onChange={props.handleInput}
                 />
@@ -89,7 +89,7 @@ export default function Screen4(props) {
                   name="tueStart"
                   type="time"
                   placeholder="Start time"
-                  // value={startTime}
+                  value={startTime}
                   defaultValue={state.tueStart}
                   onChange={props.handleInput}
                 />
@@ -101,7 +101,7 @@ export default function Screen4(props) {
                   name="tueEnd"
                   type="time"
                   placeholder="End time"
-                  // value={endTime}
+                  value={endTime}
                   defaultValue={state.tueEnd}
                   onChange={props.handleInput}
                 />
@@ -129,7 +129,7 @@ export default function Screen4(props) {
                   name="wedStart"
                   type="time"
                   placeholder="Start time"
-                  // value={startTime}
+                  value={startTime}
                   defaultValue={state.wedStart}
                   onChange={props.handleInput}
                 />
@@ -141,7 +141,7 @@ export default function Screen4(props) {
                   name="wedEnd"
                   type="time"
                   placeholder="End time"
-                  // value={endTime}
+                  value={endTime}
                   defaultValue={state.wedEnd}
                   onChange={props.handleInput}
                 />
@@ -169,7 +169,7 @@ export default function Screen4(props) {
                   name="thuStart"
                   type="time"
                   placeholder="Start time"
-                  // value={startTime}
+                  value={startTime}
                   defaultValue={state.thuStart}
                   onChange={props.handleInput}
                 />
@@ -181,7 +181,7 @@ export default function Screen4(props) {
                   name="thuEnd"
                   type="time"
                   placeholder="End time"
-                  // value={endTime}
+                  value={endTime}
                   defaultValue={state.thuEnd}
                   onChange={props.handleInput}
                 />
@@ -209,7 +209,7 @@ export default function Screen4(props) {
                   name="friStart"
                   type="time"
                   placeholder="Start time"
-                  // value={startTime}
+                  value={startTime}
                   defaultValue={state.friStart}
                   onChange={props.handleInput}
                 />
@@ -221,7 +221,7 @@ export default function Screen4(props) {
                   name="friEnd"
                   type="time"
                   placeholder="End time"
-                  // value={endTime}
+                  value={endTime}
                   defaultValue={state.friEnd}
                   onChange={props.handleInput}
                 />
@@ -249,7 +249,7 @@ export default function Screen4(props) {
                   name="satStart"
                   type="time"
                   placeholder="Start time"
-                  // value={startTime}
+                  value={startTime}
                   defaultValue={state.satStart}
                   onChange={props.handleInput}
                 />
@@ -261,7 +261,7 @@ export default function Screen4(props) {
                   name="satEnd"
                   type="time"
                   placeholder="End time"
-                  // value={endTime}
+                  value={endTime}
                   defaultValue={state.satEnd}
                   onChange={props.handleInput}
                 />
@@ -289,7 +289,7 @@ export default function Screen4(props) {
                   name="sunStart"
                   type="time"
                   placeholder="Start time"
-                  // value={startTime}
+                  value={startTime}
                   defaultValue={state.sunStart}
                   onChange={props.handleInput}
                 />
@@ -301,7 +301,7 @@ export default function Screen4(props) {
                   name="sunEnd"
                   type="time"
                   placeholder="End time"
-                  // value={endTime}
+                  value={endTime}
                   defaultValue={state.sunEnd}
                   onChange={props.handleInput}
                 />

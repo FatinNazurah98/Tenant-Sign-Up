@@ -61,7 +61,7 @@ export default function HFInfo(props) {
             }
 
             const datas = {
-                txn_cd: "MEDPRO22",
+                txn_cd: "MEDPRO22", //get jlk_tenant
                 tstamp: getTodayDate(),
                 data: {
                     tenantId: email,
@@ -175,7 +175,7 @@ export default function HFInfo(props) {
                                 name="providerPhoneNo"
                                 type="text"
                                 placeholder="Provider Phone Number"
-                                defaultValue={state.providerPhoneNo}
+                                defaultValue={profile.tenant_phone_no}
                                 onChange={props.handleInput}
                             >
 

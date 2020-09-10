@@ -37,11 +37,11 @@ export default function HFSpecialties(props) {
             }
 
             const datas = {
-                txn_cd: "MEDPRO23",
+                txn_cd: "MEDPRO23", //get jlk_jomedic_specialty
                 tstamp: getTodayDate(),
                 data: {
                     tenantId: email,
-                    specialtyCd: ""
+                    specialtyCd: "General Medicine"
                 }
             }
 

@@ -19,12 +19,6 @@ const QUALIFICATION = [
   'Doctorate'
 ];
 
-const LANGUAGE = [
-  'English',
-  'Bahasa Malaysia',
-  'Mandarin'
-];
-
 export default function Screen3b(props) {
   const [state, setState] = useState([props]);
   const [dataSet, setDataSet] = React.useState([]);
@@ -57,8 +51,8 @@ export default function Screen3b(props) {
     let newData = {
       qualification: props.qualification,
       major: props.major,
-      graduatedYear: props.yearGraduated,
-      institution: props.placeGraduated
+      yearGraduated: props.yearGraduated,
+      placeGraduated: props.placeGraduated
     };
 
     setDataSet(oldArray => [...oldArray, newData]);
@@ -71,34 +65,10 @@ export default function Screen3b(props) {
     temp.splice(index, 1);
     setDataSet(temp);
   }
-  
-
-
-  function addLanguageBtn() {
-
-    var data = dataSet.filter(items =>
-        items.preferedLanguage === props.preferedLanguage
-    );
-
-    if (data.length !== 0) {
-        alert(`${props.preferedLanguage} already added.`);
-        return;
-    }
-    setDataSet(oldArray => [...oldArray, { preferedLanguage: props.preferedLanguage }]);
-    console.log(props.preferedLanguage);
-    setState(state => [...state, props.preferedLanguage])
-}
-
-function removeLanguageBtn(index) {
-    // setDataSet(dataSet.filter(items => items.medicalSpecialties !== item))
-    const temp = [...dataSet];
-    temp.splice(index, 1);
-    setDataSet(temp);
-}
 
   return <Card style={styles}>
     <Card.Body>
-      <h1 style={{ textAlign: 'center', fontWeight: '600' }}>Qualification & Language</h1>
+      <h1 style={{ textAlign: 'center', fontWeight: '600' }}>Qualification</h1>
       <br />
 
       <Form.Row>
@@ -141,7 +111,7 @@ function removeLanguageBtn(index) {
           <div style={{ display: "inline-flex" }}>
             <Form.Control style={{ width: 450 }}
               name="yearGraduated"
-              type="text"
+              type="date"
               placeholder="Year graduated"
               defaultValue={state.yearGraduated}
               onChange={props.handleInput}
@@ -178,8 +148,8 @@ function removeLanguageBtn(index) {
                   <tr key={key}>
                     <td>{item.qualification}</td>
                     <td>{item.major}</td>
-                    <td>{item.graduatedYear}</td>
-                    <td>{item.institution}</td>
+                    <td>{item.yearGraduated}</td>
+                    <td>{item.placeGraduated}</td>
                     <td>
                       <FontAwesomeIcon icon={faTrashAlt} onClick={() => removeQualificationBtn(key)} />
                     </td>
@@ -191,67 +161,6 @@ function removeLanguageBtn(index) {
         </div>
       </div><br />
       <hr />
-
-
-      <Form>
-        <Container style={{ marginLeft: 15 }}>
-          <Form.Row>
-            <Form.Group as={Col} controlId="formGridEmail">
-              <Form.Label>Language Spoken</Form.Label>
-              <Form.Control
-                as="select"
-                name="preferedLanguage"
-                defaultValue={state.preferedLanguage}
-                onChange={props.handleInput}
-              >
-                <option value="">- Select language spoken -</option>
-                {LANGUAGE.map((s, si) => {
-                  return (
-                    <option key={si} value={s}>{s.toUpperCase()}</option>
-                  );
-                })}
-              </Form.Control>
-            </Form.Group>
-
-            <Form.Group as={Col} controlId="formGridPassword">
-              <Form.Label><br /></Form.Label><br />
-              <Button
-                onClick={() => addLanguageBtn()}
-                style={{
-                  width: 100,
-                  backgroundColor: 'white',
-                  color: 'black',
-                  borderColor: '#C4C4C4'
-                }}
-              > Add</Button>
-            </Form.Group>
-          </Form.Row>
-          <div>
-            <div style={{ paddingTop: 20 }}>
-              <Table className="display" width="100%" id="myTable">
-                <thead>
-                  <tr>
-                    <th>LANGUAGE</th>
-                    <th>ACTION</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {dataSet.map((item, key) => {
-                    return (
-                      <tr key={key}>
-                        <td>{item.preferedLanguage}</td>
-                        <td>
-                          <FontAwesomeIcon icon={faTrashAlt} onClick={() => removeLanguageBtn(key)} />
-                        </td>
-                      </tr>
-                    )
-                  })}
-                </tbody>
-              </Table>
-            </div>
-          </div>
-        </Container>
-      </Form>
     </Card.Body>
   </Card>
 }

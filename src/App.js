@@ -17,12 +17,14 @@ import ClinicSchedule from './TenantSignUp/ClinicShedule';
 import Jomedic from './TenantSignUp/Jomedic';
 import SignIn from './TenantSignUp/SignIn';
 import HorizontalLinearStepper from './component/HorizontalLinearStepper';
+import UserForm from './react_step_form-master/UserForm';
 
 function App() {
   return (
     <React.Fragment>
       <Router>
         {/* <HorizontalLinearStepper/> */}
+        {/* <UserForm/> */}
         {/* <SideBar /> */}
 
         <Jomedic />

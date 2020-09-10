@@ -20,20 +20,7 @@ export default function HFQualification(props) {
     const [profile, setProfile] = useState([]);
     const [loading, setLoading] = useState(true)
 
-    const QUALIFICATION = [
-        'Diploma',
-        'Bachelor Degree',
-        'Master',
-        'Doctorate'
-    ];
-
     const LANGUAGE = [
-        'English',
-        'Bahasa Malaysia',
-        'Mandarin'
-    ];
-
-    const AREA = [
         'English',
         'Bahasa Malaysia',
         'Mandarin'
@@ -50,7 +37,7 @@ export default function HFQualification(props) {
             }
 
             const datas = {
-                txn_cd: "MEDPRO24",
+                txn_cd: "MEDPRO24", //tukar to get jlk_language
                 tstamp: getTodayDate(),
                 data: {
                     tenantId: email,
@@ -114,7 +101,7 @@ export default function HFQualification(props) {
                     <Form.Control
                         as="select"
                         name="language"
-                        defaultValue={profile.language}
+                        defaultValue={profile.language_cd}
                         onChange={props.handleInput}
                     >
                         <option value="">- Select language spoken -</option>

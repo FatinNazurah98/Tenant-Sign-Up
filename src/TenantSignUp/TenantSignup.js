@@ -41,7 +41,7 @@ export default function TenantSignup() {
   const [state, setState] = useState({
 
     // screen 1 form data
-    activeStep: 4,
+    activeStep: 0,
     firstName: "",
     lastName: "",
     email: "",

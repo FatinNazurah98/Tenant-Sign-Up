@@ -744,7 +744,7 @@ export default function TenantSignup() {
                   >
                     Back
               </Button>
-                  {isStepOptional(state.activeStep) && (
+                  {/* {isStepOptional(state.activeStep) && (
                     <Button style={{
                       color: 'white',
                       backgroundColor: '#FBB03B',
@@ -759,7 +759,7 @@ export default function TenantSignup() {
                     >
                       Skip
                     </Button>
-                  )}
+                  )} */}
                   <Button style={{
                     color: 'white',
                     backgroundColor: '#FBB03B',

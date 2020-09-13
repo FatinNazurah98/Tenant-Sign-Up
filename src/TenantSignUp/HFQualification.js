@@ -43,7 +43,7 @@ export default function HFQualification(props) {
                 data: {
                     tenantId: email,
                     qualificationCd: "Bachelor Degree",
-                    fieldStudy: "SE"
+                    fieldStudy: "Medicine"
                 }
             }
 
